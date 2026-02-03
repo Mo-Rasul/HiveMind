@@ -24,7 +24,7 @@ export default function FormSection({ type }) {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <div className="form-container p-6 md:p-8">
+      <div className="form-container p-8 md:p-10">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
@@ -33,27 +33,27 @@ export default function FormSection({ type }) {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="font-heading text-xl md:text-2xl text-hivemind-text mb-4">
+              <h3 className="font-heading font-semibold text-xl md:text-2xl text-hivemind-text mb-6">
                 {title}
               </h3>
               
               {/* Form Placeholder - Replace with actual Microsoft Forms embed */}
               <div 
-                className="bg-hivemind-accent/50 rounded-xl p-8 md:p-12 text-center border-2 border-dashed border-hivemind-primary/30"
+                className="bg-gradient-to-b from-hivemind-accent/60 to-hivemind-accent/30 rounded-2xl p-10 md:p-14 text-center border border-hivemind-primary/10"
                 data-testid="form-placeholder"
               >
                 <p className="text-hivemind-text-muted font-body mb-4">
                   Microsoft Forms Embed Area
                 </p>
-                <p className="text-sm text-hivemind-text-muted/70 font-mono bg-white/50 px-4 py-2 rounded-lg inline-block">
+                <p className="text-sm text-hivemind-text-muted/60 font-mono bg-white/70 px-4 py-2 rounded-lg inline-block border border-black/5">
                   FORMLINKHERE
                 </p>
                 
                 {/* Demo Submit Button */}
-                <div className="mt-8">
+                <div className="mt-10">
                   <Button
                     onClick={handleSubmit}
-                    className="bg-hivemind-primary hover:bg-hivemind-primary-hover text-white font-body font-medium px-8 py-6 rounded-full btn-shine transition-all duration-300 hover:scale-105"
+                    className="bg-hivemind-primary hover:bg-hivemind-primary-hover text-white font-body font-medium px-8 py-6 rounded-full transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md"
                     data-testid="form-submit-button"
                   >
                     <Send className="w-4 h-4 mr-2" />
@@ -68,7 +68,7 @@ export default function FormSection({ type }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-center py-8"
+              className="text-center py-10"
               data-testid="form-success-message"
             >
               <motion.div
@@ -76,12 +76,12 @@ export default function FormSection({ type }) {
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
               >
-                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-5" />
               </motion.div>
-              <h3 className="font-heading text-2xl text-hivemind-text mb-4">
+              <h3 className="font-heading font-semibold text-2xl text-hivemind-text mb-4">
                 Submission Received!
               </h3>
-              <p className="text-hivemind-text-muted font-body max-w-md mx-auto">
+              <p className="text-hivemind-text-muted font-body max-w-md mx-auto leading-relaxed">
                 {successMessage}
               </p>
             </motion.div>

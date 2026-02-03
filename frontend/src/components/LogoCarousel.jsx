@@ -18,19 +18,19 @@ export default function LogoCarousel() {
 
   return (
     <motion.div 
-      className="w-full overflow-hidden py-8"
+      className="w-full overflow-hidden py-12"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.8, duration: 0.6 }}
     >
-      <p className="text-center text-hivemind-text-muted font-body text-sm mb-6 uppercase tracking-wider">
+      <p className="text-center text-hivemind-text-muted font-body text-sm mb-8 tracking-wide">
         Trusted by leading brands
       </p>
       
       <div className="marquee-container relative">
         {/* Gradient fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-hivemind-background to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-hivemind-background to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
         
         <div 
           className="flex animate-marquee"
@@ -39,14 +39,14 @@ export default function LogoCarousel() {
           {duplicatedLogos.map((logo, index) => (
             <div
               key={`${logo.name}-${index}`}
-              className="flex-shrink-0 mx-8 md:mx-12 flex flex-col items-center gap-2 logo-placeholder cursor-pointer"
+              className="flex-shrink-0 mx-10 md:mx-14 flex flex-col items-center gap-2 logo-placeholder cursor-pointer"
               data-testid={`logo-item-${index}`}
             >
               <logo.Icon 
-                className="w-10 h-10 md:w-12 md:h-12 text-hivemind-text-muted" 
+                className="w-8 h-8 md:w-10 md:h-10 text-hivemind-text-muted/50" 
                 strokeWidth={1.5}
               />
-              <span className="text-xs text-hivemind-text-muted font-body">
+              <span className="text-xs text-hivemind-text-muted/60 font-body">
                 {logo.name}
               </span>
             </div>
