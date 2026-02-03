@@ -1,0 +1,146 @@
+import { motion } from "framer-motion";
+import { ArrowLeft, Briefcase, TrendingUp, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import FormSection from "../components/FormSection";
+import { Button } from "../components/ui/button";
+
+export default function BrandsPage() {
+  return (
+    <motion.div
+      className="min-h-screen page-transition"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+      data-testid="brands-page"
+    >
+      <Header />
+      
+      <main className="pt-24 pb-16 px-6">
+        {/* Back Button */}
+        <motion.div
+          className="max-w-6xl mx-auto mb-8"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+        >
+          <Link to="/" data-testid="back-to-home-link">
+            <Button 
+              variant="ghost" 
+              className="text-hivemind-text-muted hover:text-hivemind-text hover:bg-hivemind-accent/50 rounded-full px-4"
+              data-testid="back-button"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </motion.div>
+
+        {/* Hero Image Section */}
+        <motion.section
+          className="max-w-6xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          <div className="relative rounded-3xl overflow-hidden card-shadow">
+            <img
+              src="https://images.unsplash.com/photo-1758873271902-a63ecd5b8235?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200"
+              alt="Creative marketing team collaboration"
+              className="w-full h-64 md:h-80 lg:h-96 object-cover"
+              data-testid="brands-hero-image"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-hivemind-text/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+              <h1 className="hero-heading text-3xl sm:text-4xl lg:text-5xl text-white mb-3">
+                Partner With HiveMind
+              </h1>
+              <p className="text-white/90 font-body text-base md:text-lg max-w-2xl">
+                Elevate your brand with authentic creator partnerships that resonate with your target audience.
+              </p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Benefits Section */}
+        <motion.section
+          className="max-w-6xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-heading text-2xl md:text-3xl text-hivemind-text text-center mb-10">
+            Why Partner With Us?
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Users,
+                title: "Curated Creator Network",
+                description: "Access our vetted network of talented creators across various niches and platforms."
+              },
+              {
+                icon: TrendingUp,
+                title: "Data-Driven Campaigns",
+                description: "We leverage analytics to match your brand with creators who deliver measurable results."
+              },
+              {
+                icon: Briefcase,
+                title: "End-to-End Management",
+                description: "From strategy to execution, we handle all aspects of your creator partnerships."
+              }
+            ].map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                className="bg-white rounded-2xl p-6 card-shadow hover-lift"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                data-testid={`benefit-card-${index}`}
+              >
+                <div className="w-12 h-12 bg-hivemind-accent rounded-xl flex items-center justify-center mb-4">
+                  <benefit.icon className="w-6 h-6 text-hivemind-primary" />
+                </div>
+                <h3 className="font-heading text-lg text-hivemind-text mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-hivemind-text-muted font-body text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Next Steps Section */}
+        <motion.section
+          className="max-w-3xl mx-auto mb-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-heading text-2xl md:text-3xl text-hivemind-text mb-4">
+            Ready to Get Started?
+          </h2>
+          <p className="text-hivemind-text-muted font-body text-base md:text-lg mb-2">
+            Fill out the form below and our team will be in touch to discuss your goals 
+            and how we can help you achieve them.
+          </p>
+          <p className="text-hivemind-text-muted/70 font-body text-sm">
+            Typical response time: 2-3 business days
+          </p>
+        </motion.section>
+
+        {/* Form Section */}
+        <section data-testid="brands-form-section">
+          <FormSection type="brand" />
+        </section>
+      </main>
+    </motion.div>
+  );
+}
