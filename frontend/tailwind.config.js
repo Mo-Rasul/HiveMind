@@ -8,7 +8,7 @@ module.exports = {
   theme: {
         extend: {
                 fontFamily: {
-                        'heading': ['Caprasimo', 'serif'],
+                        'heading': ['DM Sans', 'sans-serif'],
                         'body': ['DM Sans', 'sans-serif'],
                 },
                 borderRadius: {
@@ -19,12 +19,12 @@ module.exports = {
                 colors: {
                         hivemind: {
                                 primary: '#f48d2d',
-                                'primary-hover': '#e07b1e',
-                                background: '#fff3e7',
+                                'primary-hover': '#e8802a',
+                                background: '#fffdfb',
                                 paper: '#ffffff',
-                                text: '#2d1b0e',
-                                'text-muted': '#6b5a4e',
-                                accent: '#ffedd5',
+                                text: '#3d3d3d',
+                                'text-muted': '#6b6b6b',
+                                accent: '#fff5eb',
                         },
                         background: 'hsl(var(--background))',
                         foreground: 'hsl(var(--foreground))',
