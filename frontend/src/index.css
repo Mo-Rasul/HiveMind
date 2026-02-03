@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=DM+Sans:opsz,wght@9..40,400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,8 +9,10 @@ body {
     font-family: 'DM Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #fff3e7;
-    color: #2d1b0e;
+    background: linear-gradient(180deg, #fff8f2 0%, #fff5eb 30%, #fffdfb 70%, #ffffff 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #3d3d3d;
 }
 
 code {
@@ -20,31 +22,31 @@ code {
 
 @layer base {
     :root {
-        --background: 30 100% 96%;
-        --foreground: 24 54% 12%;
+        --background: 30 100% 99%;
+        --foreground: 0 0% 24%;
         --card: 0 0% 100%;
-        --card-foreground: 24 54% 12%;
+        --card-foreground: 0 0% 24%;
         --popover: 0 0% 100%;
-        --popover-foreground: 24 54% 12%;
+        --popover-foreground: 0 0% 24%;
         --primary: 27 90% 57%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 30 100% 91%;
-        --secondary-foreground: 24 54% 12%;
-        --muted: 30 100% 91%;
-        --muted-foreground: 24 19% 36%;
-        --accent: 30 100% 91%;
-        --accent-foreground: 27 90% 57%;
+        --secondary: 30 60% 97%;
+        --secondary-foreground: 0 0% 24%;
+        --muted: 30 30% 96%;
+        --muted-foreground: 0 0% 45%;
+        --accent: 30 60% 95%;
+        --accent-foreground: 27 90% 50%;
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
-        --border: 30 30% 85%;
-        --input: 30 30% 85%;
+        --border: 30 20% 90%;
+        --input: 30 20% 92%;
         --ring: 27 90% 57%;
         --chart-1: 12 76% 61%;
         --chart-2: 173 58% 39%;
         --chart-3: 197 37% 24%;
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
+        --radius: 0.75rem;
     }
 }
 
@@ -64,7 +66,7 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-    background: #fff3e7;
+    background: #fffdfb;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -76,7 +78,7 @@ code {
     background: #e07b1e;
 }
 
-/* Noise texture overlay */
+/* Subtle noise texture overlay for depth */
 .noise-texture::before {
     content: '';
     position: fixed;
@@ -85,7 +87,7 @@ code {
     width: 100%;
     height: 100%;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.02;
+    opacity: 0.015;
     pointer-events: none;
     z-index: 1000;
 }
