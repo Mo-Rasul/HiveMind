@@ -1,0 +1,101 @@
+{
+  "brand_identity": {
+    "name": "HiveMind Marketing",
+    "tone": "Warm, Organic, Professional, Founder-led",
+    "aesthetic": "Modern Retro, Soft Minimalist, Human-Centric",
+    "theme": "light"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Caprasimo, serif",
+      "weight": "400",
+      "description": "A bubbly, rounded serif that mimics Cooper BT. Use for all major headings to create a friendly, retro-warm vibe.",
+      "import_url": "https://fonts.googleapis.com/css2?family=Caprasimo&family=DM+Sans:opsz,wght@9..40,400;500;700&display=swap"
+    },
+    "body": {
+      "font_family": "DM Sans, sans-serif",
+      "weight": "400",
+      "description": "Clean, geometric but human sans-serif. High legibility to balance the decorative headings."
+    }
+  },
+  "colors": {
+    "primary": {
+      "DEFAULT": "#f48d2d",
+      "foreground": "#ffffff",
+      "hover": "#e07b1e",
+      "description": "Warm Coral-Orange. Use for primary buttons and key accents."
+    },
+    "background": {
+      "DEFAULT": "#fff3e7",
+      "paper": "#ffffff",
+      "description": "Peachy-Orange. The main canvas color. Avoid pure white backgrounds except for cards."
+    },
+    "text": {
+      "DEFAULT": "#2d1b0e",
+      "muted": "#6b5a4e",
+      "description": "Dark Chocolate Brown. Never use pure black. Softens the contrast against the warm background."
+    },
+    "accent": {
+      "DEFAULT": "#ffedd5",
+      "foreground": "#f48d2d",
+      "description": "Pale Orange. Use for secondary buttons or card backgrounds."
+    }
+  },
+  "layout_strategies": {
+    "hero_section": {
+      "type": "Split Focus",
+      "instruction": "Do not use a standard 'text-left, image-right' hero. Create a centered, high-impact value proposition followed by two distinct, equal-weight pathways (Brands vs Creators). Use large, rounded cards or buttons to signify the choice."
+    },
+    "logo_carousel": {
+      "type": "Infinite Marquee",
+      "instruction": "Use a slow-moving, infinite scroll marquee. Pause on hover. Use opacity-50 for logos, opacity-100 on hover."
+    },
+    "forms": {
+      "type": "Embedded Placeholder",
+      "instruction": "Use an iframe or a styled div container with a 'Loading Form...' state or 'FORMLINKHERE' placeholder. Style the container with rounded corners and a soft shadow."
+    }
+  },
+  "visual_enhancers": {
+    "border_radius": "rounded-2xl",
+    "shadows": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+    "gradients": "Use subtle radial gradients (orange/peach) in the background to create depth. Avoid linear gradients on buttons.",
+    "textures": "Add a very subtle noise texture (opacity 0.02) to the background if possible to reduce digital flatness."
+  },
+  "images": {
+    "creators_hero": {
+      "url": "https://images.unsplash.com/photo-1694173966355-6a8048f91769?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "alt": "Content creator filming with ring light",
+      "usage": "Hero image or section header for the Creators page."
+    },
+    "brands_hero": {
+      "url": "https://images.unsplash.com/photo-1758873271902-a63ecd5b5235?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "alt": "Creative marketing team collaboration",
+      "usage": "Hero image or section header for the Brands page."
+    },
+    "logo_placeholders": [
+      { "name": "Logo 1", "icon": "Hexagon" },
+      { "name": "Logo 2", "icon": "Triangle" },
+      { "name": "Logo 3", "icon": "Circle" },
+      { "name": "Logo 4", "icon": "Square" },
+      { "name": "Logo 5", "icon": "Star" }
+    ]
+  },
+  "components": {
+    "buttons": {
+      "style": "Pill-shaped (rounded-full). Generous padding (px-8 py-4).",
+      "animation": "Scale up slightly (scale-105) on hover. Add a subtle 'shine' effect if possible."
+    },
+    "cards": {
+      "style": "White background, rounded-2xl, soft shadow. No borders, just shadow for lift."
+    }
+  },
+  "universal_guidelines": [
+    "Do not use 'Inter' font. Use the specified 'Caprasimo' and 'DM Sans'.",
+    "Do not use pure black (#000000). Use the specified Dark Brown (#2d1b0e).",
+    "Ensure all interactive elements have `data-testid` attributes.",
+    "Use `lucide-react` icons for the logo carousel placeholders (e.g., Hexagon, Triangle) to create abstract brand marks.",
+    "Maintain the 'Peachy-Orange' (#fff3e7) background throughout. Do not revert to white.",
+    "Use `framer-motion` for smooth page transitions and hover effects."
+  ],
+  "instructions_to_main_agent": "You are building a 3-page marketing site. 1. Install 'lucide-react' and 'framer-motion'. 2. Set up the Tailwind config with the custom colors and fonts. 3. Create the 'Home', 'Brands', and 'Creators' pages. 4. Use the provided Unsplash images. 5. Ensure the 'FORMLINKHERE' placeholder is clearly visible in the form sections."
+}
