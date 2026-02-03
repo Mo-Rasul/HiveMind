@@ -46,7 +46,7 @@ export default function BrandsPage() {
         >
           <div className="relative rounded-3xl overflow-hidden card-shadow">
             <img
-              src="https://images.unsplash.com/photo-1758873271902-a63ecd5b8235?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200"
+              src="https://images.unsplash.com/photo-1590650589327-3f67c43ad8a2?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200"
               alt="Creative marketing team collaboration"
               className="w-full h-64 md:h-80 lg:h-96 object-cover"
               data-testid="brands-hero-image"
