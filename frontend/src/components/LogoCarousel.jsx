@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Hexagon, Triangle, Circle, Square, Star, Pentagon, Octagon, Diamond } from "lucide-react";
+import { Hexagon, Triangle, Circle, Square, Star, Pentagon, Octagon, Diamond, Heart, Zap, Shield } from "lucide-react";
 
 const logos = [
   { Icon: Hexagon, name: "Brand Alpha" },
@@ -10,6 +10,9 @@ const logos = [
   { Icon: Pentagon, name: "Brand Zeta" },
   { Icon: Octagon, name: "Brand Eta" },
   { Icon: Diamond, name: "Brand Theta" },
+  { Icon: Heart, name: "Brand Iota" },
+  { Icon: Zap, name: "Brand Kappa" },
+  { Icon: Shield, name: "Brand Lambda" },
 ];
 
 export default function LogoCarousel() {
@@ -23,14 +26,14 @@ export default function LogoCarousel() {
       animate={{ opacity: 1 }}
       transition={{ delay: 0.8, duration: 0.6 }}
     >
-      <p className="text-center text-hivemind-text-muted font-body text-sm mb-8 tracking-wide">
+      <p className="text-center text-hivemind-text-muted font-body text-sm mb-10 tracking-wide">
         Trusted by leading brands
       </p>
       
       <div className="marquee-container relative">
         {/* Gradient fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white/90 to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white/90 to-transparent z-10" />
         
         <div 
           className="flex animate-marquee"
@@ -39,14 +42,14 @@ export default function LogoCarousel() {
           {duplicatedLogos.map((logo, index) => (
             <div
               key={`${logo.name}-${index}`}
-              className="flex-shrink-0 mx-10 md:mx-14 flex flex-col items-center gap-2 logo-placeholder cursor-pointer"
+              className="flex-shrink-0 mx-8 md:mx-12 flex flex-col items-center gap-3 logo-placeholder cursor-pointer"
               data-testid={`logo-item-${index}`}
             >
               <logo.Icon 
-                className="w-8 h-8 md:w-10 md:h-10 text-hivemind-text-muted/50" 
-                strokeWidth={1.5}
+                className="w-14 h-14 md:w-16 md:h-16 text-hivemind-text-muted/40" 
+                strokeWidth={1.2}
               />
-              <span className="text-xs text-hivemind-text-muted/60 font-body">
+              <span className="text-sm text-hivemind-text-muted/50 font-body font-medium">
                 {logo.name}
               </span>
             </div>
