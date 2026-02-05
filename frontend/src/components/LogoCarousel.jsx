@@ -1,18 +1,12 @@
 import { motion } from "framer-motion";
 
-// Replace these placeholder URLs with your actual brand logo images
+// Brand logo images - circular display
 const logos = [
-  { name: "Brand 1", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+1" },
-  { name: "Brand 2", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+2" },
-  { name: "Brand 3", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+3" },
-  { name: "Brand 4", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+4" },
-  { name: "Brand 5", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+5" },
-  { name: "Brand 6", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+6" },
-  { name: "Brand 7", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+7" },
-  { name: "Brand 8", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+8" },
-  { name: "Brand 9", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+9" },
-  { name: "Brand 10", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+10" },
-  { name: "Brand 11", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+11" },
+  { name: "Brand 1", image: "https://customer-assets.emergentagent.com/job_cfd3b388-8525-43a9-a267-05d2b8399082/artifacts/em5xbacl_Screenshot%202026-02-04%20224712.png" },
+  { name: "HAE SKN", image: "https://customer-assets.emergentagent.com/job_cfd3b388-8525-43a9-a267-05d2b8399082/artifacts/kug9uuy2_Screenshot%202026-02-04%20234102.png" },
+  { name: "Mmoire", image: "https://customer-assets.emergentagent.com/job_cfd3b388-8525-43a9-a267-05d2b8399082/artifacts/nbxxjr4v_Screenshot%202026-02-04%20235048.png" },
+  { name: "SOBO", image: "https://customer-assets.emergentagent.com/job_cfd3b388-8525-43a9-a267-05d2b8399082/artifacts/5bpa019v_SOBO.png" },
+  { name: "Flora Flora", image: "https://customer-assets.emergentagent.com/job_cfd3b388-8525-43a9-a267-05d2b8399082/artifacts/8jfn2l2f_flora%20flora.jpg" },
 ];
 
 export default function LogoCarousel() {
@@ -27,7 +21,7 @@ export default function LogoCarousel() {
       transition={{ delay: 0.8, duration: 0.6 }}
     >
       <p className="font-body text-xs sm:text-sm text-center mb-8 text-hivemind-text-muted tracking-wide">
-        Trusted by growing brands
+        Where brands & creators
       </p>
       
       <div className="marquee-container relative">
@@ -42,13 +36,13 @@ export default function LogoCarousel() {
           {duplicatedLogos.map((logo, index) => (
             <div
               key={`${logo.name}-${index}`}
-              className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center logo-placeholder"
+              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center logo-placeholder"
               data-testid={`logo-item-${index}`}
             >
               <img 
                 src={logo.image}
                 alt={logo.name}
-                className="h-10 md:h-14 w-auto object-contain grayscale"
+                className="w-14 h-14 md:w-20 md:h-20 object-cover rounded-full"
                 draggable="false"
               />
             </div>
