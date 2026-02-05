@@ -1,26 +1,26 @@
-/* Soft blurred gradient background */
+/* Soft blurred gradient background - used for inner pages */
 .gradient-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1599422281620-143e425acfd9?crop=entropy&cs=srgb&fm=jpg&q=85&w=1920');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: linear-gradient(180deg, #fff8f2 0%, #fffdfb 50%, #ffffff 100%);
     z-index: -1;
 }
 
-.gradient-bg::after {
-    content: '';
-    position: absolute;
+/* Homepage background with image */
+.home-bg {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 253, 251, 0.85);
-    backdrop-filter: blur(60px);
+    background-image: url('https://customer-assets.emergentagent.com/job_cfd3b388-8525-43a9-a267-05d2b8399082/artifacts/oe06wtht_ChatGPT%20Image%20Feb%203%2C%202026%2C%2010_38_11%20PM.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -1;
 }
 
 /* Soft card shadow */
