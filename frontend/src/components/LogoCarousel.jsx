@@ -10,8 +10,8 @@ const logos = [
 ];
 
 export default function LogoCarousel() {
-  // Triple the logos for smoother infinite scroll
-  const duplicatedLogos = [...logos, ...logos, ...logos];
+  // Double the logos for seamless infinite scroll
+  const duplicatedLogos = [...logos, ...logos];
 
   return (
     <motion.div 
@@ -24,13 +24,9 @@ export default function LogoCarousel() {
         Trusted by growing brands
       </p>
       
-      <div className="marquee-container relative">
-        {/* Gradient fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-transparent to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-transparent to-transparent z-10" />
-        
+      <div className="relative overflow-hidden">
         <div 
-          className="flex animate-marquee"
+          className="flex logo-scroll"
           data-testid="logo-carousel"
         >
           {duplicatedLogos.map((logo, index) => (
