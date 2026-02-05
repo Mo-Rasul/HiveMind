@@ -52,7 +52,7 @@ export default function HomePage() {
 
         {/* CTA Buttons */}
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto mt-4 mb-20"
+          className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto mt-8 mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
