@@ -7,22 +7,27 @@ import CreatorsPage from "./pages/CreatorsPage";
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
   
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/brands" element={<BrandsPage />} />
-        <Route path="/creators" element={<CreatorsPage />} />
-      </Routes>
-    </AnimatePresence>
+    <>
+      {/* Background: image for home, gradient for other pages */}
+      <div className={isHomePage ? "home-bg" : "gradient-bg"} />
+      
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/brands" element={<BrandsPage />} />
+          <Route path="/creators" element={<CreatorsPage />} />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 }
 
 function App() {
   return (
     <div className="App noise-texture">
-      <div className="gradient-bg" />
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
