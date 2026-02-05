@@ -1,30 +1,33 @@
 import { motion } from "framer-motion";
-import { Hexagon, Triangle, Circle, Square, Star, Pentagon, Octagon, Diamond } from "lucide-react";
 
+// Replace these placeholder URLs with your actual brand logo images
 const logos = [
-{ Icon: Hexagon, name: "Brand Alpha" },
-{ Icon: Triangle, name: "Brand Beta" },
-{ Icon: Circle, name: "Brand Gamma" },
-{ Icon: Square, name: "Brand Delta" },
-{ Icon: Star, name: "Brand Epsilon" },
-{ Icon: Pentagon, name: "Brand Zeta" },
-{ Icon: Octagon, name: "Brand Eta" },
-{ Icon: Diamond, name: "Brand Theta" }];
-
+  { name: "Brand 1", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+1" },
+  { name: "Brand 2", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+2" },
+  { name: "Brand 3", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+3" },
+  { name: "Brand 4", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+4" },
+  { name: "Brand 5", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+5" },
+  { name: "Brand 6", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+6" },
+  { name: "Brand 7", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+7" },
+  { name: "Brand 8", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+8" },
+  { name: "Brand 9", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+9" },
+  { name: "Brand 10", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+10" },
+  { name: "Brand 11", image: "https://via.placeholder.com/120x60/f5f5f5/999999?text=Brand+11" },
+];
 
 export default function LogoCarousel() {
   // Double the logos for seamless infinite scroll
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <motion.div
+    <motion.div 
       className="w-full overflow-hidden py-12"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 0.8, duration: 0.6 }}>
-
-      <p className="font-body text-xs sm:text-sm text-center mb-8 text-hivemind-text-muted tracking-wide">Trusted by growing brands
-
+      transition={{ delay: 0.8, duration: 0.6 }}
+    >
+      <p className="font-body text-xs sm:text-sm text-center mb-8 text-hivemind-text-muted tracking-wide">
+        Trusted by growing brands
       </p>
       
       <div className="marquee-container relative">
@@ -32,27 +35,26 @@ export default function LogoCarousel() {
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-transparent to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-transparent to-transparent z-10" />
         
-        <div
+        <div 
           className="flex animate-marquee"
-          data-testid="logo-carousel">
-
-          {duplicatedLogos.map((logo, index) =>
-          <div
-            key={`${logo.name}-${index}`}
-            className="flex-shrink-0 mx-10 md:mx-14 flex flex-col items-center gap-2 logo-placeholder cursor-pointer"
-            data-testid={`logo-item-${index}`}>
-
-              <logo.Icon
-              className="w-8 h-8 md:w-10 md:h-10 text-hivemind-text-muted/50"
-              strokeWidth={1.5} />
-
-              <span className="text-xs text-hivemind-text-muted/60 font-body">
-                {logo.name}
-              </span>
+          data-testid="logo-carousel"
+        >
+          {duplicatedLogos.map((logo, index) => (
+            <div
+              key={`${logo.name}-${index}`}
+              className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center logo-placeholder"
+              data-testid={`logo-item-${index}`}
+            >
+              <img 
+                src={logo.image}
+                alt={logo.name}
+                className="h-10 md:h-14 w-auto object-contain grayscale"
+                draggable="false"
+              />
             </div>
-          )}
+          ))}
         </div>
       </div>
-    </motion.div>);
-
+    </motion.div>
+  );
 }
