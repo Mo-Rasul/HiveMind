@@ -8,8 +8,8 @@ module.exports = {
   theme: {
         extend: {
                 fontFamily: {
-                        'heading': ['DM Sans', 'sans-serif'],
-                        'body': ['DM Sans', 'sans-serif'],
+                        'heading': ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+                        'body': ['DM Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
                 },
                 borderRadius: {
                         lg: 'var(--radius)',

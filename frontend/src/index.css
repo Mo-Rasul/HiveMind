@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(180deg, #fff8f2 0%, #fff5eb 30%, #fffdfb 70%, #ffffff 100%);
@@ -92,10 +92,12 @@ code {
     z-index: 1000;
 }
 
-/* Marquee pause on hover */
+/* Marquee pause on hover - DISABLED */
+/*
 .marquee-container:hover .marquee-content {
     animation-play-state: paused;
 }
+*/
 
 @layer base {
     [data-debug-wrapper="true"] {
