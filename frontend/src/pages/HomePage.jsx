@@ -26,7 +26,7 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}>
 
-          <span className="inline-block border border-hivemind-primary/10 !font-sans !font-semibold !text-base px-4 py-1.5 rounded-full text-hivemind-primary bg-hivemind-accent/80">Creator marketing without guesswork
+          <span className="inline-block border border-hivemind-primary/10 font-sans font-semibold text-xs sm:text-sm md:text-base px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-hivemind-primary bg-hivemind-accent/80">Creator marketing without guesswork
 
           </span>
         </motion.div>
@@ -38,13 +38,13 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}>
 
-          <h1 className="hero-heading sm:text-5xl lg:text-6xl !font-sans !text-2xl mb-6 text-hivemind-text">
+          <h1 className="hero-heading font-sans text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-hivemind-text">
             Where Brands Meet
-            <span className="block !text-2xl mt-1 text-hivemind-primary">Grow Together
+            <span className="block text-xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 text-hivemind-primary">Grow Together
 
             </span>
           </h1>
-          <p className="md:text-lg font-body max-w-xl !font-sans !font-normal !text-xl mx-auto text-hivemind-text-muted">HiveMind helps early-stage brands earn visibility through authentic creator content with performance-based pricing.
+          <p className="font-sans font-normal text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto text-hivemind-text-muted leading-relaxed">HiveMind helps early-stage brands earn visibility through authentic creator content with performance-based pricing.
 
 
           </p>
@@ -64,7 +64,7 @@ export default function HomePage() {
               data-testid="brands-cta-button">
 
               <Building2 className="w-4 h-4 mr-2" />
-              <span className="!font-sans !text-base">For Brands</span>
+              <span className="font-sans text-sm sm:text-base">For Brands</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
             </Button>
           </Link>
@@ -77,7 +77,7 @@ export default function HomePage() {
               data-testid="creators-cta-button">
 
               <User className="w-4 h-4 mr-2 text-hivemind-text-muted" />
-              <span className="!font-normal !text-base">For Creators</span>
+              <span className="font-normal text-sm sm:text-base">For Creators</span>
               <ArrowRight className="w-4 h-4 ml-2 text-hivemind-text-muted group-hover:translate-x-0.5 transition-transform" />
             </Button>
           </Link>

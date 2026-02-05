@@ -23,7 +23,7 @@ export default function LogoCarousel() {
       animate={{ opacity: 1 }}
       transition={{ delay: 0.8, duration: 0.6 }}>
 
-      <p className="font-body !text-sm !text-center mb-8 text-hivemind-text-muted">Trusted by growing brands
+      <p className="font-body text-xs sm:text-sm text-center mb-8 text-hivemind-text-muted tracking-wide">Trusted by growing brands
 
       </p>
       
