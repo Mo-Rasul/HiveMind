@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Briefcase, TrendingUp, Users } from "lucide-react";
+import { ArrowLeft, TrendingUp, Users, Eye, ShieldCheck, Rocket, Target, CheckCircle, XCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import FormSection from "../components/FormSection";
@@ -37,86 +37,176 @@ export default function BrandsPage() {
           </Link>
         </motion.div>
 
-        {/* Hero Image Section */}
+        {/* Hero Section */}
         <motion.section
-          className="max-w-5xl mx-auto mb-20"
+          className="max-w-5xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <div className="relative rounded-3xl overflow-hidden card-shadow">
-            <img
-              src="https://images.unsplash.com/photo-1590650589327-3f67c43ad8a2?crop=entropy&cs=srgb&fm=jpg&q=85&w=1200"
-              alt="Creative marketing team collaboration"
-              className="w-full h-64 md:h-80 lg:h-[400px] object-cover"
-              data-testid="brands-hero-image"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-              <h1 className="hero-heading text-3xl sm:text-4xl lg:text-5xl text-white mb-3">
-                Partner With HiveMind
-              </h1>
-              <p className="text-white/85 font-body text-base md:text-lg max-w-xl">
-                Elevate your brand with authentic creator partnerships that resonate with your target audience.
-              </p>
-            </div>
+          <div className="text-center">
+            <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-5xl text-hivemind-text mb-6">
+              Grow Your Brand With
+              <span className="block text-hivemind-primary mt-2">Authentic Creator Content</span>
+            </h1>
+            <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              HiveMind Marketing affordably helps early-stage brands grow through authentic creator content that feels real and earns trust. We work with micro creators who produce quality content, connect naturally with their audience, and generate genuine reviews that build credibility beyond an ad.
+            </p>
+            <p className="text-hivemind-primary font-semibold mt-4 text-lg">
+              Best of all, brands only pay for what gets seen.
+            </p>
           </div>
         </motion.section>
 
-        {/* Benefits Section */}
+        {/* Problem vs Solution Section */}
         <motion.section
-          className="max-w-5xl mx-auto mb-20"
+          className="max-w-5xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-12">
-            Why Partner With Us?
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Problem */}
+            <div className="bg-white rounded-2xl p-8 card-shadow border border-black/[0.03]">
+              <h3 className="font-sans font-semibold text-xl text-hivemind-text mb-6 flex items-center gap-2">
+                <XCircle className="w-6 h-6 text-red-400" />
+                The Problem With Typical Agencies
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  "Expensive campaigns",
+                  "No guaranteed traction",
+                  "Pay to post, not to perform",
+                  "AI destroys brand image",
+                  "Polished ads aren't relatable",
+                  "Don't improve physical trust",
+                  "Build a vision, not a brand"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-hivemind-text-muted text-sm">
+                    <span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Solution */}
+            <div className="bg-hivemind-accent/30 rounded-2xl p-8 card-shadow border border-hivemind-primary/10">
+              <h3 className="font-sans font-semibold text-xl text-hivemind-text mb-6 flex items-center gap-2">
+                <CheckCircle className="w-6 h-6 text-hivemind-primary" />
+                The HiveMind Solution
+              </h3>
+              <ul className="space-y-4">
+                {[
+                  { title: "Pay for performance, not possibilities", desc: "Performance-based pricing so spend scales only when your content is actually seen." },
+                  { title: "Built for Real Visibility", desc: "We align creator incentives with viewer reach, ensuring content is optimized to perform." },
+                  { title: "Made by humans, for humans", desc: "Micro creators connect as peers, creating content that feels real and earns genuine engagement." },
+                  { title: "Build up brands, beyond ads", desc: "We build credibility through real orders and verified reviews, helping brands gain early momentum." }
+                ].map((item, index) => (
+                  <li key={index} className="text-sm">
+                    <span className="font-semibold text-hivemind-text">{item.title}</span>
+                    <p className="text-hivemind-text-muted mt-1">{item.desc}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* How We Work Section */}
+        <motion.section
+          className="max-w-5xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-12">
+            How We Work
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
+                icon: Target,
+                step: "01",
+                title: "Design & Match",
+                description: "We understand your brand and match you with the perfect micro creators who align with your values and audience."
+              },
+              {
                 icon: Users,
-                title: "Curated Creator Network",
-                description: "Access our vetted network of talented creators across various niches and platforms."
+                step: "02",
+                title: "Content & Reviews",
+                description: "Creators produce authentic content and generate genuine reviews that build credibility and trust."
               },
               {
-                icon: TrendingUp,
-                title: "Data-Driven Campaigns",
-                description: "We leverage analytics to match your brand with creators who deliver measurable results."
-              },
-              {
-                icon: Briefcase,
-                title: "End-to-End Management",
-                description: "From strategy to execution, we handle all aspects of your creator partnerships."
+                icon: Rocket,
+                step: "03",
+                title: "Learn & Scale",
+                description: "We analyze performance and scale what works, ensuring your budget delivers real results."
               }
-            ].map((benefit, index) => (
+            ].map((item, index) => (
               <motion.div
-                key={benefit.title}
-                className="bg-white rounded-2xl p-7 card-shadow hover-lift border border-black/[0.03]"
+                key={item.title}
+                className="bg-white rounded-2xl p-7 card-shadow hover-lift border border-black/[0.03] relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
-                data-testid={`benefit-card-${index}`}
+                data-testid={`how-we-work-${index}`}
               >
+                <span className="absolute top-4 right-4 text-4xl font-bold text-hivemind-accent">{item.step}</span>
                 <div className="w-11 h-11 bg-hivemind-accent rounded-xl flex items-center justify-center mb-5">
-                  <benefit.icon className="w-5 h-5 text-hivemind-primary" />
+                  <item.icon className="w-5 h-5 text-hivemind-primary" />
                 </div>
-                <h3 className="font-heading font-semibold text-lg text-hivemind-text mb-2">
-                  {benefit.title}
+                <h3 className="font-sans font-semibold text-lg text-hivemind-text mb-2">
+                  {item.title}
                 </h3>
-                <p className="text-hivemind-text-muted font-body text-sm leading-relaxed">
-                  {benefit.description}
+                <p className="text-hivemind-text-muted font-sans text-sm leading-relaxed">
+                  {item.description}
                 </p>
               </motion.div>
             ))}
           </div>
         </motion.section>
 
-        {/* Next Steps Section */}
+        {/* Who HiveMind Is For Section */}
+        <motion.section
+          className="max-w-5xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="bg-white rounded-2xl p-8 md:p-10 card-shadow border border-black/[0.03]">
+            <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-4">
+              Who HiveMind Is For
+            </h2>
+            <p className="text-hivemind-text-muted text-center mb-8 max-w-xl mx-auto">
+              HiveMind is built for early-stage brands that want to grow intentionally without wasting budget.
+            </p>
+            
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { icon: Rocket, text: "New product launches" },
+                { icon: TrendingUp, text: "Early traction without overspending" },
+                { icon: ShieldCheck, text: "Teams needing real reviews & credibility" },
+                { icon: Eye, text: "& so many more brands" }
+              ].map((item, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center gap-3 p-4 bg-hivemind-accent/30 rounded-xl"
+                >
+                  <item.icon className="w-5 h-5 text-hivemind-primary flex-shrink-0" />
+                  <span className="text-sm font-medium text-hivemind-text">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* CTA Section */}
         <motion.section
           className="max-w-2xl mx-auto mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}
@@ -124,15 +214,14 @@ export default function BrandsPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-heading font-semibold text-2xl md:text-3xl text-hivemind-text mb-4">
-            Ready to Get Started?
+          <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text mb-4">
+            Let's Talk
           </h2>
-          <p className="text-hivemind-text-muted font-body text-base md:text-lg leading-relaxed">
-            Fill out the form below and our team will be in touch to discuss your goals 
-            and how we can help you achieve them.
+          <p className="text-hivemind-text-muted font-sans text-base md:text-lg leading-relaxed mb-2">
+            Ready to grow your brand with authentic creator content? Fill out the form below and we'll be in touch to explore next steps.
           </p>
-          <p className="text-hivemind-text-muted/60 font-body text-sm mt-2">
-            Typical response time: 2-3 business days
+          <p className="text-hivemind-text-muted/60 font-sans text-sm">
+            HiveMind.Marketing@outlook.com • 614-572-9705 • New York City
           </p>
         </motion.section>
 
