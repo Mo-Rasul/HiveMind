@@ -13,8 +13,8 @@ export default function HomePage() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      data-testid="home-page"
-    >
+      data-testid="home-page">
+
       <Header />
       
       {/* Hero Section */}
@@ -24,47 +24,47 @@ export default function HomePage() {
           className="mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-        >
-          <span className="inline-block px-4 py-1.5 text-sm font-medium text-hivemind-primary bg-hivemind-accent/80 rounded-full border border-hivemind-primary/10">
-            Connecting brands & creators
+          transition={{ delay: 0.1, duration: 0.5 }}>
+
+          <span className="inline-block border border-hivemind-primary/10 !font-sans !font-semibold !text-base px-4 py-1.5 rounded-full text-hivemind-primary bg-hivemind-accent/80">Creator marketing without guesswork
+
           </span>
         </motion.div>
 
         {/* Hero Content */}
-        <motion.div 
+        <motion.div
           className="text-center max-w-3xl mx-auto mb-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          <h1 className="hero-heading text-4xl sm:text-5xl lg:text-6xl text-hivemind-text mb-6">
+          transition={{ delay: 0.2, duration: 0.6 }}>
+
+          <h1 className="hero-heading sm:text-5xl lg:text-6xl !font-sans !text-2xl mb-6 text-hivemind-text">
             Where Brands Meet
-            <span className="block text-hivemind-primary mt-1">
-              Creative Minds
+            <span className="block !text-2xl mt-1 text-hivemind-primary">Grow Together
+
             </span>
           </h1>
-          <p className="text-base md:text-lg text-hivemind-text-muted font-body max-w-xl mx-auto leading-relaxed">
-            HiveMind connects forward-thinking brands with talented creators to build 
-            authentic partnerships that drive results.
+          <p className="md:text-lg font-body max-w-xl !font-sans !font-normal !text-xl mx-auto text-hivemind-text-muted">HiveMind helps early-stage brands earn visibility through authentic creator content with performance-based pricing.
+
+
           </p>
         </motion.div>
 
         {/* CTA Buttons */}
-        <motion.div 
+        <motion.div
           className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto mt-8 mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
+          transition={{ delay: 0.4, duration: 0.6 }}>
+
           {/* For Brands Button */}
           <Link to="/brands" className="flex-1" data-testid="brands-cta-link">
             <Button
               className="w-full bg-hivemind-primary hover:bg-hivemind-primary-hover text-white font-body font-medium px-6 py-6 rounded-full transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md group"
-              data-testid="brands-cta-button"
-            >
+              data-testid="brands-cta-button">
+
               <Building2 className="w-4 h-4 mr-2" />
-              <span>For Brands</span>
+              <span className="!font-sans !text-base">For Brands</span>
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
             </Button>
           </Link>
@@ -74,10 +74,10 @@ export default function HomePage() {
             <Button
               variant="outline"
               className="w-full bg-white hover:bg-hivemind-accent/50 text-hivemind-text border border-black/10 font-body font-medium px-6 py-6 rounded-full transition-all duration-300 hover:scale-[1.02] group"
-              data-testid="creators-cta-button"
-            >
+              data-testid="creators-cta-button">
+
               <User className="w-4 h-4 mr-2 text-hivemind-text-muted" />
-              <span>For Creators</span>
+              <span className="!font-normal !text-base">For Creators</span>
               <ArrowRight className="w-4 h-4 ml-2 text-hivemind-text-muted group-hover:translate-x-0.5 transition-transform" />
             </Button>
           </Link>
@@ -86,6 +86,6 @@ export default function HomePage() {
         {/* Logo Carousel */}
         <LogoCarousel />
       </main>
-    </motion.div>
-  );
+    </motion.div>);
+
 }
