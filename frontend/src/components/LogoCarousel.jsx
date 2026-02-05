@@ -10,8 +10,8 @@ const logos = [
 ];
 
 export default function LogoCarousel() {
-  // Double the logos for seamless infinite scroll
-  const duplicatedLogos = [...logos, ...logos];
+  // Triple the logos for smoother infinite scroll
+  const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
     <motion.div 
@@ -21,7 +21,7 @@ export default function LogoCarousel() {
       transition={{ delay: 0.8, duration: 0.6 }}
     >
       <p className="font-body text-xs sm:text-sm text-center mb-8 text-hivemind-text-muted tracking-wide">
-        Where brands & creators
+        Trusted by growing brands
       </p>
       
       <div className="marquee-container relative">
@@ -36,13 +36,13 @@ export default function LogoCarousel() {
           {duplicatedLogos.map((logo, index) => (
             <div
               key={`${logo.name}-${index}`}
-              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center logo-placeholder"
+              className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center logo-placeholder"
               data-testid={`logo-item-${index}`}
             >
               <img 
                 src={logo.image}
                 alt={logo.name}
-                className="w-14 h-14 md:w-20 md:h-20 object-cover rounded-full"
+                className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-cover rounded-full shadow-md"
                 draggable="false"
               />
             </div>

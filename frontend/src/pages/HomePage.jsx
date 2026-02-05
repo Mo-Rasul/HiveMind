@@ -39,7 +39,7 @@ export default function HomePage() {
           transition={{ delay: 0.2, duration: 0.6 }}>
 
           <h1 className="hero-heading font-sans text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-hivemind-text">
-            Where Brands Meet
+            Where Brands & Creators
             <span className="block text-xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 text-hivemind-primary">Grow Together
 
             </span>
