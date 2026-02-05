@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, DollarSign, Users, Sparkles, TrendingUp, Heart, Camera, CheckCircle, Gift } from "lucide-react";
+import { ArrowLeft, TrendingUp, Users, Eye, ShieldCheck, Rocket, Target, CheckCircle, XCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import FormSection from "../components/FormSection";
@@ -46,19 +46,19 @@ export default function CreatorsPage() {
         >
           <div className="text-center">
             <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-5xl text-hivemind-text mb-6">
-              Turn Your Content Into
-              <span className="block text-hivemind-primary mt-2">Real Partnerships</span>
+              Grow Your Platform With
+              <span className="block text-hivemind-primary mt-2">Authentic Brand Partnerships</span>
             </h1>
             <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              HiveMind connects micro creators with early-stage brands looking for authentic content that feels real and earns trust. Get paid to create content you love, build genuine connections with your audience, and help brands grow—all while growing your own platform.
+              HiveMind Marketing connects micro creators with early-stage brands looking for authentic content that feels real and earns trust. We incentivize you to produce quality content, connect naturally with your audience, and generate genuine reviews that build credibility beyond an ad.
             </p>
             <p className="text-hivemind-primary font-semibold mt-4 text-lg">
-              Create authentically. Get rewarded for performance.
+              Best of all, you get paid for what gets seen.
             </p>
           </div>
         </motion.section>
 
-        {/* Why Join HiveMind Section */}
+        {/* Problem vs Solution Section */}
         <motion.section
           className="max-w-5xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -66,57 +66,55 @@ export default function CreatorsPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-12">
-            Why Creators Love HiveMind
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: DollarSign,
-                title: "Performance-Based Pay",
-                description: "Earn based on how your content performs. The more views you get, the more you earn."
-              },
-              {
-                icon: Heart,
-                title: "Stay Authentic",
-                description: "Create content that feels real to you and your audience. No scripts, no fake vibes."
-              },
-              {
-                icon: Gift,
-                title: "Free Products",
-                description: "Receive products from early-stage brands to review and feature in your content."
-              },
-              {
-                icon: TrendingUp,
-                title: "Grow Together",
-                description: "Build your platform while helping brands grow. Win-win partnerships that last."
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={item.title}
-                className="bg-white rounded-2xl p-6 card-shadow hover-lift border border-black/[0.03]"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                viewport={{ once: true }}
-                data-testid={`benefit-card-${index}`}
-              >
-                <div className="w-11 h-11 bg-hivemind-accent rounded-xl flex items-center justify-center mb-4">
-                  <item.icon className="w-5 h-5 text-hivemind-primary" />
-                </div>
-                <h3 className="font-sans font-semibold text-lg text-hivemind-text mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-hivemind-text-muted font-sans text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Problem */}
+            <div className="bg-white rounded-2xl p-8 card-shadow border border-black/[0.03]">
+              <h3 className="font-sans font-semibold text-xl text-hivemind-text mb-6 flex items-center gap-2">
+                <XCircle className="w-6 h-6 text-red-400" />
+                The Problem With Typical Deals
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  "One-time payments with no upside",
+                  "Forced scripts that feel fake",
+                  "No connection to performance",
+                  "Brands that don't align with you",
+                  "Content that doesn't feel authentic",
+                  "No long-term relationships",
+                  "Underpaid for your real value"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-hivemind-text-muted text-sm">
+                    <span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Solution */}
+            <div className="bg-hivemind-accent/30 rounded-2xl p-8 card-shadow border border-hivemind-primary/10">
+              <h3 className="font-sans font-semibold text-xl text-hivemind-text mb-6 flex items-center gap-2">
+                <CheckCircle className="w-6 h-6 text-hivemind-primary" />
+                The HiveMind Solution
+              </h3>
+              <ul className="space-y-4">
+                {[
+                  { title: "Pay for performance, not possibilities", desc: "Performance-based earnings so your pay scales when your content is actually seen." },
+                  { title: "Built for Real Visibility", desc: "We align your incentives with viewer reach, ensuring your content is optimized to perform." },
+                  { title: "Made by humans, for humans", desc: "Connect as peers with your audience, creating content that feels real and earns genuine engagement." },
+                  { title: "Build up your platform, beyond posts", desc: "We help you build credibility through real partnerships and verified collaborations." }
+                ].map((item, index) => (
+                  <li key={index} className="text-sm">
+                    <span className="font-semibold text-hivemind-text">{item.title}</span>
+                    <p className="text-hivemind-text-muted mt-1">{item.desc}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </motion.section>
 
-        {/* How It Works Section */}
+        {/* How We Work Section */}
         <motion.section
           className="max-w-5xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -125,28 +123,28 @@ export default function CreatorsPage() {
           viewport={{ once: true }}
         >
           <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-12">
-            How It Works
+            How We Work
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                icon: Users,
+                icon: Target,
                 step: "01",
-                title: "Apply & Match",
-                description: "Tell us about yourself and your content. We'll match you with brands that align with your style and audience."
+                title: "Design & Match",
+                description: "We understand your style and match you with brands that align with your values and audience."
               },
               {
-                icon: Camera,
+                icon: Users,
                 step: "02",
-                title: "Create & Share",
-                description: "Receive products, create authentic content your way, and share genuine reviews with your audience."
+                title: "Content & Reviews",
+                description: "Create authentic content your way and generate genuine reviews that your audience trusts."
               },
               {
-                icon: DollarSign,
+                icon: Rocket,
                 step: "03",
-                title: "Earn & Grow",
-                description: "Get paid based on your content's performance. The better it performs, the more opportunities you unlock."
+                title: "Learn & Scale",
+                description: "We analyze performance and scale what works, ensuring you earn more as your content performs."
               }
             ].map((item, index) => (
               <motion.div
@@ -156,7 +154,7 @@ export default function CreatorsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
-                data-testid={`how-it-works-${index}`}
+                data-testid={`how-we-work-${index}`}
               >
                 <span className="absolute top-4 right-4 text-4xl font-bold text-hivemind-accent">{item.step}</span>
                 <div className="w-11 h-11 bg-hivemind-accent rounded-xl flex items-center justify-center mb-5">
@@ -173,7 +171,7 @@ export default function CreatorsPage() {
           </div>
         </motion.section>
 
-        {/* What We Look For Section */}
+        {/* Who HiveMind Is For Section */}
         <motion.section
           className="max-w-5xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -181,29 +179,27 @@ export default function CreatorsPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="bg-hivemind-accent/30 rounded-2xl p-8 md:p-10 card-shadow border border-hivemind-primary/10">
+          <div className="bg-white rounded-2xl p-8 md:p-10 card-shadow border border-black/[0.03]">
             <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-4">
-              Who We're Looking For
+              Who HiveMind Is For
             </h2>
             <p className="text-hivemind-text-muted text-center mb-8 max-w-xl mx-auto">
-              HiveMind is built for micro creators who value authenticity over follower counts.
+              HiveMind is built for micro creators who want to grow intentionally with authentic partnerships.
             </p>
             
-            <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                "Creators who keep it real with their audience",
-                "Content makers who love trying new products",
-                "Reviewers who give honest, genuine feedback",
-                "Micro influencers ready to grow with brands",
-                "Anyone passionate about authentic content",
-                "Creators looking for fair, performance-based pay"
+                { icon: Rocket, text: "Creators ready to monetize" },
+                { icon: TrendingUp, text: "Growing audiences authentically" },
+                { icon: ShieldCheck, text: "Creators who value real partnerships" },
+                { icon: Eye, text: "& so many more creators" }
               ].map((item, index) => (
                 <div 
                   key={index}
-                  className="flex items-center gap-3 p-3 bg-white/60 rounded-xl"
+                  className="flex items-center gap-3 p-4 bg-hivemind-accent/30 rounded-xl"
                 >
-                  <CheckCircle className="w-5 h-5 text-hivemind-primary flex-shrink-0" />
-                  <span className="text-sm text-hivemind-text">{item}</span>
+                  <item.icon className="w-5 h-5 text-hivemind-primary flex-shrink-0" />
+                  <span className="text-sm font-medium text-hivemind-text">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -219,10 +215,10 @@ export default function CreatorsPage() {
           viewport={{ once: true }}
         >
           <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text mb-4">
-            Ready to Join?
+            Let's Talk
           </h2>
           <p className="text-hivemind-text-muted font-sans text-base md:text-lg leading-relaxed mb-2">
-            Apply to become a HiveMind creator. We review every application and reach out if there's a great fit for upcoming brand campaigns.
+            Ready to grow your platform with authentic brand partnerships? Fill out the form below and we'll be in touch to explore next steps.
           </p>
           <p className="text-hivemind-text-muted/60 font-sans text-sm">
             HiveMind.Marketing@outlook.com • 614-572-9705 • New York City
