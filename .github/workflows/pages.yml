@@ -27,12 +27,13 @@ jobs:
           node-version: 20
 
       - name: Install
-        working-directory: frontend
-        run: npm install
+      working-directory: frontend
+      run: yarn install --frozen-lockfile
 
       - name: Build
-        working-directory: frontend
-        run: npm run build
+      working-directory: frontend
+      run: yarn build
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
