@@ -186,12 +186,11 @@ export default function BrandsPage() {
               HiveMind is built for early-stage brands that want to grow intentionally without wasting budget.
             </p>
             
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 { icon: Rocket, text: "New product launches" },
                 { icon: TrendingUp, text: "Early traction without overspending" },
-                { icon: ShieldCheck, text: "Teams needing real reviews & credibility" },
-                { icon: Eye, text: "& so many more brands" }
+                { icon: ShieldCheck, text: "Teams needing real reviews & credibility" }
               ].map((item, index) => (
                 <div 
                   key={index}
