@@ -72,7 +72,7 @@ export default function CreatorsPage() {
             <div className="bg-white rounded-2xl p-8 card-shadow border border-black/[0.03]">
               <h3 className="font-sans font-semibold text-xl text-hivemind-text mb-6 flex items-center gap-2">
                 <XCircle className="w-6 h-6 text-red-400" />
-                The Problem With Typical Deals
+                Problems with typical Agencies
               </h3>
               <ul className="space-y-4">
                 {[
@@ -186,12 +186,11 @@ export default function CreatorsPage() {
               HiveMind is built for micro creators who want to grow intentionally with authentic partnerships.
             </p>
             
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 { icon: Rocket, text: "Creators ready to monetize" },
                 { icon: TrendingUp, text: "Growing audiences authentically" },
-                { icon: ShieldCheck, text: "Creators who value real partnerships" },
-                { icon: Eye, text: "& so many more creators" }
+                { icon: ShieldCheck, text: "Creators who value real partnerships" }
               ].map((item, index) => (
                 <div 
                   key={index}
