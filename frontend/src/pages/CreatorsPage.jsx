@@ -46,8 +46,8 @@ export default function CreatorsPage() {
         >
           <div className="text-center">
             <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-5xl text-hivemind-text mb-6">
-              Grow Your Platform With
-              <span className="block text-hivemind-primary mt-2">Authentic Brand Partnerships</span>
+              Build your platform with partnerships that
+              <span className="block text-hivemind-primary mt-2">reward performance</span>
             </h1>
             <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               HiveMind Marketing connects micro creators with early-stage brands looking for authentic content that feels real and earns trust. We incentivize you to produce quality content, connect naturally with your audience, and generate genuine reviews that build credibility beyond an ad.

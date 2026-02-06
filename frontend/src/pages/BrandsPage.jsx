@@ -46,8 +46,8 @@ export default function BrandsPage() {
         >
           <div className="text-center">
             <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-5xl text-hivemind-text mb-6">
-              Grow Your Brand With
-              <span className="block text-hivemind-primary mt-2">Authentic Creator Content</span>
+              Build your brand without
+              <span className="block text-hivemind-primary mt-2">gambling on outcomes</span>
             </h1>
             <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               HiveMind Marketing affordably helps early-stage brands grow through authentic creator content that feels real and earns trust. We work with micro creators who produce quality content, connect naturally with their audience, and generate genuine reviews that build credibility beyond an ad.
