@@ -39,10 +39,10 @@ export default function BrandsPage() {
 
         {/* Hero Section */}
         <motion.section
-          className="max-w-5xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          className="max-w-5xl mx-auto mb-16 pt-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="text-center">
             <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-5xl text-hivemind-text mb-6">
@@ -63,10 +63,9 @@ export default function BrandsPage() {
         {/* Problem vs Solution Section */}
         <motion.section
           className="max-w-5xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="grid md:grid-cols-2 gap-8">
             {/* Problem */}
@@ -119,10 +118,9 @@ export default function BrandsPage() {
         {/* How We Work Section */}
         <motion.section
           className="max-w-5xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-12">
             How We Work
@@ -176,10 +174,9 @@ export default function BrandsPage() {
         {/* Who HiveMind Is For Section */}
         <motion.section
           className="max-w-5xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="bg-white rounded-2xl p-8 md:p-10 card-shadow border border-black/[0.03]">
             <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-4">
@@ -211,10 +208,9 @@ export default function BrandsPage() {
         {/* CTA Section */}
         <motion.section
           className="max-w-2xl mx-auto mb-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text mb-4">
             Let's Talk
