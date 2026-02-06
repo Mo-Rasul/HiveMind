@@ -159,13 +159,13 @@ export default function CreatorsPage() {
                 data-testid={`how-we-work-${index}`}
               >
                 <span className="absolute top-4 right-4 text-4xl font-bold text-hivemind-accent">{item.step}</span>
-                <div className="w-11 h-11 bg-hivemind-accent rounded-xl flex items-center justify-center mb-5">
-                  <item.icon className="w-5 h-5 text-hivemind-primary" />
+                <div className="w-12 h-12 bg-hivemind-accent rounded-xl flex items-center justify-center mb-5">
+                  <item.icon className="w-6 h-6 text-hivemind-primary" />
                 </div>
-                <h3 className="font-sans font-semibold text-lg text-hivemind-text mb-2">
+                <h3 className="font-sans font-semibold text-xl text-hivemind-text mb-3">
                   {item.title}
                 </h3>
-                <p className="text-hivemind-text-muted font-sans text-sm leading-relaxed">
+                <p className="text-hivemind-text-muted font-sans text-base leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -185,7 +185,7 @@ export default function CreatorsPage() {
             <h2 className="font-sans font-semibold text-2xl md:text-3xl text-hivemind-text text-center mb-4">
               Who HiveMind Is For
             </h2>
-            <p className="text-hivemind-text-muted text-center mb-8 max-w-xl mx-auto">
+            <p className="text-hivemind-text-muted text-center text-base md:text-lg mb-8 max-w-xl mx-auto">
               HiveMind is built for micro creators who want to grow intentionally with authentic partnerships.
             </p>
             
@@ -200,8 +200,8 @@ export default function CreatorsPage() {
                   key={index}
                   className="flex items-center gap-3 p-4 bg-hivemind-accent/30 rounded-xl"
                 >
-                  <item.icon className="w-5 h-5 text-hivemind-primary flex-shrink-0" />
-                  <span className="text-sm font-medium text-hivemind-text">{item.text}</span>
+                  <item.icon className="w-6 h-6 text-hivemind-primary flex-shrink-0" />
+                  <span className="text-base font-medium text-hivemind-text">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -223,7 +223,7 @@ export default function CreatorsPage() {
             Ready to grow your platform with authentic brand partnerships? Fill out the form below and we'll be in touch to explore next steps.
           </p>
           <p className="text-hivemind-text-muted/60 font-sans text-sm">
-            HiveMind.Marketing@outlook.com • 614-572-9705 • New York City
+            hello@hivemindmarketing.co • New York City
           </p>
         </motion.section>
 
