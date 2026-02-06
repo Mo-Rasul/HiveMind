@@ -52,8 +52,8 @@ export default function CreatorsPage() {
             <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               HiveMind Marketing connects micro creators with early-stage brands looking for authentic content that feels real and earns trust. We incentivize you to produce quality content, connect naturally with your audience, and generate genuine reviews that build credibility beyond an ad.
             </p>
-            <p className="text-hivemind-primary font-semibold mt-4 text-lg">
-              <span className="bg-hivemind-accent/50 px-4 py-2 rounded-full inline-block">
+            <p className="mt-6">
+              <span className="text-hivemind-primary font-semibold text-lg bg-hivemind-accent/60 px-5 py-2.5 rounded-full inline-block">
                 Best of all, you get paid for what gets seen.
               </span>
             </p>

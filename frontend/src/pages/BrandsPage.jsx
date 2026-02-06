@@ -52,8 +52,8 @@ export default function BrandsPage() {
             <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               HiveMind Marketing affordably helps early-stage brands grow through authentic creator content that feels real and earns trust. We work with micro creators who produce quality content, connect naturally with their audience, and generate genuine reviews that build credibility beyond an ad.
             </p>
-            <p className="text-hivemind-primary font-semibold mt-4 text-lg">
-              <span className="bg-hivemind-accent/50 px-4 py-2 rounded-full inline-block">
+            <p className="mt-6">
+              <span className="text-hivemind-primary font-semibold text-lg bg-hivemind-accent/60 px-5 py-2.5 rounded-full inline-block">
                 Best of all, brands only pay for what gets seen.
               </span>
             </p>
