@@ -70,8 +70,8 @@ export default function BrandsPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Problem */}
             <div className="bg-white rounded-2xl p-8 card-shadow border border-black/[0.03]">
-              <h3 className="font-sans font-semibold text-xl text-hivemind-text mb-6 flex items-center gap-2">
-                <XCircle className="w-6 h-6 text-red-400" />
+              <h3 className="font-sans font-semibold text-lg sm:text-xl text-hivemind-text mb-6 flex items-center gap-2 whitespace-nowrap">
+                <XCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0" />
                 The Problem With Typical Agencies
               </h3>
               <ul className="space-y-4">
@@ -218,7 +218,7 @@ export default function BrandsPage() {
             Ready to grow your brand with authentic creator content? Fill out the form below and we'll be in touch to explore next steps.
           </p>
           <p className="text-hivemind-text-muted/60 font-sans text-sm">
-            hello@hivemindmarketing.co • 614-572-9705 • New York City
+            hello@hivemindmarketing.co • 614-572-9705 • New York
           </p>
         </motion.section>
 
