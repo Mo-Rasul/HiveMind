@@ -52,7 +52,7 @@ export default function CreatorsPage() {
             <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               HiveMind Marketing connects micro creators with early-stage brands looking for authentic content that feels real and earns trust. We incentivize you to produce quality content, connect naturally with your audience, and generate genuine reviews that build credibility beyond an ad.
             </p>
-            <p className="mt-6">
+            <p className="mt-6 sm:mt-6 mt-8">
               <span className="text-hivemind-primary font-semibold text-lg bg-orange-100 px-5 py-2.5 rounded-full inline-block border border-orange-200">
                 Best of all, you get paid for what gets seen.
               </span>
@@ -76,13 +76,13 @@ export default function CreatorsPage() {
               </h3>
               <ul className="space-y-4">
                 {[
-                  "One-time payments with no upside",
-                  "Forced scripts that feel fake",
-                  "No connection to performance",
-                  "Brands that don't align with you",
-                  "Content that doesn't feel authentic",
-                  "No long-term relationships",
-                  "Underpaid for your real value"
+                  "Flat fees with no performance upside",
+                  "Scripted content that doesn't feel like you",
+                  "No reward for posts that perform well",
+                  "Brand partnerships that don't match your audience",
+                  "Content that feels forced",
+                  "One-off deals with no relationship building",
+                  "Compensation that undervalues your impact"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3 text-hivemind-text-muted text-base">
                     <span className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0" />
