@@ -100,7 +100,7 @@ export default function CreatorsPage() {
               </h3>
               <ul className="space-y-5">
                 {[
-                  { title: "Pay for performance, not possibilities", desc: "Performance-based earnings so your pay scales when your content is actually seen." },
+                  { title: "Paid to post; Rewarded when it performs.", desc: "Performance-based earnings so your pay scales when your content is actually seen." },
                   { title: "Built for Real Visibility", desc: "We align your incentives with viewer reach, ensuring your content is optimized to perform." },
                   { title: "Made by humans, for humans", desc: "Connect as peers with your audience, creating content that feels real and earns genuine engagement." },
                   { title: "Build up your platform, beyond posts", desc: "We help you build credibility through real partnerships and verified collaborations." }
