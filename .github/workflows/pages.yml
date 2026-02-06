@@ -27,13 +27,12 @@ jobs:
           node-version: 20
 
       - name: Install
-      working-directory: frontend
-      run: yarn install --frozen-lockfile
+        working-directory: frontend
+        run: yarn install --frozen-lockfile
 
       - name: Build
-      working-directory: frontend
-      run: yarn build
-
+        working-directory: frontend
+        run: yarn build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -45,7 +44,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy
         id: deployment
