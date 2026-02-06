@@ -70,7 +70,7 @@ export default function BrandsPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Problem */}
             <div className="bg-white rounded-2xl p-8 card-shadow border border-black/[0.03]">
-              <h3 className="font-sans font-semibold text-lg sm:text-xl text-hivemind-text mb-6 flex items-center gap-2 whitespace-nowrap">
+              <h3 className="font-sans font-semibold text-base sm:text-xl text-hivemind-text mb-6 flex items-center gap-2">
                 <XCircle className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0" />
                 The Problem With Typical Agencies
               </h3>
