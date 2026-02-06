@@ -10,8 +10,8 @@ const logos = [
 ];
 
 export default function LogoCarousel() {
-  // Double the logos for seamless infinite scroll
-  const duplicatedLogos = [...logos, ...logos];
+  // Just use original logos, no duplication needed
+  const displayLogos = logos;
 
   return (
     <motion.div 
@@ -26,10 +26,10 @@ export default function LogoCarousel() {
       
       <div className="relative overflow-hidden">
         <div 
-          className="flex logo-scroll"
+          className="flex justify-center"
           data-testid="logo-carousel"
         >
-          {duplicatedLogos.map((logo, index) => (
+          {displayLogos.map((logo, index) => (
             <div
               key={`${logo.name}-${index}`}
               className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center logo-placeholder"
