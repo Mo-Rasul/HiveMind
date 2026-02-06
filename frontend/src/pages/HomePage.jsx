@@ -18,10 +18,10 @@ export default function HomePage() {
       <Header />
       
       {/* Hero Section */}
-      <main className="min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-8">
+      <main className="min-h-screen flex flex-col items-center justify-center px-6 pt-16 pb-8">
         {/* Coming Soon Badge */}
         <motion.div
-          className="mb-8"
+          className="mb-8 mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}>
@@ -72,13 +72,12 @@ export default function HomePage() {
           {/* For Creators Button */}
           <Link to="/creators" className="flex-1" data-testid="creators-cta-link">
             <Button
-              variant="outline"
-              className="w-full bg-white hover:bg-hivemind-accent/50 text-hivemind-text border border-black/10 font-body font-medium px-6 py-6 rounded-full transition-all duration-300 hover:scale-[1.02] group"
+              className="w-full bg-orange-100 hover:bg-orange-200 text-hivemind-text border border-orange-200 font-body font-medium px-6 py-6 rounded-full transition-all duration-300 hover:scale-[1.02] group"
               data-testid="creators-cta-button">
 
-              <User className="w-4 h-4 mr-2 text-hivemind-text-muted" />
+              <User className="w-4 h-4 mr-2 text-hivemind-primary" />
               <span className="font-normal text-sm sm:text-base">For Creators</span>
-              <ArrowRight className="w-4 h-4 ml-2 text-hivemind-text-muted group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-4 h-4 ml-2 text-hivemind-primary group-hover:translate-x-0.5 transition-transform" />
             </Button>
           </Link>
         </motion.div>

@@ -32,13 +32,13 @@ export default function LogoCarousel() {
           {displayLogos.map((logo, index) => (
             <div
               key={`${logo.name}-${index}`}
-              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center logo-placeholder"
+              className="flex-shrink-0 mx-3 sm:mx-6 md:mx-10 flex items-center justify-center logo-placeholder"
               data-testid={`logo-item-${index}`}
             >
               <img 
                 src={logo.image}
                 alt={logo.name}
-                className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-cover rounded-full shadow-md"
+                className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-cover rounded-full shadow-md"
                 draggable="false"
               />
             </div>
