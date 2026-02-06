@@ -75,7 +75,7 @@ export default function BrandsPage() {
                 <XCircle className="w-6 h-6 text-red-400" />
                 The Problem With Typical Agencies
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {[
                   "Expensive campaigns",
                   "No guaranteed traction",
@@ -85,8 +85,8 @@ export default function BrandsPage() {
                   "Don't improve physical trust",
                   "Build a vision, not a brand"
                 ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3 text-hivemind-text-muted text-sm">
-                    <span className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 flex-shrink-0" />
+                  <li key={index} className="flex items-start gap-3 text-hivemind-text-muted text-base">
+                    <span className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -99,14 +99,14 @@ export default function BrandsPage() {
                 <CheckCircle className="w-6 h-6 text-hivemind-primary" />
                 The HiveMind Solution
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {[
                   { title: "Pay for performance, not possibilities", desc: "Performance-based pricing so spend scales only when your content is actually seen." },
                   { title: "Built for Real Visibility", desc: "We align creator incentives with viewer reach, ensuring content is optimized to perform." },
                   { title: "Made by humans, for humans", desc: "Micro creators connect as peers, creating content that feels real and earns genuine engagement." },
                   { title: "Build up brands, beyond ads", desc: "We build credibility through real orders and verified reviews, helping brands gain early momentum." }
                 ].map((item, index) => (
-                  <li key={index} className="text-sm">
+                  <li key={index} className="text-base">
                     <span className="font-semibold text-hivemind-text">{item.title}</span>
                     <p className="text-hivemind-text-muted mt-1">{item.desc}</p>
                   </li>
