@@ -18,33 +18,33 @@ export default function HomePage() {
       <Header />
       
       {/* Hero Section */}
-      <main className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-8">
+      <main className="min-h-screen flex flex-col items-center justify-center px-6 pt-20 pb-8">
         {/* Coming Soon Badge */}
         <motion.div
-          className="mb-6"
+          className="mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}>
 
-          <span className="inline-block border border-hivemind-primary/10 font-sans font-semibold text-xs sm:text-sm md:text-base px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-hivemind-primary bg-hivemind-accent/80">Creator marketing without guesswork
+          <span className="inline-block border border-hivemind-primary/10 font-sans font-semibold text-sm sm:text-base md:text-lg px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-hivemind-primary bg-hivemind-accent/80">Creator marketing without guesswork
 
           </span>
         </motion.div>
 
         {/* Hero Content */}
         <motion.div
-          className="text-center max-w-3xl mx-auto mb-10"
+          className="text-center max-w-4xl mx-auto mb-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}>
 
-          <h1 className="hero-heading font-sans text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-hivemind-text">
+          <h1 className="hero-heading font-sans text-3xl sm:text-5xl md:text-6xl lg:text-7xl mb-4 sm:mb-6 text-hivemind-text text-center">
             Where Brands & Creators
-            <span className="block text-xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 text-hivemind-primary">Grow Together
+            <span className="block text-2xl sm:text-4xl md:text-5xl lg:text-6xl mt-2 text-hivemind-primary text-center">Grow Together
 
             </span>
           </h1>
-          <p className="font-sans font-normal text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto text-hivemind-text-muted leading-relaxed">HiveMind helps early-stage brands earn visibility through authentic creator content with performance-based pricing.
+          <p className="font-sans font-normal text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto text-hivemind-text-muted leading-relaxed text-center">HiveMind helps early-stage brands earn visibility through authentic creator content with performance-based pricing.
 
 
           </p>
@@ -52,7 +52,7 @@ export default function HomePage() {
 
         {/* CTA Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto mt-8 mb-20"
+          className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto mt-8 mb-32"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}>
