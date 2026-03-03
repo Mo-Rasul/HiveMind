@@ -46,11 +46,11 @@ export default function CreatorsPage() {
         >
           <div className="text-center">
             <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-5xl text-hivemind-text mb-6">
-              Build your platform with partnerships that
-              <span className="block text-hivemind-primary mt-2">reward performance</span>
+              
+              <span className="block text-hivemind-primary mt-2">Get Paid for Content That Performs.</span>
             </h1>
             <p className="text-hivemind-text-muted font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              HiveMind Marketing connects micro creators with early-stage brands looking for authentic content that feels real and earns trust. We incentivize you to produce quality content, connect naturally with your audience, and generate genuine reviews that build credibility beyond an ad.
+             HiveMind connects micro creators with early-stage brands and pays you based on real performance, not flat fees.
             </p>
             <p className="mt-6">
               <span className="text-hivemind-primary font-semibold text-sm sm:text-lg bg-orange-100 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full inline-block border border-orange-200">
@@ -76,13 +76,13 @@ export default function CreatorsPage() {
               </h3>
               <ul className="space-y-4">
                 {[
-                  "Flat fees with no performance upside",
-                  "Scripts that don't feel like you",
-                  "No reward for posts that perform well",
-                  "Partnerships that don't match your audience",
+                  "Flat fees. No upside.",
+                  "You go viral. You don’t benefit.",
+                  "Scripts that don’t sound like you.",
+                  "Brands that don’t match your audience.",
                   "Content that feels forced",
-                  "Single deals without relationship building",
-                  "Compensation that undervalues impact"
+                  "One-off deals. No long-term growth.",
+                  "Content that feels forced."
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3 text-hivemind-text-muted text-base">
                     <span className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0" />
