@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hivemind | Creator Marketing. Powered by Performance.</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* PAGE ROUTING */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ===================== SHARED ===================== */
+:root {
+ color-scheme: light;
+ --bg: #f8f7ff;
+ --text: #1a1a2e;
+ --muted: #6b6b8a;
+ --purple: #7c5cbf;
+ --teal: #4ecdc4;
+ --pink: #f093b0;
+ --peach: #f5a85a;
+ --border: rgba(167,139,250,0.18);
+ --grad: linear-gradient(135deg, #a78bfa, #f093b0, #f5a85a);
+ --grad2: linear-gradient(135deg, #a78bfa, #f093b0);
+ --card: rgba(255,255,255,0.75);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; min-height: 100vh; }
+
+/* Force light mode regardless of system preference */
+@media (prefers-color-scheme: dark) {
+ :root {
+ color-scheme: light;
+ --bg: #f8f7ff;
+ --text: #1a1a2e;
+ --muted: #6b6b8a;
+ --card: rgba(255,255,255,0.7);
+ --border: rgba(167,139,250,0.15);
+ --purple: #7c5cbf;
+ }
+ html, body {
+ background: #f8f7ff !important;
+ color: #1a1a2e !important;
+ }
+}
+
+/* BACKGROUND BLOBS */
+.bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.35; animation: drift 12s ease-in-out infinite alternate; }
+.blob-1 { width: 600px; height: 600px; background: radial-gradient(circle, #a78bfa, transparent 70%); top: -200px; left: -150px; animation-duration: 14s; }
+.blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, #4ecdc4, transparent 70%); top: 100px; right: -100px; animation-duration: 10s; animation-delay: -4s; }
+.blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #f093b0, transparent 70%); bottom: 100px; left: 30%; animation-duration: 16s; animation-delay: -8s; }
+.blob-brands-1 { width: 650px; height: 650px; background: radial-gradient(circle, #f5a85a, transparent 70%); top: -250px; right: -200px; animation-duration: 14s; }
+.blob-brands-2 { width: 500px; height: 500px; background: radial-gradient(circle, #a78bfa, transparent 70%); bottom: 300px; left: -100px; animation-delay: -7s; }
+@keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(30px, 40px) scale(1.08); } }
+
+/* NAV */
+nav {
+ position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+ display: flex; align-items: center; justify-content: space-between;
+ padding: 24px 56px;
+ backdrop-filter: blur(12px);
+ background: rgba(248, 247, 255, 0.7);
+ border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+ font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px;
+ color: var(--text); display: flex; align-items: center; gap: 10px;
+ text-decoration: none; cursor: pointer;
+}
+.logo-mark { width: 28px; height: 28px; background: var(--grad); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 400; color: var(--muted); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { background: var(--grad); color: white !important; padding: 10px 22px; border-radius: 100px; font-weight: 500 !important; font-size: 14px; transition: opacity 0.2s !important; }
+.nav-cta:hover { opacity: 0.85; color: white !important; }
+/* Sub-page nav */
+.nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; cursor: pointer; }
+.nav-back:hover { color: var(--text); }
+.nav-apply { background: var(--grad); color: white; padding: 10px 24px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; cursor: pointer; }
+.nav-apply:hover { opacity: 0.85; }
+
+/* SHARED BUTTONS */
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 40px; border-radius: 100px; font-size: 16px; font-weight: 500; background: var(--grad); color: white; text-decoration: none; box-shadow: 0 8px 32px rgba(167,139,250,0.35); transition: all 0.2s; font-family: 'DM Sans', sans-serif; border: none; cursor: pointer; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(167,139,250,0.45); }
+.btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 500; background: rgba(255,255,255,0.8); color: var(--text); text-decoration: none; border: 1.5px solid var(--border); transition: all 0.2s; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+.btn-ghost:hover { background: white; transform: translateY(-2px); }
+
+/* SECTION */
+.section { position: relative; z-index: 1; padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-weight: 500; margin-bottom: 12px; }
+.section-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(30px, 4vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+.section-title em { font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.section-sub { font-size: 16px; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 540px; margin-bottom: 52px; }
+
+/* DIVIDER */
+.full-divider { position: relative; z-index: 1; border: none; border-top: 1px solid var(--border); margin: 0 56px; }
+
+/* RANGE */
+input[type=range] { width: 100%; -webkit-appearance: none; height: 6px; border-radius: 100px; background: rgba(167,139,250,0.15); outline: none; cursor: pointer; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, #a78bfa, #f093b0); cursor: pointer; border: 2px solid white; box-shadow: 0 2px 8px rgba(124,92,191,0.3); }
+
+/* PROBLEM/SOLUTION */
+.ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ps-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 36px; backdrop-filter: blur(10px); }
+.ps-card-header { display: flex; align-items: center; gap: 10px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; margin-bottom: 24px; }
+.ps-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.ps-icon.bad { background: #ffe4e4; } .ps-icon.good { background: #e4f8f0; }
+.problem-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.problem-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+.problem-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #f093b0; margin-top: 7px; flex-shrink: 0; }
+.solution-list { display: flex; flex-direction: column; gap: 20px; }
+.solution-item { padding-left: 14px; border-left: 2px solid; }
+.solution-item:nth-child(1) { border-color: #a78bfa; } .solution-item:nth-child(2) { border-color: #f093b0; }
+.solution-item:nth-child(3) { border-color: #4ecdc4; } .solution-item:nth-child(4) { border-color: #f5a85a; }
+.solution-item h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.solution-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* STEPS */
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.step-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(10px); position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.step-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(124,92,191,0.12); }
+.step-num { position: absolute; top: 20px; right: 24px; font-family: 'Fraunces', serif; font-size: 52px; font-weight: 700; color: rgba(167,139,250,0.08); line-height: 1; }
+.step-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(167,139,250,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px; }
+.step-card h3 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; margin-bottom: 10px; }
+.step-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* FOR GRID */
+.for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+/* ── Proof Section ── */
+.proof-section { position: relative; z-index: 1; padding: 80px 24px 100px; max-width: 1100px; margin: 0 auto; }
+.proof-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border-radius: 20px; overflow: hidden; margin-bottom: 72px; }
+.proof-stat { background: var(--card); backdrop-filter: blur(12px); padding: 32px 28px; text-align: center; }
+.proof-stat-num { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1; margin-bottom: 10px; color: var(--text); }
+.proof-stat-num.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.proof-stat-label { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 400; }
+.proof-cpm-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 56px; background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 48px; backdrop-filter: blur(12px); }
+.proof-cpm-left {}
+.proof-cpm-right { display: flex; align-items: center; justify-content: center; }
+.proof-cpm-right canvas { width: 100%; max-width: 480px; height: auto; border-radius: 12px; }
+.proof-cap-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(52,211,153,0.08); border: 1.5px solid rgba(52,211,153,0.25); border-radius: 100px; padding: 8px 18px; font-size: 13px; color: #059669; font-weight: 500; }
+.proof-cap-dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; flex-shrink: 0; }
+.proof-outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; }
+.proof-outcome-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 24px; padding: 32px; backdrop-filter: blur(12px); }
+.poc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; gap: 16px; }
+.poc-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-weight: 500; margin-bottom: 8px; }
+.poc-brand { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; margin-bottom: 2px; }
+.poc-name { font-size: 13px; color: var(--muted); }
+.poc-cap-badge { flex-shrink: 0; background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(240,147,176,0.08)); border: 1.5px solid rgba(167,139,250,0.25); border-radius: 12px; padding: 10px 14px; text-align: center; font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; background-clip: text; -webkit-background-clip: text; line-height: 1.2; }
+.poc-cap-badge { color: var(--purple); }
+.poc-cap-badge span { display: block; font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-top: 2px; }
+.poc-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+.poc-stat { background: rgba(167,139,250,0.04); border: 1px solid var(--border); border-radius: 12px; padding: 14px 10px; text-align: center; }
+.poc-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+.poc-val.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.poc-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.poc-note { font-size: 13px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 16px; }
+.proof-transparency { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; background: linear-gradient(135deg, rgba(167,139,250,0.06), rgba(240,147,176,0.04)); border: 1.5px solid var(--border); border-radius: 24px; padding: 48px; }
+.proof-t-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
+.proof-t-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(22px, 2.5vw, 28px); line-height: 1.2; margin-bottom: 16px; }
+.proof-t-sub { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 380px; }
+.proof-t-tier { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.proof-t-tier:last-child { border-bottom: none; }
+.proof-t-tier-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(167,139,250,0.5); flex-shrink: 0; margin-top: 4px; }
+.proof-t-tier-label { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.proof-t-tier-val { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.creator-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 860px; margin: 0 auto; }
+.cc-col { border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; }
+.cc-bad { background: rgba(107,107,138,0.05); border: 1.5px solid rgba(107,107,138,0.12); }
+.cc-good { background: linear-gradient(135deg,rgba(167,139,250,0.07),rgba(240,147,176,0.05)); border: 1.5px solid rgba(167,139,250,0.2); }
+.cc-header { font-family: 'Fraunces',serif; font-weight: 600; font-size: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.cc-bad .cc-header { color: var(--text); }
+.cc-good .cc-header { color: var(--text); }
+.cc-row { display: flex; gap: 14px; align-items: flex-start; }
+.cc-row strong { font-size: 15px; font-weight: 600; display: block; margin-bottom: 4px; color: var(--text); }
+.cc-row p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
+.cc-bad .hc-x, .cc-good .hc-check { margin-top: 3px; flex-shrink: 0; }
+
+@media (max-width: 768px) {
+ .proof-stats { grid-template-columns: repeat(2,1fr); }
+ .proof-cpm-wrap, .proof-outcomes, .proof-transparency { grid-template-columns: 1fr; gap: 32px; }
+ .poc-stats { grid-template-columns: repeat(2,1fr); }
+}
+.for-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 18px; padding: 28px 24px; backdrop-filter: blur(8px); display: flex; align-items: flex-start; gap: 14px; }
+.for-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(167,139,250,0.1); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.for-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.for-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* APPLICATION FORM */
+.apply-section { position: relative; z-index: 1; padding: 0 24px 120px; max-width: 700px; margin: 0 auto; }
+.apply-card { background: white; border: 1.5px solid var(--border); border-radius: 28px; overflow: hidden; box-shadow: 0 24px 80px rgba(124,92,191,0.1); }
+.apply-card-header { background: var(--grad); padding: 40px 48px; text-align: center; }
+.apply-card-header h2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 30px; color: white; margin-bottom: 8px; }
+.apply-card-header p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+.apply-form { padding: 44px 48px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-group.full { grid-column: 1/-1; }
+.form-group label { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.form-group input, .form-group select, .form-group textarea { padding: 13px 16px; border: 1.5px solid rgba(167,139,250,0.2); border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: var(--bg); outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #a78bfa; }
+.form-group textarea { resize: vertical; min-height: 90px; }
+.form-group select { appearance: none; cursor: pointer; }
+.form-submit { margin-top: 28px; width: 100%; padding: 17px; border-radius: 100px; background: var(--grad); color: white; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 8px 32px rgba(167,139,250,0.35); }
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(167,139,250,0.45); }
+.form-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px; }
+.referral-badge { display: none; align-items: center; gap: 10px; background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(240,147,176,0.06)); border: 1.5px solid rgba(167,139,250,0.25); border-radius: 12px; padding: 11px 16px; margin-bottom: 22px; font-size: 13px; color: var(--muted); }
+.referral-badge.visible { display: flex; }
+.referral-badge-icon { width: 28px; height: 28px; background: var(--grad); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.referral-badge-icon svg { display: block; }
+.referral-badge strong { color: var(--text); font-weight: 600; }
+.platform-toggle { display: flex; gap: 8px; }
+.platform-toggle input[type=radio] { display: none; }
+.platform-toggle label { flex: 1; text-align: center; padding: 11px 8px; border: 1.5px solid rgba(167,139,250,0.25); border-radius: 10px; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.18s; background: var(--bg); }
+.platform-toggle input[type=radio]:checked + label { background: linear-gradient(135deg,rgba(167,139,250,0.15),rgba(240,147,176,0.1)); border-color: #a78bfa; color: var(--text); }
+.niche-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.niche-pills input[type=checkbox] { display: none; }
+.niche-pills label { padding: 8px 14px; border: 1.5px solid rgba(167,139,250,0.25); border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.18s; background: var(--bg); }
+.niche-pills input[type=checkbox]:checked + label { background: linear-gradient(135deg,rgba(167,139,250,0.18),rgba(240,147,176,0.12)); border-color: #a78bfa; color: var(--text); }
+.niche-hint { font-size: 10px; color: var(--muted); margin-top: 4px; }
+.select-arrow { position: relative; }
+.select-arrow::after { content: "▾"; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--muted); font-size: 13px; }
+.select-arrow select { width: 100%; padding-right: 32px; }
+
+/* EMAIL REMINDER */
+.email-reminder { display: flex; align-items: flex-start; gap: 12px; background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(240,147,176,0.08)); border: 1.5px solid rgba(167,139,250,0.25); border-radius: 14px; padding: 16px 18px; margin-top: 20px; }
+.email-reminder .er-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.email-reminder p { font-size: 13px; color: var(--text); line-height: 1.6; }
+.email-reminder p strong { color: var(--purple); }
+
+/* FOOTER */
+footer { position: relative; z-index: 1; border-top: 1px solid rgba(167,139,250,0.15); padding: 40px 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; background: rgba(255,255,255,0.3); backdrop-filter: blur(8px); }
+.footer-logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; color: var(--text); display: flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer; }
+.footer-links { display: flex; gap: 28px; list-style: none; }
+.footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+.footer-links a:hover { color: var(--text); }
+.footer-copy { font-size: 13px; color: var(--muted); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===================== HOME PAGE ===================== */
+.hero {
+ position: relative; z-index: 1; min-height: 100vh;
+ display: flex; flex-direction: column; align-items: center; justify-content: center;
+ text-align: center; padding: 140px 24px 80px;
+}
+.hero-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.7); border: 1px solid rgba(167,139,250,0.3); border-radius: 100px; padding: 8px 20px; font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 36px; backdrop-filter: blur(8px); animation: fadeUp 0.6s ease both; }
+.hero-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, #a78bfa, #f093b0); }
+h1.hero-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(52px, 8vw, 96px); line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 24px; max-width: 900px; animation: fadeUp 0.6s ease 0.1s both; }
+h1.hero-title .grad-word { font-weight: 700; font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-size: clamp(16px, 2vw, 20px); color: var(--muted); font-weight: 300; max-width: 1520px; line-height: 1.7; margin-bottom: 48px; animation: fadeUp 0.6s ease 0.2s both; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s ease 0.3s both; }
+.hero-real-badge { display: block; font-size: 13px; font-weight: 400; color: var(--muted); margin-top: 28px; letter-spacing: 0.01em; animation: fadeUp 0.6s ease 0.4s both; }
+.hero-path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 820px; margin: 40px auto 0; animation: fadeUp 0.6s ease 0.25s both; }
+.hero-path-card { background: rgba(255,255,255,0.7); border: 1.5px solid var(--border); border-radius: 20px; padding: 24px; backdrop-filter: blur(12px); display: flex; flex-direction: column; gap: 18px; }
+.btn-path { width: 100%; padding: 13px 20px; border-radius: 100px; font-family: 'DM Sans',sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
+.btn-path-creator { background: var(--grad); color: white; box-shadow: 0 6px 24px rgba(167,139,250,0.3); }
+.btn-path-brand { background: white; color: var(--text); border: 1.5px solid var(--border); }
+.btn-path-brand:hover, .btn-path-creator:hover { transform: translateY(-2px); }
+.hero-contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.hc-col { padding: 16px 14px; display: flex; flex-direction: column; gap: 9px; }
+.hc-bad { background: rgba(107,107,138,0.04); }
+.hc-good { background: rgba(167,139,250,0.06); }
+.hc-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; color: var(--muted); margin-bottom: 4px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+.hc-good .hc-label { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hc-row { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.35; white-space: nowrap; }
+.hc-x { color: rgba(239,68,68,0.3); font-size: 13px; flex-shrink: 0; font-weight: 700; }
+.hc-check { font-size: 13px; flex-shrink: 0; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hc-bad .hc-row { color: var(--muted); }
+.home-proof-bar { display: flex; align-items: center; justify-content: center; gap: 0; max-width: 860px; margin: 0 auto; padding: 28px 24px 60px; flex-wrap: wrap; }
+.hpb-stat { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 0 32px; }
+.hpb-num { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(22px,3vw,30px); color: var(--text); }
+.hpb-label { font-size: 13px; color: var(--muted); text-align: center; }
+.hpb-divider { width: 1px; height: 36px; background: var(--border); }
+.hero-real-badge .spark { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+.btn-creator { background: var(--grad); color: white; box-shadow: 0 8px 32px rgba(167,139,250,0.35); padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s ease; font-family: 'DM Sans', sans-serif; }
+.btn-creator:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(167,139,250,0.45); }
+.btn-brand { background: rgba(255,255,255,0.8); color: var(--text); border: 1.5px solid rgba(167,139,250,0.25); backdrop-filter: blur(8px); padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; font-family: 'DM Sans', sans-serif; }
+.btn-brand:hover { background: white; transform: translateY(-2px); border-color: rgba(167,139,250,0.5); }
+.scroll-hint { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; animation: fadeUp 0.6s ease 0.5s both; }
+.scroll-mouse { width: 22px; height: 34px; border: 1.5px solid rgba(107,107,138,0.4); border-radius: 100px; position: relative; display: flex; justify-content: center; padding-top: 6px; }
+.scroll-mouse::after { content: ''; width: 3px; height: 6px; background: var(--muted); border-radius: 100px; animation: scrollDown 1.5s ease infinite; }
+@keyframes scrollDown { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(8px); opacity: 0; } }
+
+/* BRANDS CAROUSEL */
+.brands-section { position: relative; z-index: 1; padding: 60px 0; border-top: 1px solid rgba(167,139,250,0.15); border-bottom: 1px solid rgba(167,139,250,0.15); background: rgba(255,255,255,0.4); backdrop-filter: blur(8px); overflow: hidden; }
+.brands-label { text-align: center; font-size: 13px; text-transform: uppercase; letter-spacing: 0.13em; color: var(--muted); font-weight: 500; margin-bottom: 32px; }
+.brands-track-wrap { overflow: hidden; position: relative; }
+.brands-track-wrap::before, .brands-track-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+.brands-track-wrap::before { left: 0; background: linear-gradient(to right, rgba(248,247,255,0.9), transparent); }
+.brands-track-wrap::after { right: 0; background: linear-gradient(to left, rgba(248,247,255,0.9), transparent); }
+.brands-track { display: flex; gap: 60px; align-items: center; animation: scroll 20s linear infinite; width: max-content; }
+.brands-track:hover { animation-play-state: paused; }
+.brand-item { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 300; color: var(--muted); white-space: nowrap; opacity: 0.6; transition: opacity 0.2s; cursor: default; display: flex; align-items: center; gap: 8px; }
+.brand-item:hover { opacity: 1; }
+.brand-dot { width: 5px; height: 5px; border-radius: 50%; background: linear-gradient(135deg, #a78bfa, #f093b0); }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* VIDEO SECTION */
+.videos-section { position: relative; z-index: 1; padding: 100px 56px; max-width: 1300px; margin: 0 auto; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+.section-header .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
+.section-header .section-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; }
+.section-header .section-title em { font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.video-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 9/16; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(255,255,255,0.8); }
+.video-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 24px 60px rgba(124,92,191,0.2); }
+.video-card:nth-child(1) { background: linear-gradient(160deg, #d4c8f8 0%, #f0d4e8 100%); }
+.video-card:nth-child(2) { background: linear-gradient(160deg, #c8e8f0 0%, #d4c8f8 100%); }
+.video-card:nth-child(3) { background: linear-gradient(160deg, #f0e8c8 0%, #f0c8d8 100%); }
+.video-card:nth-child(4) { background: linear-gradient(160deg, #c8f0e0 0%, #c8d8f0 100%); }
+.video-placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+.video-placeholder .tiktok-icon { width: 44px; height: 44px; opacity: 0.2; }
+.video-placeholder .placeholder-text { font-size: 11px; color: var(--muted); opacity: 0.5; text-align: center; line-height: 1.5; }.video-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,15,40,0.75) 0%, transparent 50%); pointer-events: none; }
+.video-creator { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; display: flex; justify-content: space-between; align-items: flex-end; }
+.creator-handle { font-size: 14px; font-weight: 600; color: white; margin-bottom: 5px; }
+.views-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.4); backdrop-filter: blur(6px); border-radius: 100px; padding: 5px 15px; font-size: 13px; font-weight: 500; color: white; }
+.earnings-badge { display: inline-flex; align-items: center; background: var(--grad); border-radius: 100px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: white; box-shadow: 0 2px 12px rgba(167,139,250,0.4); }
+.play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; background: rgba(255,255,255,0.25); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgba(255,255,255,0.4); opacity: 0; transition: opacity 0.2s; }
+.play-btn::after { content: ''; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 16px; border-color: transparent transparent transparent white; margin-left: 4px; }
+.video-card:hover .play-btn { opacity: 0; }
+
+/* ===================== CREATORS PAGE ===================== */
+.c-hero { position: relative; z-index: 1; padding: 160px 24px 80px; text-align: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.7); border: 1px solid var(--border); border-radius: 100px; padding: 7px 18px; font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 28px; backdrop-filter: blur(8px); animation: fadeUp 0.6s ease both; }
+.hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; }
+.c-hero .hero-eyebrow .dot { background: var(--grad2); }
+.b-hero .hero-eyebrow .dot { background: linear-gradient(135deg, #f5a85a, #f093b0); }
+h1.page-title { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(44px, 7vw, 80px); line-height: 1.05; letter-spacing: -0.02em; max-width: 860px; margin: 0 auto 22px; animation: fadeUp 0.6s ease 0.1s both; }
+h1.page-title .accent { font-weight: 700; font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.page-hero-sub { font-size: clamp(15px, 2vw, 18px); color: var(--muted); font-weight: 300; max-width: 560px; margin: 0 auto 20px; line-height: 1.7; animation: fadeUp 0.6s ease 0.15s both; }
+.hero-pill-text { display: inline-block; background: rgba(255,255,255,0.6); border: 1px solid rgba(245,168,90,0.4); border-radius: 100px; padding: 9px 22px; font-size: 14px; color: #c47d0e; font-weight: 500; margin-bottom: 36px; animation: fadeUp 0.6s ease 0.2s both; }
+
+/* CALCULATOR */
+.calc-section { position: relative; z-index: 1; padding: 0 24px 100px; max-width: 1100px; margin: 0 auto; }
+.calc-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 28px; padding: 52px; backdrop-filter: blur(12px); }
+.calc-header { text-align: center; margin-bottom: 52px; }
+.calc-header h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(28px, 4vw, 42px); margin-bottom: 10px; }
+.calc-header h2 em { font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.calc-header p { font-size: 15px; color: var(--muted); }
+.calc-sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 40px; }
+.slider-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
+.slider-val-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.slider-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 28px; color: var(--text); }
+.slider-sub { font-size: 12px; color: var(--muted); }
+.size-selector { margin-bottom: 36px; }
+.size-selector label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 500; margin-bottom: 12px; }
+.size-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+.size-tab { padding: 8px 18px; border-radius: 100px; border: 1.5px solid var(--border); background: rgba(255,255,255,0.5); font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.size-tab:hover { border-color: #a78bfa; color: var(--purple); }
+.size-tab.active { background: linear-gradient(135deg, #a78bfa, #f093b0); border-color: transparent; color: white; }
+.calc-result { background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(240,147,176,0.08)); border: 1.5px solid rgba(167,139,250,0.2); border-radius: 20px; padding: 36px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.result-item { text-align: center; }
+.result-item .r-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 8px; }
+.result-item .r-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 28px; color: var(--text); }
+.result-item .r-val.highlight { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 36px; }
+
+/* CPM mix quick-filter */
+.cpm-mix-filter { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+.cpm-mix-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.cpm-mix-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.cpm-mix-pill { padding: 6px 16px; border-radius: 100px; border: 1.5px solid var(--border); background: rgba(255,255,255,0.6); font-size: 12px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
+.cpm-mix-pill:hover { border-color: #a78bfa; color: var(--purple); }
+.cpm-mix-pill.active { background: var(--grad); border-color: transparent; color: white; font-weight: 600; }
+
+
+.cpm-mobile-legend { display: none; }
+@media (max-width: 600px) {
+ .cpm-mobile-legend {
+ display: flex; flex-wrap: wrap; gap: 6px 12px;
+ padding: 10px 4px 4px; justify-content: center;
+ }@tom
+ .cml-item {
+ display: flex; align-items: center; gap: 5px;
+ font-size: 11px; color: var(--muted); font-weight: 500;
+ }
+ .cml-dot {
+ width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+ }
+}
+
+
+
+.creator-breakdown { margin-top: 28px; border: 1.5px solid rgba(167,139,250,0.2); border-radius: 20px; overflow: hidden; }
+.cb-tiers { display: grid; grid-template-columns: repeat(5, 1fr); background: linear-gradient(135deg,rgba(167,139,250,0.05),rgba(240,147,176,0.05)); }
+.cb-tier-item { padding: 18px 16px; text-align: center; border-right: 1px solid rgba(167,139,250,0.1); }
+.cb-tier-item:last-child { border-right: none; }
+.cb-tier-item.highlight-item { background: linear-gradient(135deg,rgba(167,139,250,0.1),rgba(240,147,176,0.08)); }
+.cb-tier-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+.cb-tier-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; color: var(--text); }
+.cb-tier-val.grad-val { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cb-chart-wrap { border-top: 1.5px solid rgba(167,139,250,0.12); padding: 20px 24px 14px; background: rgba(255,255,255,0.4); position: relative; }
+.cb-chart-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
+.cb-chart-hint { font-size: 10px; color: rgba(167,139,250,0.6); text-align: center; margin-top: 6px; font-style: italic; }
+#creatorCpmCanvas { width: 100%; height: 160px; display: block; cursor: ew-resize; border-radius: 10px; touch-action: none; }
+.curve-canvas { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 16px; touch-action: none; }
+
+.repost-warn { display: none; align-items: flex-start; gap: 12px; background: linear-gradient(135deg,rgba(245,168,90,0.1),rgba(240,147,176,0.1)); border: 1.5px solid rgba(245,168,90,0.45); border-radius: 14px; padding: 16px 18px; margin-bottom: 28px; }
+.repost-warn.show { display: flex; }
+.rw-icon { font-size: 22px; flex-shrink: 0; }
+.rw-text strong { font-size: 14px; font-weight: 600; color: #b05a00; display: block; margin-bottom: 3px; }
+.rw-text p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ===================== BRANDS PAGE ===================== */
+.b-hero { position: relative; z-index: 1; padding: 160px 24px 80px; text-align: center; }
+
+/* CAMPAIGN DESIGNER */
+.designer-section { position: relative; z-index: 1; padding: 0 24px 100px; max-width: 1100px; margin: 0 auto; }
+.designer-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 28px; padding: 52px; backdrop-filter: blur(12px); }
+.designer-header { text-align: center; margin-bottom: 52px; }
+.designer-header h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(26px, 4vw, 40px); margin-bottom: 10px; }
+.designer-header h2 em { font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.designer-header p { font-size: 15px; color: var(--muted); }
+.designer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.d-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 500; margin-bottom: 10px; display: block; }
+.d-val-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.d-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 30px; color: var(--text); }
+.d-sub { font-size: 12px; color: var(--muted); text-align: right; }
+.designer-section input[type=range] { margin-bottom: 28px; }
+.mix-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 500; margin-bottom: 12px; display: block; }
+.mix-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.mix-option { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px; border: 1.5px solid var(--border); cursor: pointer; background: rgba(255,255,255,0.5); transition: all 0.15s; }
+.mix-text { flex: 1; min-width: 0; }
+.mix-option:hover { border-color: #a78bfa; }
+.mix-option.active { border-color: #a78bfa; background: rgba(167,139,250,0.07); }
+.mix-radio { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(167,139,250,0.4); flex-shrink: 0; transition: all 0.15s; position: relative; }
+.mix-option.active .mix-radio { border-color: #a78bfa; background: #a78bfa; }
+.mix-option.active .mix-radio::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: white; }
+.mix-text h4 { font-size: 14px; font-weight: 600; }
+.mix-text p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.mix-icons { margin-left: auto; display: flex; align-items: flex-end; gap: 2px; flex-shrink: 0; white-space: nowrap; flex-wrap: nowrap; }
+.mix-icons .bee-sm { font-size: 13px; line-height: 1; }
+.mix-icons .bee-md { font-size: 18px; line-height: 1; }
+.mix-icons .bee-lg { font-size: 23px; line-height: 1; }
+.designer-result { background: linear-gradient(135deg, rgba(167,139,250,0.06), rgba(245,168,90,0.06)); border: 1.5px solid rgba(167,139,250,0.2); border-radius: 20px; padding: 32px; }
+.result-title { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; margin-bottom: 20px; }
+.result-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.result-row:last-child { border-bottom: none; }
+.result-row .rr-label { font-size: 13px; color: var(--muted); }
+.result-row .rr-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 17px; }
+.result-row .rr-val.big { font-size: 24px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.result-note { font-size: 12px; color: var(--muted); margin-top: 14px; line-height: 1.6; background: rgba(255,255,255,0.6); border-radius: 10px; padding: 10px 14px; }
+
+/* CPM CURVE CHART */
+.cpm-section { position: relative; z-index: 1; padding: 0 24px 100px; max-width: 1100px; margin: 0 auto; }
+.cpm-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 28px; padding: 52px; backdrop-filter: blur(12px); }
+.cpm-header { text-align: center; margin-bottom: 40px; }
+.cpm-header h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(22px, 3.2vw, 36px); margin-bottom: 10px; line-height: 1.2; }
+.cpm-header h2 em { font-style: italic; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cpm-header p { font-size: 14px; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+.curve-chart-wrap { position: relative; width: 100%; height: 360px; margin-bottom: 20px; }
+.curve-chart-wrap.single-chart { height: 380px; }
+.cpm-tabs { display: flex; gap: 8px; margin-bottom: 24px; background: rgba(167,139,250,0.06); border: 1.5px solid var(--border); border-radius: 16px; padding: 6px; }
+.cpm-tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 8px; border-radius: 11px; border: none; background: transparent; font-family: 'DM Sans',sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.18s; line-height: 1.2; }
+.cpm-tab span { font-size: 10px; font-weight: 400; color: var(--muted); opacity: 0.7; }
+.cpm-tab.active { background: white; color: var(--text); box-shadow: 0 2px 12px rgba(167,139,250,0.15); }
+.cpm-tab.active span { color: var(--purple); opacity: 1; }
+.cpm-legend-row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding-top: 16px; border-top: 1px solid var(--border); }
+.cpm-leg-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+.cpm-leg-line { display: inline-block; width: 24px; height: 2.5px; border-radius: 2px; }
+.cpm-leg-fill { display: inline-block; width: 16px; height: 10px; border-radius: 3px; background: rgba(52,211,153,0.25); border: 1px solid rgba(52,211,153,0.4); }
+.hivemind-line { background: linear-gradient(90deg,#a78bfa,#f093b0,#34d399); }
+.social-line { background: rgba(59,130,246,0.65); }
+.agency-line { background: rgba(107,107,138,0.55); }
+
+.curve-slider-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.curve-slider-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.curve-slider-row input[type=range] { flex: 1; }
+.curve-slider-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; min-width: 52px; text-align: right; }
+
+.curve-readout { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px; }
+.cr-item { background: rgba(255,255,255,0.6); border: 1.5px solid var(--border); border-radius: 14px; padding: 12px 10px; text-align: center; transition: all 0.2s; }
+.cr-item.hivemind-highlight { background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(240,147,176,0.1)); border-color: rgba(167,139,250,0.4); box-shadow: 0 4px 20px rgba(167,139,250,0.15); }
+.cr-item.beaten { opacity: 0.45; }
+.cr-name { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 5px; font-weight: 500; }
+.cr-cpm { font-family: 'Fraunces', serif; font-weight: 700; font-size: 17px; color: var(--text); }
+.cr-item.hivemind-highlight .cr-cpm { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cr-status { font-size: 10px; margin-top: 4px; font-weight: 600; }
+.cr-status.winning { color: #5bba8a; }
+.cr-status.losing { color: #f093b0; }
+
+.cpm-winner { display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(240,147,176,0.1)); border: 1.5px solid rgba(167,139,250,0.2); border-radius: 14px; padding: 18px 28px; font-size: 14px; color: var(--muted); text-align: center; }
+.cpm-winner strong { color: var(--text); }
+
+
+/* CASE STUDY */
+.case-section { position: relative; z-index: 1; padding: 0 24px 80px; max-width: 1100px; margin: 0 auto; }
+.case-intro { text-align: center; margin-bottom: 48px; }
+.case-sub { font-size: 16px; color: var(--muted); font-weight: 300; margin-top: 12px; }
+.case-card { position: relative; border-radius: 28px; overflow: hidden; height: 300px; user-select: none; box-shadow: 0 24px 80px rgba(124,92,191,0.15); cursor: col-resize; }
+.case-panel { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.case-before { background: linear-gradient(135deg, #e8e6f0, #f0edf8); }
+.case-after { background: linear-gradient(135deg, #f8f4ff, #fdf0f7, #fff5ee); clip-path: inset(0 0 0 50%); transition: clip-path 0.05s linear; border-left: none; }
+.case-panel-inner { width: 100%; max-width: 800px; padding: 0 60px; }
+.case-tag { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+.case-tag-before { background: rgba(107,107,138,0.12); color: var(--muted); }
+.case-tag-after { background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(240,147,176,0.15)); color: var(--purple); }
+.case-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-bottom: 24px; }
+.case-stat { text-align: center; }
+.case-stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+.case-stat-val { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(22px, 3vw, 32px); color: rgba(107,107,138,0.5); }
+.case-after .case-stat-val { color: var(--text); }
+.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.case-quote { font-size: 13px; color: rgba(107,107,138,0.7); font-style: italic; text-align: center; line-height: 1.6; }
+.after-quote { color: var(--muted); font-style: normal; }
+.after-quote strong { color: var(--purple); }
+/* Handle */
+.case-handle { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; pointer-events: none; }
+.handle-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: white; box-shadow: 0 0 12px rgba(124,92,191,0.4); transform: translateX(-50%); }
+.handle-pill { position: relative; background: white; border-radius: 100px; padding: 8px 10px; display: flex; align-items: center; gap: 2px; box-shadow: 0 4px 20px rgba(124,92,191,0.25); color: var(--purple); }
+/* Savings */
+.case-savings { margin-top: 24px; }
+.case-savings-inner { display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(245,168,90,0.08)); border: 1.5px solid rgba(167,139,250,0.2); border-radius: 16px; padding: 20px 28px; font-size: 14px; color: var(--muted); line-height: 1.6; }
+.case-savings-icon { font-size: 24px; flex-shrink: 0; }
+.case-savings-inner strong { color: var(--text); }
+
+
+/* ============================================================
+ MOBILE: comprehensive overhaul
+ ============================================================ */
+
+/* Tablet 900px */
+@media (max-width: 900px) {
+ nav { padding: 16px 20px; }
+ .nav-links { display: none; }
+ .nav-apply { font-size: 12px; padding: 9px 16px; white-space: nowrap; }
+ .nav-back { font-size: 12px; white-space: nowrap; }
+ .videos-section { padding: 60px 20px; }
+ .video-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+ footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+ .ps-grid { grid-template-columns: 1fr 1fr; }
+ .designer-grid { grid-template-columns: 1fr; gap: 28px; }
+ .steps-grid { grid-template-columns: 1fr 1fr; }
+ .hero-path-grid { grid-template-columns: 1fr; gap: 16px; }
+ .creator-compare-grid { grid-template-columns: 1fr; }
+ .curve-readout { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Mobile 768px */
+@media (max-width: 768px) {
+ /* Type scale: fluid, never cramped */
+ h1.hero-title { font-size: clamp(34px, 9vw, 56px); line-height: 1.05; }
+ h1.page-title { font-size: clamp(28px, 8vw, 46px); }
+ .hero-sub { font-size: clamp(14px, 3.8vw, 17px); margin-bottom: 28px; }
+ .page-hero-sub { font-size: clamp(13px, 3.2vw, 15px); }
+ .section-title { font-size: clamp(22px, 5.5vw, 34px); }
+ .section-sub { font-size: clamp(13px, 3.2vw, 15px); margin-bottom: 32px; }
+
+ /* Section card headers */
+ .calc-header h2,
+ .designer-header h2 { font-size: clamp(19px, 5vw, 28px); margin-bottom: 5px; }
+ .calc-header p,
+ .designer-header p { font-size: 13px; }
+ .cpm-header h2 { font-size: clamp(17px, 4.5vw, 24px); }
+ .cpm-header p { font-size: 12px; }
+
+ /* Spacing */
+ .calc-section, .designer-section, .cpm-section,
+ .case-section { padding-left: 16px; padding-right: 16px; padding-bottom: 56px; }
+ .calc-card, .designer-card, .cpm-card { padding: 20px 16px; border-radius: 18px; }
+ .full-divider { margin: 0 16px; }
+
+ /* Grids → single column */
+ .ps-grid, .calc-sliders, .designer-grid,
+ .steps-grid, .for-grid, .form-row { grid-template-columns: 1fr; }
+
+ /* Calc result */
+ .calc-result { grid-template-columns: 1fr 1fr; gap: 10px; }
+ .result-item { padding: 14px 10px; }
+ .result-item .r-label { font-size: 9px; letter-spacing: 0.14em; }
+ .result-item .r-val { font-size: clamp(16px, 5vw, 22px); }
+ .result-item .r-val.highlight { font-size: clamp(20px, 6vw, 28px); }
+ .slider-val { font-size: clamp(20px, 5.5vw, 26px); }
+ .slider-sub { font-size: 10px; }
+
+ /* Designer */
+ .designer-result { padding: 16px; }
+ .d-val { font-size: clamp(18px, 5vw, 24px); }
+ .mix-text h4 { font-size: 12px; }
+ .mix-text p { font-size: 11px; }
+
+ /* CPM chart: keep chart, hide noise */
+ .curve-chart-wrap { height: 180px; }
+ .curve-chart-wrap.single-chart { height: 240px; }
+ .cpm-tabs { gap: 4px; padding: 4px; }
+ .cpm-tab { font-size: 11px; padding: 8px 4px; }
+ .cpm-tab span { display: none; }
+
+ /* Case study */
+ .case-drag-hint { display: none; }
+ .case-stat-val { font-size: clamp(18px, 5vw, 26px); }
+ .case-stat-label { font-size: 10px; }
+ .case-tag { font-size: 9px; }
+
+ /* Step cards */
+ .step-card h3 { font-size: 15px; }
+ .step-card p { font-size: 12px; }
+ .ps-card-header { font-size: 15px; }
+ .problem-list li { font-size: 12px; }
+
+ /* Forms */
+ .apply-card-header h2 { font-size: 20px; }
+ .apply-card-header, .apply-form { padding: 20px 16px; }
+ .form-group label { font-size: 11px; }
+ .form-group input, .form-group select,
+ .form-group textarea { font-size: 16px; padding: 12px 14px; } /* 16px prevents iOS zoom */
+ .form-submit { font-size: 15px; padding: 15px; }
+
+ /* Nav */
+ .nav-mobile-toggle { display: flex; }
+}
+
+/* Small mobile 500px */
+@media (max-width: 500px) {
+ .home-proof-bar { gap: 8px; }
+ .hpb-divider { display: none; }
+ .hpb-stat { padding: 8px 16px; }
+ .hero-contrast { grid-template-columns: 1fr; }
+ .hc-bad { border-bottom: 1px solid var(--border); border-right: none; }
+ .cpm-tab span { display: none; }
+ /* Hero */
+ h1.hero-title { font-size: clamp(30px, 10.5vw, 42px); line-height: 1.06; }
+ h1.page-title { font-size: clamp(24px, 9.5vw, 36px); }
+ .hero-sub { font-size: 13.5px; line-height: 1.65; }
+ .hero-pill { font-size: 10px; padding: 5px 11px; }
+ .hero-pill-text { font-size: 11px; padding: 6px 14px; }
+ .hero-eyebrow { font-size: 10px; }
+
+ /* Buttons */
+ .hero-buttons { flex-direction: column; align-items: stretch; gap: 10px; }
+ .btn-creator, .btn-brand,
+ .btn-primary, .btn-ghost { width: 100%; text-align: center; justify-content: center;
+ font-size: 14px; padding: 13px 20px; }
+
+ /* Videos */
+ .video-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+ .video-card { border-radius: 10px; }
+
+ /* Calc size tabs */
+ .size-tabs { gap: 5px; }
+ .size-tab { min-width: unset !important; padding: 6px 9px; font-size: 10.5px; }
+ .calc-result { gap: 8px; }
+ .result-item .r-val { font-size: clamp(14px, 5.5vw, 20px); }
+ .result-item .r-val.highlight { font-size: clamp(18px, 6.5vw, 24px); }
+
+ /* Designer */
+ .mix-options { grid-template-columns: 1fr 1fr; }
+ .mix-option { padding: 12px 10px; }
+
+ /* CPM */
+ .cpm-card { padding: 16px 10px; }
+ .curve-chart-wrap { height: 185px; }
+
+ /* Steps */
+ .steps-grid { grid-template-columns: 1fr; }
+ .step-num { font-size: 36px; }
+
+ /* Case */
+ .case-card { min-height: 280px; }
+ .case-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+
+ /* Brand strip */
+ .brand-item { font-size: 15px; }
+
+ /* Sections */
+ section.section,
+ .calc-section, .designer-section,
+ .cpm-section { padding-left: 12px !important; padding-right: 12px !important; }
+}
+
+/* Nav hamburger: hidden by default, shown on mobile */
+.nav-mobile-toggle {
+ display: none;
+ flex-direction: column;
+ gap: 5px;
+ cursor: pointer;
+ padding: 6px;
+ border-radius: 8px;
+ border: 1.5px solid var(--border);
+ background: rgba(255,255,255,0.7);
+ backdrop-filter: blur(8px);
+}
+.nav-mobile-toggle span {
+ display: block;
+ width: 20px;
+ height: 2px;
+ background: var(--text);
+ border-radius: 2px;
+ transition: all 0.2s;
+}
+.nav-mobile-menu {
+ display: none;
+ position: fixed;
+ top: 0; left: 0; right: 0;
+ background: rgba(255,255,255,0.97);
+ backdrop-filter: blur(20px);
+ padding: 24px 20px 32px;
+ z-index: 200;
+ flex-direction: column;
+ gap: 0;
+ box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+ border-bottom: 1px solid var(--border);
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+.nav-mobile-close { font-size: 24px; cursor: pointer; color: var(--muted); background: none; border: none; line-height: 1; }
+.nav-mobile-menu a, .nav-mobile-menu button {
+ display: block;
+ padding: 14px 4px;
+ font-size: 18px;
+ font-weight: 400;
+ font-family: 'Fraunces', serif;
+ color: var(--text);
+ text-decoration: none;
+ border-bottom: 1px solid var(--border);
+ background: none;
+ border-left: none;
+ border-right: none;
+ border-top: none;
+ width: 100%;
+ text-align: left;
+ cursor: pointer;
+}
+.nav-mobile-menu a:last-child, .nav-mobile-menu button:last-child { border-bottom: none; }
+
+</style>
+</head>
+<body>
+
+<div class="nav-mobile-menu" id="mobileMenu">
+ <div class="nav-mobile-menu-top">
+ <span class="nav-logo"><div class="logo-mark"></div>Hivemind</span>
+ <button class="nav-mobile-close" onclick="closeMobileMenu()"></button>
+ </div>
+ <a onclick="goTo('home');closeMobileMenu()">How it works</a>
+ <a onclick="goTo('creators');closeMobileMenu()">Creators</a>
+ <a onclick="goTo('brands');closeMobileMenu()">For Brands</a>
+ <a onclick="goTo('creators');setTimeout(()=>document.getElementById('c-apply').scrollIntoView({behavior:'smooth'}),60);closeMobileMenu()">Get started →</a>
+</div>
+
+<div class="bg-canvas">
+ <div class="blob blob-1" id="blob1"></div>
+ <div class="blob blob-2" id="blob2"></div>
+ <div class="blob blob-3" id="blob3"></div>
+</div>
+
+<!-- ============================================================ NAV ============================================================ -->
+<!-- HOME nav -->
+<nav id="nav-home" style="display:flex;">
+ <span class="nav-logo" onclick="goTo('home')">
+ <div class="logo-mark"></div>Hivemind
+ </span>
+ <ul class="nav-links">
+ <li><a onclick="goTo('home')">How it works</a></li>
+ <li><a onclick="goTo('creators')">Creators</a></li>
+ <li><a onclick="goTo('brands')">For Brands</a></li>
+ <li><a class="nav-cta" onclick="goTo('creators');setTimeout(()=>document.getElementById('c-apply').scrollIntoView({behavior:'smooth'}),60)">Get started</a></li>
+ </ul>
+ <button class="nav-mobile-toggle" onclick="openMobileMenu()" aria-label="Menu">
+ <span></span><span></span><span></span>
+ </button>
+</nav>
+<!-- CREATORS nav -->
+<nav id="nav-creators" style="display:none;">
+ <span class="nav-back" onclick="goTo('home')">← Back to Home</span>
+ <span class="nav-logo" onclick="goTo('home')"><div class="logo-mark"></div>Hivemind</span>
+ <a class="nav-apply" onclick="document.getElementById('c-apply').scrollIntoView({behavior:'smooth'})">Apply Now</a>
+</nav>
+<!-- BRANDS nav -->
+<nav id="nav-brands" style="display:none;">
+ <span class="nav-back" onclick="goTo('home')">← Back to Home</span>
+ <span class="nav-logo" onclick="goTo('home')"><div class="logo-mark"></div>Hivemind</span>
+ <a class="nav-apply" onclick="document.getElementById('b-apply').scrollIntoView({behavior:'smooth'})">Start a Campaign</a>
+</nav>
+
+<!-- ============================================================ HOME PAGE ============================================================ -->
+<div class="page active" id="page-home">
+
+ <section class="hero">
+ <h1 class="hero-title">Influencer marketing<br/>shouldn’t be a <span class="grad-word">gamble.</span></h1>
+ <p class="hero-sub">Most agencies charge flat fees for one influencer and hope it works.<br/> Hivemind only charges for content that gets scene.</p>
+
+ <div class="hero-path-grid">
+ <div class="hero-path-card">
+ <button class="btn-path btn-path-creator" onclick="goTo('creators')">
+ <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+ Join as a Creator
+ </button>
+ <div class="hero-contrast">
+ <div class="hc-col hc-bad">
+ <div class="hc-label">Other platforms</div>
+ <div class="hc-row"><span class="hc-x">✕</span>Free product only</div>
+ <div class="hc-row"><span class="hc-x">✕</span>No cash</div>
+ <div class="hc-row"><span class="hc-x">✕</span>No upside</div>
+ <div class="hc-row"><span class="hc-x">✕</span>One and done</div>
+ </div>
+ <div class="hc-col hc-good">
+ <div class="hc-label">Hivemind</div>
+ <div class="hc-row"><span class="hc-check">✓</span>Keep the product</div>
+ <div class="hc-row"><span class="hc-check">✓</span>Paid per post</div>
+ <div class="hc-row"><span class="hc-check">✓</span>Paid per view</div>
+ <div class="hc-row"><span class="hc-check">✓</span>Recurring campaigns</div>
+ </div>
+ </div>
+ </div>
+
+ <div class="hero-path-card">
+ <button class="btn-path btn-path-brand" onclick="goTo('brands')">
+ <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+ Run a Campaign
+ </button>
+ <div class="hero-contrast">
+ <div class="hc-col hc-bad">
+ <div class="hc-label">Other agencies</div>
+ <div class="hc-row"><span class="hc-x">✕</span>Flat fee to post</div>
+ <div class="hc-row"><span class="hc-x">✕</span>One creator</div>
+ <div class="hc-row"><span class="hc-x">✕</span>No guarantee</div>
+ <div class="hc-row"><span class="hc-x">✕</span>You gamble</div>
+ </div>
+ <div class="hc-col hc-good">
+ <div class="hc-label">Hivemind</div>
+ <div class="hc-row"><span class="hc-check">✓</span>Pay per view</div>
+ <div class="hc-row"><span class="hc-check">✓</span>20+ creators</div>
+ <div class="hc-row"><span class="hc-check">✓</span>Budget you control</div>
+ <div class="hc-row"><span class="hc-check">✓</span>Reviews included</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <p class="hero-real-badge">No AI. No scripts. No polished ads.<br/> Real people, real content, real results.</p>
+ </section>
+
+ <section class="home-proof-bar">
+ <div class="hpb-stat"><span class="hpb-num">1.72m</span><span class="hpb-label">Views delivered</span></div>
+ <div class="hpb-divider"></div>
+ <div class="hpb-stat"><span class="hpb-num grad-text">150+</span><span class="hpb-label">Creators in Hivemind</span></div>
+ <div class="hpb-divider"></div>
+ <div class="hpb-stat"><span class="hpb-num grad-text">16</span><span class="hpb-label">Brands helped</span></div>
+ <div class="hpb-divider"></div>
+ <div class="hpb-stat"><span class="hpb-num grad-text">$7.93</span><span class="hpb-label">Average blended CPM</span></div>
+ </section>
+
+ <section class="brands-section">
+ <p class="brands-label">Trusted by brands we've worked with</p>
+ <div class="brands-track-wrap">
+ <div class="brands-track">
+ <span class="brand-item"><span class="brand-dot"></span>Lemora</span>
+ <span class="brand-item"><span class="brand-dot"></span>Ditto</span>
+ <span class="brand-item"><span class="brand-dot"></span>Flora Flora</span>
+ <span class="brand-item"><span class="brand-dot"></span>afia</span>
+ <span class="brand-item"><span class="brand-dot"></span>Early Worm</span>
+ <span class="brand-item"><span class="brand-dot"></span>Harper the Label</span>
+ <span class="brand-item"><span class="brand-dot"></span>Nori</span>
+ <span class="brand-item"><span class="brand-dot"></span>Soleil</span>
+ <span class="brand-item"><span class="brand-dot"></span>Potluck</span>
+ <span class="brand-item"><span class="brand-dot"></span>BUBLUV</span>
+ <span class="brand-item"><span class="brand-dot"></span>PurposeFuel</span>
+ <span class="brand-item"><span class="brand-dot"></span>Dirty Virgin</span>
+ <span class="brand-item"><span class="brand-dot"></span>Oasis</span>
+ <span class="brand-item"><span class="brand-dot"></span>BEEYOND</span>
+ <span class="brand-item"><span class="brand-dot"></span>ASHAPOPS</span>
+ <span class="brand-item"><span class="brand-dot"></span>daio</span>
+<!-- == Repeat === -->
+<span class="brand-item"><span class="brand-dot"></span>Lemora</span>
+ <span class="brand-item"><span class="brand-dot"></span>Ditto</span>
+ <span class="brand-item"><span class="brand-dot"></span>Flora Flora</span>
+ <span class="brand-item"><span class="brand-dot"></span>afia</span>
+ <span class="brand-item"><span class="brand-dot"></span>Early Worm</span>
+ <span class="brand-item"><span class="brand-dot"></span>Harper the Label</span>
+ <span class="brand-item"><span class="brand-dot"></span>Nori</span>
+ <span class="brand-item"><span class="brand-dot"></span>Soleil</span>
+ <span class="brand-item"><span class="brand-dot"></span>Potluck</span>
+ <span class="brand-item"><span class="brand-dot"></span>BUBLUV</span>
+ <span class="brand-item"><span class="brand-dot"></span>PurposeFuel</span>
+ <span class="brand-item"><span class="brand-dot"></span>Dirty Virgin</span>
+ <span class="brand-item"><span class="brand-dot"></span>Oasis</span>
+ <span class="brand-item"><span class="brand-dot"></span>BEEYOND</span>
+ <span class="brand-item"><span class="brand-dot"></span>ASHAPOPS</span>
+ <span class="brand-item"><span class="brand-dot"></span>daio</span>
+ </div>
+ </div>
+ </section>
+
+ <section class="videos-section">
+ <div class="section-header">
+ <div>
+ <p class="section-label">Creator Content</p>
+ <h2 class="section-title">Real creators,<br/><em>real performance.</em></h2>
+ </div>
+ </div>
+
+ <div class="video-grid">
+<script src="https://player.vimeo.com/api/player.js" async></script>
+<script>window._hmPlayers = window._hmPlayers || [];</script>
+
+
+<!-- ===== TOOTHBRUSH ===== -->
+<div class="video-card">
+  <div id="toothbrush-wrap" style="position:relative;width:100%;padding:177.78% 0 0 0;overflow:hidden;border-radius:20px;cursor:pointer;" onclick="_loadToothbrush()">
+    <img src="thumbnails/toothbrush.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
+    <div id="toothbrush-play-icon" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.25);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;pointer-events:none;"><span style="width:0;height:0;border-style:solid;border-width:8px 0 8px 16px;border-color:transparent transparent transparent white;margin-left:4px;display:block;"></span></div>
+    <button id="toothbrush-mute-btn" onclick="event.stopPropagation();toggleMuteToothbrush(this)" style="display:none;position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#f093b0,#f5a85a);border:none;color:white;font-size:12px;cursor:pointer;align-items:center;justify-content:center;z-index:10;box-shadow:0 2px 12px rgba(167,139,250,0.4);">&#128263;</button>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="video-creator">
+    <div><div class="creator-handle"></div><div class="views-badge"><span></span> 284k views</div></div>
+    <div class="earnings-badge">$1,484</div>
+  </div>
+</div>
+<script>
+var _toothbrushLoaded = false;
+var _toothbrushEntry = { player: null, btn: document.getElementById('toothbrush-mute-btn'), muted: true };
+window._hmPlayers.push(_toothbrushEntry);
+function _loadToothbrush() {
+  if (_toothbrushLoaded) return; _toothbrushLoaded = true;
+  var wrap = document.getElementById('toothbrush-wrap');
+  document.getElementById('toothbrush-play-icon').style.display = 'none';
+  wrap.querySelector('img').style.display = 'none';
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://player.vimeo.com/video/1173597477?badge=0&autopause=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0';
+  iframe.frameBorder = '0'; iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+  iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+  wrap.insertBefore(iframe, wrap.firstChild); _toothbrushEntry.btn.style.display = 'flex';
+  function init() { if (typeof Vimeo === 'undefined') { setTimeout(init, 100); return; } _toothbrushEntry.player = new Vimeo.Player(iframe); } init();
+}
+function toggleMuteToothbrush(btn) {
+  if (!_toothbrushEntry.player) return;
+  _toothbrushEntry.muted = !_toothbrushEntry.muted;
+  if (!_toothbrushEntry.muted) { window._hmPlayers.forEach(function(p) { if (p !== _toothbrushEntry && p.player) { p.player.setMuted(true); p.btn.textContent = String.fromCodePoint(128263); p.muted = true; } }); }
+  _toothbrushEntry.player.setMuted(_toothbrushEntry.muted); btn.textContent = _toothbrushEntry.muted ? String.fromCodePoint(128263) : String.fromCodePoint(128266);
+}
+new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (!e.isIntersecting && _toothbrushEntry.player && !_toothbrushEntry.muted) { _toothbrushEntry.player.setMuted(true); _toothbrushEntry.btn.textContent = String.fromCodePoint(128263); _toothbrushEntry.muted = true; } }); }, { threshold: 0.2 }).observe(document.getElementById('toothbrush-wrap'));
+if ('ontouchstart' in window) { new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) _loadToothbrush(); }); }, { threshold: 0.3 }).observe(document.getElementById('toothbrush-wrap')); }
+</script>
+
+<!-- ===== BEEYOND ===== -->
+<div class="video-card">
+  <div id="beeyond-wrap" style="position:relative;width:100%;padding:177.78% 0 0 0;overflow:hidden;border-radius:20px;cursor:pointer;" onclick="_loadBeeyond()">
+    <img src="thumbnails/beeyond.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
+    <div id="beeyond-play-icon" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.25);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;pointer-events:none;"><span style="width:0;height:0;border-style:solid;border-width:8px 0 8px 16px;border-color:transparent transparent transparent white;margin-left:4px;display:block;"></span></div>
+    <button id="beeyond-mute-btn" onclick="event.stopPropagation();toggleMuteBeeyond(this)" style="display:none;position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#f093b0,#f5a85a);border:none;color:white;font-size:12px;cursor:pointer;align-items:center;justify-content:center;z-index:10;box-shadow:0 2px 12px rgba(167,139,250,0.4);">&#128263;</button>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="video-creator">
+    <div><div class="creator-handle"></div><div class="views-badge"><span></span> 91k views</div></div>
+    <div class="earnings-badge">$502</div>
+  </div>
+</div>
+<script>
+var _beeyondLoaded = false;
+var _beeyondEntry = { player: null, btn: document.getElementById('beeyond-mute-btn'), muted: true };
+window._hmPlayers.push(_beeyondEntry);
+function _loadBeeyond() {
+  if (_beeyondLoaded) return; _beeyondLoaded = true;
+  var wrap = document.getElementById('beeyond-wrap');
+  document.getElementById('beeyond-play-icon').style.display = 'none';
+  wrap.querySelector('img').style.display = 'none';
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://player.vimeo.com/video/1173597457?badge=0&autopause=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0';
+  iframe.frameBorder = '0'; iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+  iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+  wrap.insertBefore(iframe, wrap.firstChild); _beeyondEntry.btn.style.display = 'flex';
+  function init() { if (typeof Vimeo === 'undefined') { setTimeout(init, 100); return; } _beeyondEntry.player = new Vimeo.Player(iframe); } init();
+}
+function toggleMuteBeeyond(btn) {
+  if (!_beeyondEntry.player) return;
+  _beeyondEntry.muted = !_beeyondEntry.muted;
+  if (!_beeyondEntry.muted) { window._hmPlayers.forEach(function(p) { if (p !== _beeyondEntry && p.player) { p.player.setMuted(true); p.btn.textContent = String.fromCodePoint(128263); p.muted = true; } }); }
+  _beeyondEntry.player.setMuted(_beeyondEntry.muted); btn.textContent = _beeyondEntry.muted ? String.fromCodePoint(128263) : String.fromCodePoint(128266);
+}
+new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (!e.isIntersecting && _beeyondEntry.player && !_beeyondEntry.muted) { _beeyondEntry.player.setMuted(true); _beeyondEntry.btn.textContent = String.fromCodePoint(128263); _beeyondEntry.muted = true; } }); }, { threshold: 0.2 }).observe(document.getElementById('beeyond-wrap'));
+if ('ontouchstart' in window) { new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) _loadBeeyond(); }); }, { threshold: 0.3 }).observe(document.getElementById('beeyond-wrap')); }
+</script>
+
+<!-- ===== AFIA ===== -->
+<div class="video-card">
+  <div id="afia-wrap" style="position:relative;width:100%;padding:177.78% 0 0 0;overflow:hidden;border-radius:20px;cursor:pointer;" onclick="_loadAfia()">
+    <img src="thumbnails/afia.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
+    <div id="afia-play-icon" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.25);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;pointer-events:none;"><span style="width:0;height:0;border-style:solid;border-width:8px 0 8px 16px;border-color:transparent transparent transparent white;margin-left:4px;display:block;"></span></div>
+    <button id="afia-mute-btn" onclick="event.stopPropagation();toggleMuteAfia(this)" style="display:none;position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#f093b0,#f5a85a);border:none;color:white;font-size:12px;cursor:pointer;align-items:center;justify-content:center;z-index:10;box-shadow:0 2px 12px rgba(167,139,250,0.4);">&#128263;</button>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="video-creator">
+    <div><div class="creator-handle"></div><div class="views-badge"><span></span> 512k views</div></div>
+    <div class="earnings-badge">$2,311</div>
+  </div>
+</div>
+<script>
+var _afiaLoaded = false;
+var _afiaEntry = { player: null, btn: document.getElementById('afia-mute-btn'), muted: true };
+window._hmPlayers.push(_afiaEntry);
+function _loadAfia() {
+  if (_afiaLoaded) return; _afiaLoaded = true;
+  var wrap = document.getElementById('afia-wrap');
+  document.getElementById('afia-play-icon').style.display = 'none';
+  wrap.querySelector('img').style.display = 'none';
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://player.vimeo.com/video/1173587223?badge=0&autopause=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0';
+  iframe.frameBorder = '0'; iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+  iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+  wrap.insertBefore(iframe, wrap.firstChild); _afiaEntry.btn.style.display = 'flex';
+  function init() { if (typeof Vimeo === 'undefined') { setTimeout(init, 100); return; } _afiaEntry.player = new Vimeo.Player(iframe); } init();
+}
+function toggleMuteAfia(btn) {
+  if (!_afiaEntry.player) return;
+  _afiaEntry.muted = !_afiaEntry.muted;
+  if (!_afiaEntry.muted) { window._hmPlayers.forEach(function(p) { if (p !== _afiaEntry && p.player) { p.player.setMuted(true); p.btn.textContent = String.fromCodePoint(128263); p.muted = true; } }); }
+  _afiaEntry.player.setMuted(_afiaEntry.muted); btn.textContent = _afiaEntry.muted ? String.fromCodePoint(128263) : String.fromCodePoint(128266);
+}
+new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (!e.isIntersecting && _afiaEntry.player && !_afiaEntry.muted) { _afiaEntry.player.setMuted(true); _afiaEntry.btn.textContent = String.fromCodePoint(128263); _afiaEntry.muted = true; } }); }, { threshold: 0.2 }).observe(document.getElementById('afia-wrap'));
+if ('ontouchstart' in window) { new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) _loadAfia(); }); }, { threshold: 0.3 }).observe(document.getElementById('afia-wrap')); }
+</script>
+
+
+<!-- ===== DITTO ===== -->
+<div class="video-card">
+  <div id="ditto-wrap" style="position:relative;width:100%;padding:177.78% 0 0 0;overflow:hidden;border-radius:20px;cursor:pointer;" onclick="_loadDitto()">
+    <img src="thumbnails/ditto.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"/>
+    <div id="ditto-play-icon" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.25);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;pointer-events:none;"><span style="width:0;height:0;border-style:solid;border-width:8px 0 8px 16px;border-color:transparent transparent transparent white;margin-left:4px;display:block;"></span></div>
+    <button id="ditto-mute-btn" onclick="event.stopPropagation();toggleMuteDitto(this)" style="display:none;position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#f093b0,#f5a85a);border:none;color:white;font-size:12px;cursor:pointer;align-items:center;justify-content:center;z-index:10;box-shadow:0 2px 12px rgba(167,139,250,0.4);">&#128263;</button>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="video-creator">
+    <div><div class="creator-handle"></div><div class="views-badge"><span></span> 67k views</div></div>
+    <div class="earnings-badge">$345</div>
+  </div>
+</div>
+<script>
+var _dittoLoaded = false;
+var _dittoEntry = { player: null, btn: document.getElementById('ditto-mute-btn'), muted: true };
+window._hmPlayers.push(_dittoEntry);
+function _loadDitto() {
+  if (_dittoLoaded) return; _dittoLoaded = true;
+  var wrap = document.getElementById('ditto-wrap');
+  document.getElementById('ditto-play-icon').style.display = 'none';
+  wrap.querySelector('img').style.display = 'none';
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://player.vimeo.com/video/1173597466?badge=0&autopause=0&app_id=58479&autoplay=1&muted=1&loop=1&controls=0';
+  iframe.frameBorder = '0'; iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+  iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+  wrap.insertBefore(iframe, wrap.firstChild); _dittoEntry.btn.style.display = 'flex';
+  function init() { if (typeof Vimeo === 'undefined') { setTimeout(init, 100); return; } _dittoEntry.player = new Vimeo.Player(iframe); } init();
+}
+function toggleMuteDitto(btn) {
+  if (!_dittoEntry.player) return;
+  _dittoEntry.muted = !_dittoEntry.muted;
+  if (!_dittoEntry.muted) { window._hmPlayers.forEach(function(p) { if (p !== _dittoEntry && p.player) { p.player.setMuted(true); p.btn.textContent = String.fromCodePoint(128263); p.muted = true; } }); }
+  _dittoEntry.player.setMuted(_dittoEntry.muted); btn.textContent = _dittoEntry.muted ? String.fromCodePoint(128263) : String.fromCodePoint(128266);
+}
+new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (!e.isIntersecting && _dittoEntry.player && !_dittoEntry.muted) { _dittoEntry.player.setMuted(true); _dittoEntry.btn.textContent = String.fromCodePoint(128263); _dittoEntry.muted = true; } }); }, { threshold: 0.2 }).observe(document.getElementById('ditto-wrap'));
+if ('ontouchstart' in window) { new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) _loadDitto(); }); }, { threshold: 0.3 }).observe(document.getElementById('ditto-wrap')); }
+</script>
+
+ </div>
+</section>
+ <footer>
+ <span class="footer-logo" onclick="goTo('home')"><div class="logo-mark"></div>Hivemind</span>
+ <ul class="footer-links">
+ <li><a onclick="goTo('home')">Home</a></li>
+ <li><a onclick="goTo('creators')">For Creators</a></li>
+ <li><a onclick="goTo('brands')">For Brands</a></li>
+ <li><a>Contact</a></li>
+ </ul>
+ <p class="footer-copy">© 2026 Hivemind. All rights reserved.</p>
+ </footer>
+</div>
+
+<!-- ============================================================ CREATORS PAGE ============================================================ -->
+<div class="page" id="page-creators">
+
+ <section class="c-hero">
+ <div class="hero-eyebrow"><span class="dot"></span> For Creators</div>
+ <h1 class="page-title">Stop posting for free.<br/>Start getting paid for <span class="accent">what performs.</span></h1>
+ <p class="page-hero-sub">Guaranteed base pay just for posting. Then earn more for every 1,000 views your content brings in. Real campaigns, real cash, real brands matched to your audience.</p>
+ <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.25s both;">
+ <button class="btn-primary" onclick="document.getElementById('c-apply').scrollIntoView({behavior:'smooth'})">Join HiveMind Creators →</button>
+ <button class="btn-ghost" onclick="document.getElementById('c-calc').scrollIntoView({behavior:'smooth'})">See your earnings</button>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <!-- ── WHY DIFFERENT ── -->
+ <section class="section" style="padding-top:80px;padding-bottom:80px;">
+ <div style="text-align:center;margin-bottom:48px;">
+ <p class="section-label">The difference</p>
+ <h2 class="section-title">Every other platform pays you <em>once.</em></h2>
+ <p class="section-sub" style="margin:12px auto 0;max-width:480px;">Most of the industry gives you free product, takes your content, and keeps every dollar your post earns. Here is what that looks like side by side.</p>
+ </div>
+ <div class="creator-compare-grid">
+ <div class="cc-col cc-bad">
+ <div class="cc-header">Other platforms</div>
+ <div class="cc-row"><span class="hc-x">✕</span><div><strong>Free product only</strong><p>You spend your time, they keep the profits if it goes viral.</p></div></div>
+ <div class="cc-row"><span class="hc-x">✕</span><div><strong>Only want big accounts</strong><p>Most platforms prioritize 100k+ followers. Smaller creators get ignored even if their audience converts better.</p></div></div>
+ <div class="cc-row"><span class="hc-x">✕</span><div><strong>No upside</strong><p>Your post earns 500k views. You get nothing extra. They do.</p></div></div>
+ <div class="cc-row"><span class="hc-x">✕</span><div><strong>One and done</strong><p>No repeat campaigns, no relationship, no growth.</p></div></div>
+ </div>
+ <div class="cc-col cc-good">
+ <div class="cc-header">Hivemind</div>
+ <div class="cc-row"><span class="hc-check">✓</span><div><strong>Keep the product</strong><p>Buy it with your promo code, use it, review it honestly.</p></div></div>
+ <div class="cc-row"><span class="hc-check">✓</span><div><strong>Built for micro-creators</strong><p>500 to 100k followers. Smaller audiences trust you more and brands get better results because of it.</p></div></div>
+ <div class="cc-row"><span class="hc-check">✓</span><div><strong>Paid per post + per view</strong><p>Guaranteed base pay, then more for every 1,000 views above your marker.</p></div></div>
+ <div class="cc-row"><span class="hc-check">✓</span><div><strong>Recurring campaigns</strong><p>Perform well and you get matched to more brands. Compound your income.</p></div></div>
+ </div>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="section" style="padding-top:80px;padding-bottom:80px;">
+ <p class="section-label">The Process</p>
+ <h2 class="section-title">Simple. <em>Transparent. Fair.</em></h2>
+ <p class="section-sub">Three steps from applying to getting paid. No guesswork, no one taking a cut behind your back.</p>
+ <div class="steps-grid">
+ <div class="step-card"><div class="step-num">01</div><h3>Match &amp; Onboard</h3><p>We review your profile, size you into the right tier, and match you with brands that genuinely fit your audience and niche.</p></div>
+ <div class="step-card"><div class="step-num">02</div><h3>Experience &amp; Create</h3><p>Buy the product with your brand promo code, experience it like a real customer, leave a review, then post authentic content your way.</p></div>
+ <div class="step-card"><div class="step-num">03</div><h3>Perform &amp; Get Paid</h3><p>Hit your minimum views and you're paid. Exceed your performance marker and earnings scale automatically every 1k views earns more.</p></div>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="calc-section" id="c-calc">
+ <div class="calc-card">
+ <div class="calc-header">
+ <h2>See <em>exactly</em> what you'd earn</h2>
+ <p>Drag the sliders to match your profile and we will show you your real payout in real time.</p>
+ </div>
+
+ <div class="calc-sliders">
+ <div class="slider-group">
+ <label>Expected Views on Post</label>
+ <div class="slider-val-row">
+ <span class="slider-val" id="views-display">15k</span>
+ <span class="slider-sub" id="views-range-hint">Min: 750 · Marker: 1,500</span>
+ </div>
+ <input type="range" id="views-slider" min="0" max="200" value="15" oninput="updateCalc()"/>
+ </div>
+ <div class="slider-group">
+ <label>Your Creator Size</label>
+ <div class="size-tabs" style="margin-top:10px;flex-wrap:wrap;gap:8px;">
+ <button class="size-tab" style="min-width:120px;" onclick="setCalcSize('XS', event)">XS · 1k–5k</button>
+ <button class="size-tab active" style="min-width:120px;" onclick="setCalcSize('S', event)">S · 5k–15k</button>
+ <button class="size-tab" style="min-width:120px;" onclick="setCalcSize('M', event)">M · 15k–30k</button>
+ <button class="size-tab" style="min-width:120px;" onclick="setCalcSize('L', event)">L · 30k–50k</button>
+ 
+ </div>
+ </div>
+ </div>
+
+ <div class="calc-result">
+ <div class="result-item"><div class="r-label">Base Pay</div><div class="r-val" id="res-base">$65</div></div>
+ <div class="result-item"><div class="r-label">Performance Bonus</div><div class="r-val" id="res-bonus">$0</div></div>
+ <div class="result-item"><div class="r-label">Free Product</div><div class="r-val"> Included</div></div>
+ <div class="result-item"><div class="r-label">Total Earnings</div><div class="r-val highlight" id="res-total">$65</div></div>
+ </div>
+
+ <div class="repost-warn" id="repost-warn" style="margin-top:24px;margin-bottom:0;">
+ <div class="rw-icon"></div>
+ <div class="rw-text">
+ <strong>Your views are below the minimum. A repost might be needed.</strong>
+ <p>If your post does not hit the minimum view requirement within 7 days, we'll work with you to repost and optimise your next piece of content to get you there. You always keep your base pay.</p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="apply-section" id="c-apply" style="padding-top:80px;">
+ <div class="apply-card">
+ <div class="apply-card-header"><h2>Join HiveMind Creators</h2><p>Takes 2 minutes. We review every application within 48 hours.<br/><a href="mailto:hello@hivemindmarketing.co" style="color:inherit;">hello@hivemindmarketing.co</a> · New York</p></div>
+ <form class="apply-form" name="creator-application" onsubmit="handleCreatorSubmit(event); return false;">
+ <input type="hidden" name="form-name" value="creator-application"/>
+ <input type="hidden" name="referred-by" id="referred-by-field" value=""/>
+ <p style="display:none"><label>Do not fill: <input name="bot-field"/></label></p>
+
+ <div class="referral-badge" id="referral-badge">
+  <div class="referral-badge-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+  <span>Referred by <strong id="referral-name"></strong></span>
+ </div>
+
+ <div class="form-row">
+ <div class="form-group"><label>First Name</label><input type="text" name="first-name" placeholder="Maya" required/></div>
+ <div class="form-group"><label>Last Name</label><input type="text" name="last-name" placeholder="Johnson" required/></div>
+ </div>
+
+ <div class="form-row">
+ <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="maya@email.com" required/></div>
+ <div class="form-group"><label>Username / Handle</label><input type="text" name="username" placeholder="@mayacreates" required/></div>
+ </div>
+
+ <div class="form-row">
+ <div class="form-group full">
+ <label>Platform</label>
+ <div class="platform-toggle">
+ <input type="radio" name="platform" id="pt-tiktok" value="TikTok" required/>
+ <label for="pt-tiktok">TikTok</label>
+ <input type="radio" name="platform" id="pt-instagram" value="Instagram"/>
+ <label for="pt-instagram">Instagram</label>
+ <input type="radio" name="platform" id="pt-both" value="Both"/>
+ <label for="pt-both">Both</label>
+ </div>
+ </div>
+ </div>
+
+ <div class="form-row">
+ <div class="form-group full">
+ <label>Your Niche <span class="niche-hint">(pick up to 3)</span></label>
+ <div class="niche-pills" id="creator-niches">
+ <input type="checkbox" name="niche" id="n1" value="Beauty &amp; Skincare"/><label for="n1">Beauty &amp; Skincare</label>
+ <input type="checkbox" name="niche" id="n2" value="Fashion &amp; Style"/><label for="n2">Fashion &amp; Style</label>
+ <input type="checkbox" name="niche" id="n3" value="Fitness &amp; Wellness"/><label for="n3">Fitness &amp; Wellness</label>
+ <input type="checkbox" name="niche" id="n4" value="Food &amp; Drink"/><label for="n4">Food &amp; Drink</label>
+ <input type="checkbox" name="niche" id="n5" value="Tech &amp; Gadgets"/><label for="n5">Tech &amp; Gadgets</label>
+ <input type="checkbox" name="niche" id="n6" value="Home &amp; Lifestyle"/><label for="n6">Home &amp; Lifestyle</label>
+ <input type="checkbox" name="niche" id="n7" value="Health &amp; Wellness"/><label for="n7">Health &amp; Wellness</label>
+ <input type="checkbox" name="niche" id="n8" value="Travel"/><label for="n8">Travel</label>
+ <input type="checkbox" name="niche" id="n9" value="Pets"/><label for="n9">Pets</label>
+ <input type="checkbox" name="niche" id="n10" value="Parenting"/><label for="n10">Parenting</label>
+ <input type="checkbox" name="niche" id="n11" value="Gaming"/><label for="n11">Gaming</label>
+ <input type="checkbox" name="niche" id="n12" value="Other"/><label for="n12">Other</label>
+ </div>
+ </div>
+ </div>
+
+ <button type="submit" class="form-submit">Submit My Application →</button>
+ <div class="email-reminder">
+ <div class="er-icon"></div>
+ <p><strong>Check your inbox right after submitting.</strong> We will send a confirmation email right away. Please reply to it or add us as a contact so our messages do not land in spam or junk.</p>
+ </div>
+ <p class="form-note">No spam. Ever. We'll only reach out about campaigns that match your profile.</p>
+ </form>
+ </div>
+ </section>
+
+ <footer>
+ <span class="footer-logo" onclick="goTo('home')"><div class="logo-mark"></div>Hivemind</span>
+ <ul class="footer-links">
+ <li><a onclick="goTo('home')">Home</a></li>
+ <li><a onclick="goTo('creators')">For Creators</a></li>
+ <li><a onclick="goTo('brands')">For Brands</a></li>
+ </ul>
+ <p class="footer-copy">© 2026 Hivemind. All rights reserved.</p>
+ </footer>
+</div>
+
+<!-- ============================================================ BRANDS PAGE ============================================================ -->
+<div class="page" id="page-brands">
+
+ <section class="b-hero">
+ <div class="hero-eyebrow"><span class="dot"></span> For Brands</div>
+ <h1 class="page-title">Real creators. Real sales.<br/><span class="accent">Real reviews.</span></h1>
+ <p class="page-hero-sub">Hivemind sends micro-creators to actually buy your product, leave verified reviews, and post authentic content to their audience. You set a budget cap and only pay for views that happen.</p>
+ <div class="hero-pill-text">Views, reviews and sales. No other agency does all three.</div>
+ <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.6s ease 0.3s both;">
+ <button class="btn-primary" onclick="document.getElementById('b-apply').scrollIntoView({behavior:'smooth'})">Start a Campaign →</button>
+ <button class="btn-ghost" onclick="document.getElementById('b-designer').scrollIntoView({behavior:'smooth'})">Design your campaign</button>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="case-section">
+ <div class="case-intro">
+ <p class="section-label">Real Results</p>
+ <h2 class="section-title">Same brand. Same goal.<br/><em>Completely different outcome.</em></h2>
+ <p class="case-sub">Drag the handle to compare what life looked like before Hivemind and after.</p>
+ </div>
+
+ <div class="case-card" id="caseCard">
+ <!-- BEFORE panel (full width, underneath) -->
+ <div class="case-panel case-before">
+ <div class="case-panel-inner">
+ <div class="case-tag case-tag-before">Before Hivemind</div>
+ <div class="case-stat-grid">
+ <div class="case-stat">
+ <div class="case-stat-label">Spend</div>
+ <div class="case-stat-val">$6,000</div>
+ </div>
+ <div class="case-stat">
+ <div class="case-stat-label">Creators</div>
+ <div class="case-stat-val">1</div>
+ </div>
+ <div class="case-stat">
+ <div class="case-stat-label">Views</div>
+ <div class="case-stat-val">15k</div>
+ </div>
+ <div class="case-stat">
+ <div class="case-stat-label">Effective CPM</div>
+ <div class="case-stat-val">$400</div>
+ </div>
+ </div>
+ <div class="case-quote">"Paid $6,000 to a creator with 250,000 followers. Got 15,000 views."</div>
+ </div>
+ </div>
+
+ <!-- AFTER panel (clips from left) -->
+ <div class="case-panel case-after" id="caseAfter">
+ <div class="case-panel-inner">
+ <div class="case-tag case-tag-after">With Hivemind</div>
+ <div class="case-stat-grid">
+ <div class="case-stat">
+ <div class="case-stat-label">Spend</div>
+ <div class="case-stat-val grad-text">$2,500</div>
+ </div>
+ <div class="case-stat">
+ <div class="case-stat-label">Creators</div>
+ <div class="case-stat-val grad-text">~30</div>
+ </div>
+ <div class="case-stat">
+ <div class="case-stat-label">Views</div>
+ <div class="case-stat-val grad-text">294k</div>
+ </div>
+ <div class="case-stat">
+ <div class="case-stat-label">Effective CPM</div>
+ <div class="case-stat-val grad-text">$8.50</div>
+ </div>
+ </div>
+ <div class="case-quote after-quote">30 creators. 294,000 views. One went viral. <strong>2.5× cheaper than an agency.</strong></div>
+ </div>
+ </div>
+
+ <!-- Drag handle -->
+ <div class="case-handle" id="caseHandle">
+ <div class="handle-line"></div>
+ <div class="handle-pill">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+ </div>
+ </div>
+ </div>
+
+ <!-- Savings callout -->
+ <div class="case-savings">
+ <div class="case-savings-inner">
+ <span class="case-savings-icon"></span>
+ <div>
+ <strong>30 creators. 294,000 views. Real reviews. Content you own.</strong>
+ <span> No other agency gives you views, verified reviews, and actual sales in one campaign.</span>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="cpm-section">
+ <div class="cpm-card">
+ <div class="cpm-header">
+ <h2>Protected on the way up.<br/><em>Rewarded when it goes viral.</em></h2>
+ <p>A typical agency charges you a flat fee whether the post gets 500 views or 500,000. With Hivemind, your CPM starts low and only rises as the content actually performs. The lines cross once and everything to the left of that is money saved.</p>
+ </div>
+
+ <div class="cpm-tabs">
+ <button class="cpm-tab active" onclick="switchCpmTab('small',this)">Small creator<span>1k – 10k followers</span></button>
+ <button class="cpm-tab" onclick="switchCpmTab('medium',this)">Medium creator<span>10k – 30k followers</span></button>
+ <button class="cpm-tab" onclick="switchCpmTab('large',this)">Large creator<span>30k – 100k followers</span></button>
+ </div>
+
+ <div class="curve-chart-wrap single-chart"><canvas id="cpmCanvas" class="curve-canvas" style="display:block;"></canvas></div>
+
+ <div class="cpm-legend-row">
+ <div class="cpm-leg-item"><span class="cpm-leg-line hivemind-line"></span>Hivemind</div>
+ <div class="cpm-leg-item"><span class="cpm-leg-fill free-fill"></span>Free views zone</div>
+ <div class="cpm-leg-item"><span class="cpm-leg-line social-line"></span>Social ads avg</div>
+ <div class="cpm-leg-item"><span class="cpm-leg-line agency-line" style="border-top:2px dashed rgba(107,107,138,0.6);background:transparent;height:0"></span>Agency flat fee</div>
+ </div>
+
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="designer-section" id="b-designer">
+ <div class="designer-card">
+ <div class="designer-header">
+ <h2>Design your <em>campaign</em></h2>
+ <p>Play with your budget and creator mix. See real numbers before you spend a dollar.</p>
+ </div>
+ <div class="designer-grid">
+ <div>
+ <label class="d-label">Monthly Campaign Budget</label>
+ <div class="d-val-row">
+ <span class="d-val" id="budget-display">$2,000</span>
+ <span class="d-sub" id="budget-sub">~21 creators estimated</span>
+ </div>
+ <input type="range" id="budget-slider" min="500" max="20000" step="100" value="2000" oninput="updateDesigner()"/>
+
+ <label class="mix-label">Creator Mix</label>
+ <div class="mix-options">
+ <label class="mix-option active" onclick="setMix('variety', this)">
+ <div class="mix-radio"></div>
+ <div class="mix-text"><h4>Variety Mix</h4><p>A mix of all sizes. Widest reach with the most authentic spread of content.</p></div>
+ <div class="mix-icons"><span class="bee-sm"></span><span class="bee-sm"></span><span class="bee-md"></span><span class="bee-md"></span><span class="bee-lg"></span></div>
+ </label>
+ <label class="mix-option" onclick="setMix('small', this)">
+ <div class="mix-radio"></div>
+ <div class="mix-text"><h4>All Small (XS–S)</h4><p>High volume, very authentic, lower cost per creator.</p></div>
+ <div class="mix-icons"><span class="bee-sm"></span><span class="bee-sm"></span><span class="bee-sm"></span><span class="bee-sm"></span><span class="bee-sm"></span><span class="bee-sm"></span></div>
+ </label>
+ <label class="mix-option" onclick="setMix('medium', this)">
+ <div class="mix-radio"></div>
+ <div class="mix-text"><h4>All Medium (M)</h4><p>Balanced reach and authenticity, strong engagement rates</p></div>
+ <div class="mix-icons"><span class="bee-md"></span><span class="bee-md"></span><span class="bee-md"></span><span class="bee-md"></span></div>
+ </label>
+ <label class="mix-option" onclick="setMix('large', this)">
+ <div class="mix-radio"></div>
+ <div class="mix-text"><h4>All Large (L)</h4><p>Maximum reach per creator. Best for premium or niche audiences.</p></div>
+ <div class="mix-icons"><span class="bee-lg"></span><span class="bee-lg"></span><span class="bee-lg"></span></div>
+ </label>
+ </div>
+ </div>
+ <div>
+ <div class="designer-result">
+ <div class="result-title"> Your Campaign Estimate</div>
+ <div class="result-row"><span class="rr-label">Estimated creators</span><span class="rr-val" id="res-creators">21</span></div>
+ <div class="result-row"><span class="rr-label">Guaranteed min. views</span><span class="rr-val" id="res-min-views">26.3k</span></div>
+ <div class="result-row"><span class="rr-label">Potential max views</span><span class="rr-val" id="res-max-views">6.3M</span></div>
+ <div class="result-row"><span class="rr-label">Expected reviews</span><span class="rr-val" id="res-reviews">21 verified</span></div>
+ <div class="result-row"><span class="rr-label">Est. CPM (Hivemind)</span><span class="rr-val" id="res-cpm">$3.80</span></div>
+ <div class="result-row"><span class="rr-label">Your max budget spend</span><span class="rr-val big" id="res-budget">$2,000</span></div>
+ <div class="result-note"> Your spend never goes over your budget. If a creator falls short of their minimum, they repost at no extra cost to you.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="proof-section">
+
+ <div style="text-align:center;margin-bottom:56px;">
+ <p class="section-label">The Numbers</p>
+ <h2 class="section-title" style="margin:0 auto 16px;">Not a pitch. <em>A track record.</em></h2>
+ <p style="font-size:16px;color:var(--muted);font-weight:300;max-width:480px;margin:0 auto;line-height:1.7;">
+ Real outcomes from real campaigns. The math is public, the model is transparent.
+ </p>
+ </div>
+
+ <div class="proof-stats">
+ <div class="proof-stat">
+ <div class="proof-stat-num">1.72m</div>
+ <div class="proof-stat-label">Total views delivered<br/>across all campaigns</div>
+ </div>
+ <div class="proof-stat">
+ <div class="proof-stat-num grad-text">150+</div>
+ <div class="proof-stat-label">Creators ready to <br/>post your brand</div>
+ </div>
+ <div class="proof-stat">
+ <div class="proof-stat-num grad-text">16</div>
+ <div class="proof-stat-label">Early-stage brands<br/>that Hivemind supported</div>
+ </div>
+ <div class="proof-stat">
+ <div class="proof-stat-num grad-text">$7.93</div>
+ <div class="proof-stat-label">Average blended CPM<br/>across all campaigns</div>
+ </div>
+ </div>
+
+ <div class="proof-outcomes">
+ <div class="proof-outcome-card">
+ <div class="poc-header"><div>
+ <div class="poc-tag">Campaign Outcome</div>
+ <div class="poc-brand">Skin &amp; Beauty Brand</div>
+ <div class="poc-name">Product launch · TikTok + Reels</div>
+ </div><div class="poc-cap-badge">$3,000<br/><span>budget cap</span></div></div>
+ <div class="poc-stats">
+ <div class="poc-stat"><div class="poc-val">347.9k</div><div class="poc-lbl">Views</div></div>
+ <div class="poc-stat"><div class="poc-val grad-text">$8.62</div><div class="poc-lbl">Blended CPM</div></div>
+ <div class="poc-stat"><div class="poc-val grad-text">42</div><div class="poc-lbl">Creators</div></div>
+ <div class="poc-stat"><div class="poc-val" style="color:#059669">~85k</div><div class="poc-lbl">Free views</div></div>
+ </div>
+ <p class="poc-note">3 creators hit their cap. The content kept performing and they didn't pay a cent for those 85k views.</p>
+ </div>
+ <div class="proof-outcome-card">
+ <div class="poc-header"><div>
+ <div class="poc-tag">Campaign Outcome</div>
+ <div class="poc-brand">Snack &amp; Food Brand</div>
+ <div class="poc-name">Pre-launch seeding · Reels + TikTok</div>
+ </div><div class="poc-cap-badge">$1,500<br/><span>budget cap</span></div></div>
+ <div class="poc-stats">
+ <div class="poc-stat"><div class="poc-val">129.6k</div><div class="poc-lbl">Views</div></div>
+ <div class="poc-stat"><div class="poc-val grad-text">$9.96</div><div class="poc-lbl">Blended CPM</div></div>
+ <div class="poc-stat"><div class="poc-val grad-text">35</div><div class="poc-lbl">Creators</div></div>
+ <div class="poc-stat"><div class="poc-val" style="color:#059669">~22k</div><div class="poc-lbl">Free views</div></div>
+ </div>
+ <p class="poc-note">Pre-launch with zero paid ads. One creator delivered 3× their expected views.</p>
+ </div>
+ </div>
+
+
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="section">
+ <p class="section-label">The Process</p>
+ <h2 class="section-title">From brief to results in <em>days, not months.</em></h2>
+ <p class="section-sub">We handle creator matching, briefing, and quality control. You approve the campaign and watch it perform.</p>
+ <div class="steps-grid">
+ <div class="step-card"><div class="step-num">01</div><h3>Design & Match</h3><p>You define your budget, target audience, and product. We select creators from our network whose audiences actually match your customers.</p></div>
+ <div class="step-card"><div class="step-num">02</div><h3>Content & Reviews</h3><p>Creators purchase your product with a promo code, review it authentically, and produce organic content, no scripts, no AI, no polished ads.</p></div>
+ <div class="step-card"><div class="step-num">03</div><h3>Scale What Works</h3><p>We track performance, identify your top-converting creators, and give you the data to scale campaigns with confidence and a clear ROI.</p></div>
+ </div>
+ </section>
+
+ <hr class="full-divider"/>
+
+ <section class="apply-section" id="b-apply" style="padding-top:80px;">
+ <div class="apply-card">
+ <div class="apply-card-header"><h2>Start Your Campaign</h2><p>Tell us about your brand. We'll follow up within 48 hours to design your first campaign together.<br/><a href="mailto:hello@hivemindmarketing.co" style="color:inherit;">hello@hivemindmarketing.co</a> · New York</p></div>
+ <form class="apply-form" name="brand-application" onsubmit="handleBrandSubmit(event); return false;">
+ <input type="hidden" name="form-name" value="brand-application"/>
+ <p style="display:none"><label>Do not fill: <input name="bot-field"/></label></p>
+
+ <div class="form-row">
+ <div class="form-group"><label>Brand / Company Name</label><input type="text" name="brand-name" placeholder="Hivemind" required/></div>
+ <div class="form-group"><label>Your Name</label><input type="text" name="contact-name" placeholder="Alex Rivera" required/></div>
+ </div>
+
+ <div class="form-row">
+ <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="hello@hivemindmarketing.co" required/></div>
+ <div class="form-group"><label>Website</label><input type="text" name="website" placeholder="hivemindmarketing.co" required/></div>
+ </div>
+
+ <div class="form-row">
+ <div class="form-group select-arrow">
+ <label>Campaign Budget</label>
+ <select name="budget" required>
+ <option value="" disabled selected>Select a range</option>
+ <option>$500 – $1,000</option>
+ <option>$1,000 – $2,500</option>
+ <option>$2,500 – $5,000</option>
+ <option>$5,000 – $10,000</option>
+ <option>$10,000 – $15,000</option>
+ <option>$15,000+</option>
+ </select>
+ </div>
+ <div class="form-group select-arrow">
+ <label>Brand Category</label>
+ <select name="category" required>
+ <option value="" disabled selected>Select a category</option>
+ <option>Beauty &amp; Skincare</option>
+ <option>Fashion &amp; Apparel</option>
+ <option>Food &amp; Beverage</option>
+ <option>Fitness &amp; Health</option>
+ <option>Tech &amp; Gadgets</option>
+ <option>Home &amp; Lifestyle</option>
+ <option>Supplements &amp; Wellness</option>
+ <option>Baby &amp; Kids</option>
+ <option>Pets</option>
+ <option>Other</option>
+ </select>
+ </div>
+ </div>
+
+ <div class="form-row">
+ <div class="form-group full">
+ <label>Campaign Goals <span style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
+ <textarea name="goals" placeholder="What are you launching, who is your target customer, and what does success look like?"></textarea>
+ </div>
+ </div>
+
+ <button type="submit" class="form-submit">Submit Campaign Brief →</button>
+ <div class="email-reminder">
+ <div class="er-icon"></div>
+ <p><strong>Check your inbox right after submitting.</strong> We'll send a confirmation email right away. Please reply or add us as a contact so we don't end up in spam or junk.</p>
+ </div>
+ <p class="form-note">No commitment required. We'll review your brief and reach out to explore next steps.</p>
+ </form>
+ </div>
+ </section>
+
+ <footer>
+ <span class="footer-logo" onclick="goTo('home')"><div class="logo-mark"></div>Hivemind</span>
+ <ul class="footer-links">
+ <li><a onclick="goTo('home')">Home</a></li>
+ <li><a onclick="goTo('creators')">For Creators</a></li>
+ <li><a onclick="goTo('brands')">For Brands</a></li>
+ </ul>
+ <p class="footer-copy">© 2026 Hivemind. All rights reserved.</p>
+ </footer>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+window.addEventListener('resize', () => { if (document.getElementById('page-brands').classList.contains('active')) { renderCPM(); drawProofCPM(); } });
+
+function drawProofCPM() {
+ const canvas = document.getElementById('proof-cpm-chart');
+ if (!canvas) return;
+ const W = canvas.offsetWidth || 480;
+ const H = canvas.offsetHeight || 260;
+ canvas.width = W * window.devicePixelRatio;
+ canvas.height = H * window.devicePixelRatio;
+ const ctx = canvas.getContext('2d');
+ ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+ // Bar chart: cost per 50k views at 7 campaign stages
+ // After cap, cost = $0 (free views)
+ const bars = [
+ { label: '0–50k', cpm: 4.20, free: false },
+ { label: '50–100k', cpm: 7.80, free: false },
+ { label: '100–150k', cpm: 11.20, free: false },
+ { label: '150–200k', cpm: 9.60, free: false, capStart: true },
+ { label: '200–250k', cpm: 4.10, free: false, capMid: true },
+ { label: '250–300k', cpm: 0, free: true },
+ { label: '300–350k', cpm: 0, free: true },
+ ];
+
+ const pad = { t: 32, r: 20, b: 52, l: 56 };
+ const IW = W - pad.l - pad.r;
+ const IH = H - pad.t - pad.b;
+ const maxVal = Math.max(...bars.map(b => b.cpm)) * 1.15;
+ const bGap = 6;
+ const bW = (IW - bGap * (bars.length - 1)) / bars.length;
+
+ // Y gridlines
+ ctx.strokeStyle = 'rgba(167,139,250,0.1)'; ctx.lineWidth = 1;
+ [0, 0.25, 0.5, 0.75, 1].forEach(f => {
+ const y = pad.t + f * IH;
+ ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(W - pad.r, y); ctx.stroke();
+ const val = maxVal * (1 - f);
+ ctx.fillStyle = 'rgba(107,107,138,0.55)'; ctx.font = `10px DM Sans`; ctx.textAlign = 'right';
+ ctx.fillText(val > 0 ? '$' + val.toFixed(1) : '$0', pad.l - 6, y + 4);
+ });
+
+ // Bars
+ bars.forEach((b, i) => {
+ const x = pad.l + i * (bW + bGap);
+ const barH = b.free ? 0 : (b.cpm / maxVal) * IH;
+ const y = pad.t + IH - barH;
+
+ if (b.free) {
+ // Free bar dashed outline only
+ ctx.strokeStyle = 'rgba(52,211,153,0.4)'; ctx.lineWidth = 1.5;
+ ctx.setLineDash([3, 3]);
+ ctx.strokeRect(x, pad.t + IH - 24, bW, 24);
+ ctx.setLineDash([]);
+ ctx.fillStyle = 'rgba(52,211,153,0.08)';
+ ctx.fillRect(x, pad.t + IH - 24, bW, 24);
+ // FREE label
+ ctx.fillStyle = '#059669'; ctx.font = 'bold 9px DM Sans'; ctx.textAlign = 'center';
+ ctx.fillText('FREE', x + bW / 2, pad.t + IH - 10);
+ } else {
+ // Gradient bar
+ const grad = ctx.createLinearGradient(0, y, 0, pad.t + IH);
+ if (b.capMid) {
+ grad.addColorStop(0, 'rgba(52,211,153,0.7)');
+ grad.addColorStop(1, 'rgba(52,211,153,0.25)');
+ } else if (b.capStart) {
+ grad.addColorStop(0, 'rgba(240,147,176,0.7)');
+ grad.addColorStop(1, 'rgba(240,147,176,0.25)');
+ } else {
+ grad.addColorStop(0, 'rgba(167,139,250,0.85)');
+ grad.addColorStop(1, 'rgba(167,139,250,0.3)');
+ }
+ ctx.fillStyle = grad;
+ const r = 5;
+ ctx.beginPath();
+ ctx.moveTo(x + r, y); ctx.lineTo(x + bW - r, y);
+ ctx.arcTo(x + bW, y, x + bW, y + r, r);
+ ctx.lineTo(x + bW, pad.t + IH); ctx.lineTo(x, pad.t + IH);
+ ctx.arcTo(x, y, x + r, y, r);
+ ctx.closePath(); ctx.fill();
+
+ // Value label on top
+ ctx.fillStyle = b.capStart || b.capMid ? 'rgba(107,107,138,0.7)' : 'rgba(107,107,138,0.7)';
+ ctx.font = 'bold 10px DM Sans'; ctx.textAlign = 'center';
+ ctx.fillText('$' + b.cpm.toFixed(2), x + bW / 2, y - 5);
+ }
+
+ // X label
+ ctx.fillStyle = 'rgba(107,107,138,0.5)'; ctx.font = '9px DM Sans'; ctx.textAlign = 'center';
+ ctx.fillText(b.label, x + bW / 2, pad.t + IH + 14);
+ });
+
+ // Cap annotation arrow + label
+ const capX = pad.l + 3 * (bW + bGap) + bW / 2;
+ ctx.fillStyle = 'rgba(52,211,153,0.8)'; ctx.font = 'bold 9px DM Sans'; ctx.textAlign = 'center';
+ ctx.fillText('↑ cap starts kicking in', capX + bW + 4, pad.t + 16);
+ ctx.strokeStyle = 'rgba(52,211,153,0.4)'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+ ctx.beginPath(); ctx.moveTo(capX + bW/2 + bGap, pad.t + 20); ctx.lineTo(capX + bW/2 + bGap, pad.t + IH); ctx.stroke();
+ ctx.setLineDash([]);
+
+ // X axis title
+ ctx.fillStyle = 'rgba(107,107,138,0.4)'; ctx.font = '9px DM Sans'; ctx.textAlign = 'center';
+ ctx.fillText('Views (in 50k buckets) →', pad.l + IW / 2, pad.t + IH + 30);
+}
+
+// Mobile menu
+function openMobileMenu() { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
+// Close on outside tap
+document.getElementById('mobileMenu').addEventListener('click', e => { if (e.target === e.currentTarget) closeMobileMenu(); });
+
+
+function initCaseDrag() {
+ const card = document.getElementById('caseCard');
+ const after = document.getElementById('caseAfter');
+ const handle = document.getElementById('caseHandle');
+ if (!card || !after || !handle) return;
+
+ let dragging = false;
+
+ function setPos(x) {
+ const rect = card.getBoundingClientRect();
+ let pct = ((x - rect.left) / rect.width) * 100;
+ pct = Math.min(95, Math.max(5, pct));
+ after.style.clipPath = `inset(0 0 0 ${pct}%)`;
+ handle.style.left = pct + '%';
+ }
+
+ card.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); });
+ card.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+ window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+ window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+ window.addEventListener('mouseup', () => dragging = false);
+ window.addEventListener('touchend', () => dragging = false);
+}
+
+
+function goTo(page) {
+ document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+ document.getElementById('page-' + page).classList.add('active');
+ window.scrollTo({ top: 0, behavior: 'instant' });
+
+ // swap navs
+ ['home','creators','brands'].forEach(p => {
+ document.getElementById('nav-' + p).style.display = (p === page) ? 'flex' : 'none';
+ });
+
+ // swap blob colours for brands page
+ const b1 = document.getElementById('blob1');
+ const b2 = document.getElementById('blob2');
+ const b3 = document.getElementById('blob3');
+ if (page === 'brands') {
+ b1.style.background = 'radial-gradient(circle, #f5a85a, transparent 70%)';
+ b1.style.top = '-250px'; b1.style.left = 'auto'; b1.style.right = '-200px';
+ b2.style.background = 'radial-gradient(circle, #a78bfa, transparent 70%)';
+ b2.style.top = 'auto'; b2.style.bottom = '300px'; b2.style.left = '-100px'; b2.style.right = 'auto';
+ b3.style.opacity = '0';
+ } else {
+ b1.style.background = 'radial-gradient(circle, #a78bfa, transparent 70%)';
+ b1.style.top = '-200px'; b1.style.left = '-150px'; b1.style.right = 'auto';
+ b2.style.background = 'radial-gradient(circle, #4ecdc4, transparent 70%)';
+ b2.style.top = '100px'; b2.style.bottom = 'auto'; b2.style.right = '-100px'; b2.style.left = 'auto';
+ b3.style.opacity = '0.35';
+ }
+
+ if (page === 'brands') { renderCPM(); updateDesigner(); setTimeout(initCaseDrag, 50); setTimeout(drawProofCPM, 80); setTimeout(drawCurve, 200); }
+}
+
+// ===== CREATORS CALCULATOR =====
+const sizes = {
+ XS: { base:30, minV:500, perf:1000, max:100, fMin:1,  fMax:5  },
+ S:  { base:65, minV:750, perf:1500, max:200, fMin:5,  fMax:15 },
+ M:  { base:90, minV:1000,perf:2000, max:300, fMin:15, fMax:30 },
+ L:  { base:120,minV:1500,perf:3000, max:500, fMin:30, fMax:50 },
+};
+
+// Default CPM brackets — overwritten by Airtable when live
+// creatorRate = what the creator earns per 1k views
+// brandRate   = what the brand pays per 1k views
+let cpmBrackets = {
+ XS: [
+  { from:     0, to:  25000, brandRate: 5.00, creatorRate: 3.50 },
+  { from: 25000, to:  60000, brandRate: 7.00, creatorRate: 5.00 },
+  { from: 60000, to: 100000, brandRate: 9.50, creatorRate: 6.75 },
+ ],
+ S: [
+  { from:     0, to:  25000, brandRate: 4.50, creatorRate: 3.00 },
+  { from: 25000, to:  60000, brandRate: 6.50, creatorRate: 4.50 },
+  { from: 60000, to: 200000, brandRate: 8.50, creatorRate: 6.00 },
+ ],
+ M: [
+  { from:     0, to:  25000, brandRate: 4.00, creatorRate: 2.75 },
+  { from: 25000, to:  60000, brandRate: 6.00, creatorRate: 4.25 },
+  { from: 60000, to: 300000, brandRate: 7.50, creatorRate: 5.25 },
+ ],
+ L: [
+  { from:     0, to:  25000, brandRate: 8.00, creatorRate: 5.50 },
+  { from: 25000, to:  60000, brandRate: 7.50, creatorRate: 5.25 },
+  { from: 60000, to: 500000, brandRate: 6.00, creatorRate: 4.25 },
+ ],
+};
+
+// Calculate total cost/earnings across brackets up to `views`
+// rateKey: 'brandRate' for brand cost, 'creatorRate' for creator earnings
+function calcBracket(views, tierName, rateKey) {
+ const brackets = cpmBrackets[tierName] || cpmBrackets['S'];
+ let total = 0;
+ for (const b of brackets) {
+  if (views <= b.from) break;
+  const segEnd = Math.min(views, b.to);
+  total += ((segEnd - b.from) / 1000) * b[rateKey];
+ }
+ return total;
+}
+
+let curSize = 'S';
+
+
+function setCalcSize(s, e) {
+ curSize = s;
+ creatorChartViews = null; // reset scrubber for new size
+ document.querySelectorAll('.size-tab').forEach(t => t.classList.remove('active'));
+ e.target.classList.add('active');
+ const d = sizes[s];
+ const vs = document.getElementById('views-slider');
+ vs.max = d.max;
+ vs.value = Math.min(parseInt(vs.value), d.max);
+ document.getElementById('views-range-hint').textContent = `Min: ${fmt(d.minV)} · Marker: ${fmt(d.perf)}`;
+ updateCalc();
+}
+
+function fmt(n) { return n >= 1000 ? (n / 1000) + 'k' : n; }
+
+function calcEarnings(viewsK, d, tierName) {
+ const views = viewsK * 1000;
+ // Below perf marker: base pay only, no view bonus
+ if (views < d.perf) return { base: d.base, bonus: 0, unlocked: false };
+ // Above perf: pay creator CPM on ALL views (not just above marker)
+ const bonus = calcBracket(Math.min(views, d.max * 1000), tierName, 'creatorRate');
+ return { base: d.base, bonus: Math.round(bonus), unlocked: true };
+}
+
+function fmtN(n) { return n >= 1000 ? Math.round(n/1000)+'k' : n; }
+
+function updateCalc() {
+ const d = sizes[curSize];
+ const viewsK = parseInt(document.getElementById('views-slider').value);
+ const belowMin = (viewsK * 1000) < d.minV;
+ document.getElementById('views-display').textContent = viewsK + 'k';
+ document.getElementById('repost-warn').classList.toggle('show', belowMin);
+ const { base, bonus } = calcEarnings(viewsK, d, curSize);
+ document.getElementById('res-base').textContent = '$' + base;
+ document.getElementById('res-bonus').textContent = bonus > 0 ? '+$' + bonus : '$0';
+ document.getElementById('res-total').textContent = '$' + (base + bonus);
+
+}
+
+// Mini creator earnings chart state
+let creatorChartViews = null;
+let _creatorGeo = null;
+let _creatorDragging = false;
+
+function drawCreatorChart(currentViewsK, d) {
+ const canvas = document.getElementById('creatorCpmCanvas');
+ if (!canvas) return;
+ const wrap = canvas.parentElement;
+ const W = wrap.clientWidth - 48;
+ const H = 160;
+ canvas.width = W * window.devicePixelRatio;
+ canvas.height = H * window.devicePixelRatio;
+ canvas.style.width = W + 'px';
+ canvas.style.height = H + 'px';
+ const ctx = canvas.getContext('2d');
+ ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+ const PAD = { top: 16, right: 16, bottom: 30, left: 48 };
+ const cW = W - PAD.left - PAD.right;
+ const cH = H - PAD.top - PAD.bottom;
+ const maxViews = d.max * 1000;
+ const SPLIT = 0.55; // peak (cap) at 55% across
+
+ // Peak = maxViews; post shows 3x more
+ const POST_MAX = maxViews + (maxViews * 3);
+
+ // Earnings at any view count
+ function earningsAt(views) {
+ const vk = views / 1000;
+ return calcEarnings(vk, d, curSize).base + calcEarnings(vk, d, curSize).bonus;
+ }
+
+ const maxEarnings = earningsAt(maxViews) * 1.15;
+
+ function xp(v) {
+ if (v <= maxViews) {
+ return PAD.left + (v / maxViews) * (cW * SPLIT);
+ } else {
+ return PAD.left + cW * SPLIT + ((v - maxViews) / (POST_MAX - maxViews)) * (cW * (1 - SPLIT));
+ }
+ }
+ function yp(e) { return PAD.top + cH - Math.min(e / maxEarnings, 1) * cH; }
+
+ _creatorGeo = { PAD, cW, cH, maxViews, POST_MAX, SPLIT };
+
+ // Gradient fill under curve
+ ctx.beginPath();
+ let ff = true;
+ for (let v = 0; v <= POST_MAX; v += Math.max(100, POST_MAX/400)) {
+ const x = xp(v), y = yp(earningsAt(v));
+ if (ff) { ctx.moveTo(x, y); ff = false; } else ctx.lineTo(x, y);
+ }
+ ctx.lineTo(xp(POST_MAX), PAD.top + cH);
+ ctx.lineTo(PAD.left, PAD.top + cH);
+ ctx.closePath();
+ const fg = ctx.createLinearGradient(0, PAD.top, 0, PAD.top + cH);
+ fg.addColorStop(0, 'rgba(167,139,250,0.15)');
+ fg.addColorStop(1, 'rgba(167,139,250,0.02)');
+ ctx.fillStyle = fg; ctx.fill();
+
+ // Grid lines + Y labels
+ ctx.lineWidth = 1;
+ [0, 0.25, 0.5, 0.75, 1].forEach(t => {
+ const val = maxEarnings * t / 1.15;
+ const y = yp(val);
+ ctx.strokeStyle = 'rgba(167,139,250,0.07)';
+ ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + cW, y); ctx.stroke();
+ ctx.fillStyle = 'rgba(107,107,138,0.5)'; ctx.font = '9px DM Sans,sans-serif'; ctx.textAlign = 'right';
+ ctx.fillText('$'+Math.round(val), PAD.left - 4, y + 3);
+ });
+
+ // Key X markers: minV, perf, cap
+ const markers = [
+ { v: d.minV, label: 'Min', color: 'rgba(245,168,90,0.6)' },
+ { v: d.perf, label: 'Perf', color: 'rgba(91,186,138,0.6)' },
+ { v: maxViews, label: 'Cap', color: 'rgba(167,139,250,0.8)' },
+ ];
+ markers.forEach(m => {
+ const x = xp(m.v);
+ ctx.strokeStyle = m.color; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+ ctx.beginPath(); ctx.moveTo(x, PAD.top); ctx.lineTo(x, PAD.top + cH); ctx.stroke();
+ ctx.setLineDash([]);
+ ctx.fillStyle = m.color; ctx.font = 'bold 9px DM Sans,sans-serif'; ctx.textAlign = 'center';
+ ctx.fillText(m.label, x, PAD.top + cH + 18);
+ ctx.fillText(fmtN(m.v), x, PAD.top + cH + 27);
+ });
+
+ // Earnings curve
+ const grad = ctx.createLinearGradient(PAD.left, 0, PAD.left + cW, 0);
+ grad.addColorStop(0, '#a78bfa'); grad.addColorStop(0.5, '#f093b0'); grad.addColorStop(1, '#a78bfa');
+ ctx.strokeStyle = grad; ctx.lineWidth = 2.5;
+ ctx.shadowColor = 'rgba(167,139,250,0.4)'; ctx.shadowBlur = 6;
+ ctx.beginPath(); ff = true;
+ for (let v = 0; v <= POST_MAX; v += Math.max(100, POST_MAX/500)) {
+ const x = xp(v), y = yp(earningsAt(v));
+ if (ff) { ctx.moveTo(x, y); ff = false; } else ctx.lineTo(x, y);
+ }
+ ctx.stroke(); ctx.shadowBlur = 0;
+
+ // Scrubber dot
+ const sv = creatorChartViews !== null ? creatorChartViews : currentViewsK * 1000;
+ const sx = xp(sv), sy = yp(earningsAt(sv));
+ const earn = earningsAt(sv);
+
+ // Tooltip
+ const tip = fmtN(sv) + ' views · $' + earn;
+ ctx.font = 'bold 10px DM Sans,sans-serif';
+ const tw = ctx.measureText(tip).width + 16;
+ let tx = sx - tw / 2;
+ tx = Math.max(PAD.left, Math.min(PAD.left + cW - tw, tx));
+ const ty = Math.max(PAD.top, sy - 28);
+ ctx.fillStyle = 'rgba(25,15,45,0.85)';
+ roundRect(ctx, tx, ty, tw, 18, 5); ctx.fill();
+ ctx.fillStyle = 'white'; ctx.textAlign = 'left';
+ ctx.fillText(tip, tx + 8, ty + 13);
+
+ // Dot
+ const dg = ctx.createRadialGradient(sx,sy,0,sx,sy,8);
+ dg.addColorStop(0,'#a78bfa'); dg.addColorStop(1,'#f093b0');
+ ctx.beginPath(); ctx.arc(sx, sy, 7, 0, Math.PI*2);
+ ctx.fillStyle = dg; ctx.fill();
+ ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.stroke();
+
+ // Init drag if not already
+ initCreatorChartDrag();
+}
+
+function initCreatorChartDrag() {
+ const canvas = document.getElementById('creatorCpmCanvas');
+ if (!canvas || canvas._cdragInit) return;
+ canvas._cdragInit = true;
+
+ function viewsFromEvt(e) {
+ if (!_creatorGeo) return 0;
+ const rect = canvas.getBoundingClientRect();
+ const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+ const { PAD, cW, maxViews, POST_MAX, SPLIT } = _creatorGeo;
+ const x = clientX - rect.left - PAD.left;
+ const splitX = cW * SPLIT;
+ let raw;
+ if (x <= splitX) {
+ raw = (x / splitX) * maxViews;
+ } else {
+ raw = maxViews + ((x - splitX) / (cW - splitX)) * (POST_MAX - maxViews);
+ }
+ const snap = Math.max(100, Math.round((POST_MAX) / 200 / 100) * 100);
+ return Math.max(0, Math.min(POST_MAX, Math.round(raw / snap) * snap));
+ }
+
+ canvas.addEventListener('mousedown', e => { _creatorDragging = true; creatorChartViews = viewsFromEvt(e); updateCalc(); });
+ canvas.addEventListener('touchstart', e => { _creatorDragging = true; creatorChartViews = viewsFromEvt(e); updateCalc(); }, { passive: true });
+ window.addEventListener('mousemove', e => { if (_creatorDragging) { creatorChartViews = viewsFromEvt(e); updateCalc(); } });
+ window.addEventListener('touchmove', e => { if (_creatorDragging) { creatorChartViews = viewsFromEvt(e); updateCalc(); } }, { passive: true });
+ window.addEventListener('mouseup', () => _creatorDragging = false);
+ window.addEventListener('touchend', () => _creatorDragging = false);
+}
+
+updateCalc();
+
+
+
+// ===== CPM CURVE CHART =====
+const competitors = [
+ { name: 'TikTok Ads', cpm: 9.00, color: 'rgba(45,45,45,0.55)', label: 'TikTok $9' },
+ { name: 'Meta', cpm: 14.00, color: 'rgba(24,119,242,0.55)', label: 'Meta $14' },
+ { name: 'Trad. Agency', cpm: 45.00, color: 'rgba(107,107,138,0.55)', label: 'Agency $45' },
+];
+
+const mixViewCaps = {
+ small: 100000,
+ medium: 300000,
+ large: 500000,
+ variety: 300000,
+};
+
+// Tab → tier mapping for the CPM chart
+const tabToTier = { small: 'S', medium: 'M', large: 'L' };
+
+function getMixCap() {
+ const tn = tabToTier[cpmTabMix] || 'S';
+ return (sizes[tn] && sizes[tn].max) ? sizes[tn].max : 300000;
+}
+
+// Brand total cost for a creator given tier + views
+function brandPaysForCreator(views, tierName) {
+ tierName = tierName || tabToTier[cpmTabMix] || 'S';
+ const d = sizes[tierName] || sizes['S'];
+ return calcBracket(Math.min(views, d.max * 1000), tierName, 'brandRate');
+}
+
+// Blended CPM for the chart — tier-aware
+function hivemindCPM(views, tierName) {
+ tierName = tierName || tabToTier[cpmTabMix] || 'S';
+ const d = sizes[tierName] || sizes['S'];
+ if (views <= 0) return 0;
+ const capViews = d.max * 1000;
+ const cost = calcBracket(Math.min(views, capViews), tierName, 'brandRate');
+ if (views <= capViews) {
+  return (cost / views) * 1000;
+ } else {
+  const peakCost = calcBracket(capViews, tierName, 'brandRate');
+  return (peakCost / views) * 1000;
+ }
+}
+
+function fmtV(n) {
+ if (n >= 1000000) return (n/1000000).toFixed(1)+'M';
+ if (n >= 1000) return Math.round(n/1000)+'k';
+ return n;
+}
+function fmtDollars(n) {
+ if (n >= 1000) return '$'+(n/1000).toFixed(1)+'k';
+ return '$'+Math.round(n);
+}
+
+function getTotalSpend(views, tierName) {
+ tierName = tierName || tabToTier[cpmTabMix] || 'S';
+ const d = sizes[tierName] || sizes['S'];
+ return calcBracket(Math.min(views, d.max * 1000), tierName, 'brandRate');
+}
+
+
+let cpmTabMix = 'small';
+
+// Per-size config: agency flat fee, view cap, typical avg post views, axis ranges
+// yMax chosen so curves use the full chart height meaningfully
+const CPM_CONFIGS = {
+ small:  { agencyFee: 125, hmCap: 100000, avgV:  6000, xMax:  30000, yMax: 25 },
+ medium: { agencyFee: 350, hmCap: 300000, avgV: 18000, xMax:  60000, yMax: 25 },
+ large:  { agencyFee: 800, hmCap: 500000, avgV: 35000, xMax: 100000, yMax: 40 },
+};
+
+function switchCpmTab(mix, btn) {
+ cpmTabMix = mix;
+ document.querySelectorAll('.cpm-tab').forEach(b => b.classList.remove('active'));
+ btn.classList.add('active');
+ renderCPM();
+}
+
+function drawCurve() {
+ const canvas = document.getElementById('cpmCanvas');
+ if (!canvas) return;
+ const wrap = canvas.parentElement;
+ const dpr = window.devicePixelRatio || 1;
+
+ // getBoundingClientRect works even when page is hidden; fallback to offsetWidth
+ const rect = wrap.getBoundingClientRect();
+ const W = (rect.width > 0 ? rect.width : wrap.offsetWidth) || 800;
+ const H = (rect.height > 0 ? rect.height : wrap.offsetHeight) || 380;
+
+ canvas.width  = Math.round(W * dpr);
+ canvas.height = Math.round(H * dpr);
+ canvas.style.width  = W + 'px';
+ canvas.style.height = H + 'px';
+ const ctx = canvas.getContext('2d');
+ ctx.scale(dpr, dpr);
+
+ const cfg = CPM_CONFIGS[cpmTabMix] || CPM_CONFIGS.small;
+ const AGENCY_FEE = cfg.agencyFee;
+ const HM_CAP = cfg.hmCap;
+ const AVG_V = cfg.avgV;
+ const X_MAX = cfg.xMax;
+ const Y_MAX = cfg.yMax;
+ const SOCIAL_CPM = 11.50;
+
+ const isMobile = W < 520;
+ const PAD = {
+  top: 24,
+  right: 16,
+  bottom: isMobile ? 44 : 52,
+  left: isMobile ? 44 : 58
+ };
+ const CW = W - PAD.left - PAD.right;
+ const CH = H - PAD.top - PAD.bottom;
+
+ function xp(v) { return PAD.left + (v / X_MAX) * CW; }
+ function yp(cpm) { return PAD.top + CH - (cpm / Y_MAX) * CH; }
+ function hmCPM(v) {
+  const tn = tabToTier[cpmTabMix] || 'S';
+  if (v <= 0) return 0;
+  return calcBracket(Math.min(v, HM_CAP), tn, 'brandRate') / v * 1000;
+ }
+ function agCPM(v) { return v > 0 ? (AGENCY_FEE / v) * 1000 : Infinity; }
+
+ const TICK_COLOR  = 'rgba(107,107,138,0.7)';
+ const LABEL_COLOR = 'rgba(107,107,138,0.55)';
+ const TICK_FONT   = isMobile ? '10px DM Sans,sans-serif' : '11px DM Sans,sans-serif';
+ const AXIS_FONT   = isMobile ? '10px DM Sans,sans-serif' : '11px DM Sans,sans-serif';
+
+ // ── Y gridlines + labels ──
+ const yStep = Math.ceil(Y_MAX / 5 / 5) * 5;
+ for (let cv = 0; cv <= Y_MAX; cv += yStep) {
+  const y = yp(cv);
+  ctx.strokeStyle = 'rgba(167,139,250,0.08)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + CW, y); ctx.stroke();
+  ctx.fillStyle = TICK_COLOR; ctx.font = TICK_FONT; ctx.textAlign = 'right';
+  ctx.fillText('$' + cv, PAD.left - 8, y + 4);
+ }
+
+ // ── X tick marks ──
+ const tickSets = {
+  small:  [0, 5000, 10000, 15000, 20000, 25000, 30000],
+  medium: [0, 10000, 20000, 30000, 40000, 50000, 60000],
+  large:  [0, 20000, 40000, 60000, 80000, 100000],
+ };
+ (tickSets[cpmTabMix] || tickSets.small).forEach(v => {
+  const x = xp(v);
+  ctx.strokeStyle = 'rgba(107,107,138,0.2)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(x, PAD.top + CH); ctx.lineTo(x, PAD.top + CH + 5); ctx.stroke();
+  ctx.fillStyle = TICK_COLOR; ctx.font = TICK_FONT; ctx.textAlign = 'center';
+  ctx.fillText(v === 0 ? '0' : (v >= 1000 ? (v/1000) + 'k' : v), x, PAD.top + CH + 18);
+ });
+
+ // ── Axis title: X only (Y is self-evident with $ labels) ──
+ ctx.fillStyle = LABEL_COLOR; ctx.font = AXIS_FONT; ctx.textAlign = 'center';
+ ctx.fillText('Views per post \u2192', PAD.left + CW / 2, H - 4);
+
+ // ── Clip to chart area ──
+ ctx.save();
+ ctx.beginPath();
+ ctx.rect(PAD.left, PAD.top, CW, CH + 1);
+ ctx.clip();
+
+ // ── Purple fill under Hivemind curve ──
+ ctx.beginPath();
+ let v = 200;
+ ctx.moveTo(xp(v), yp(hmCPM(v)));
+ for (v += 200; v <= X_MAX; v += 200) ctx.lineTo(xp(v), yp(hmCPM(v)));
+ ctx.lineTo(xp(X_MAX), PAD.top + CH);
+ ctx.lineTo(xp(200), PAD.top + CH);
+ ctx.closePath();
+ const purpG = ctx.createLinearGradient(0, PAD.top, 0, PAD.top + CH);
+ purpG.addColorStop(0, 'rgba(167,139,250,0.12)');
+ purpG.addColorStop(1, 'rgba(167,139,250,0.02)');
+ ctx.fillStyle = purpG; ctx.fill();
+
+ // ── Gamble zone: fill between agency line and Hivemind curve ──
+ // This is the CPM premium you're paying before views accumulate
+ ctx.beginPath();
+ // Top edge: agency line (left to right)
+ let gz = true;
+ const gStep = Math.max(50, X_MAX / 400);
+ for (let v = gStep; v <= X_MAX; v += gStep) {
+ const x = xp(v), y = yp(agCPM(v));
+ if (gz) { ctx.moveTo(x, y); gz = false; } else ctx.lineTo(x, y);
+ }
+ // Bottom edge: Hivemind curve (right to left)
+ for (let v = X_MAX; v >= gStep; v -= gStep) {
+ ctx.lineTo(xp(v), yp(hmCPM(v)));
+ }
+ ctx.closePath();
+ const gambleG = ctx.createLinearGradient(PAD.left, PAD.top, PAD.left, PAD.top + CH);
+ gambleG.addColorStop(0, 'rgba(239,68,68,0.12)');
+ gambleG.addColorStop(0.5, 'rgba(251,146,60,0.08)');
+ gambleG.addColorStop(1, 'rgba(251,146,60,0.02)');
+ ctx.fillStyle = gambleG; ctx.fill();
+
+ // Gamble zone label sits in the upper-left of the filled area
+ // Label sits inside the red fill midpoint of x range, midpoint between the two curves
+const gMidV = X_MAX * 0.18;
+const gTopY = yp(Math.min(agCPM(gMidV), Y_MAX));
+const gBotY = yp(hmCPM(gMidV));
+const gMidY = gTopY + (gBotY - gTopY) * 0.28;
+const gFontSize = isMobile ? 10 : 12;
+ctx.font = `bold ${gFontSize}px DM Sans,sans-serif`;
+ctx.textAlign = 'center';
+const text = 'Gamble zone';
+const textWidth = ctx.measureText(text).width;
+// Desktop pill must hold: title (12) + gap (6) + subline1 (12) + gap (4) + subline2 (12) + top/bottom padding (8+8)
+const pillWidth = textWidth + (isMobile ? 20 : 50);
+const pillHeight = isMobile ? gFontSize + 8 : 8 + 12 + 6 + 12 + 4 + 12 + 8; // = 62 on desktop
+let pillX = xp(gMidV) - pillWidth / 2 + (isMobile ? 0 : -30);
+pillX = Math.max(PAD.left + 2, Math.min(pillX, PAD.left + CW - pillWidth - 2));
+const pillCenterX = pillX + pillWidth / 2;
+const pillY = gMidY - pillHeight / 2;
+ctx.fillStyle = 'white';
+ctx.beginPath();
+ctx.roundRect(pillX, pillY, pillWidth, pillHeight, 12);
+ctx.fill();
+ctx.textBaseline = 'middle';
+ctx.fillStyle = 'rgba(220,38,38,0.7)';
+// Title: 8px top pad + half of 12px font = 14px from top
+ctx.fillText(text, pillCenterX, pillY + (isMobile ? pillHeight / 2 : 14));
+if (!isMobile) {
+  ctx.fillStyle = 'rgba(220,38,38,0.45)';
+  ctx.font = '12px DM Sans,sans-serif';
+  // Sub-line 1 center: 8 + 12 + 6 + 6 = 32px from top
+  ctx.fillText('Money you lose', pillCenterX, pillY + 32);
+  // Sub-line 2 center: 8 + 12 + 6 + 12 + 4 + 6 = 48px from top
+  ctx.fillText('before views', pillCenterX, pillY + 48);
+}
+ctx.textBaseline = 'alphabetic';
+
+ // ── Social ads flat line ──
+ ctx.strokeStyle = 'rgba(59,130,246,0.55)'; ctx.lineWidth = 1.6; ctx.setLineDash([5, 4]);
+ ctx.beginPath();
+ ctx.moveTo(PAD.left, yp(SOCIAL_CPM));
+ ctx.lineTo(PAD.left + CW, yp(SOCIAL_CPM));
+ ctx.stroke(); ctx.setLineDash([]);
+
+ // ── Agency line hyperbolic decline ──
+ ctx.strokeStyle = 'rgba(107,107,138,0.55)'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+ ctx.beginPath();
+ let started = false;
+ const step = Math.max(50, X_MAX / 600);
+ for (let av = step; av <= X_MAX; av += step) {
+ const cv = agCPM(av);
+ const x = xp(av), y = yp(cv);
+ if (!started) { ctx.moveTo(x, y); started = true; } else ctx.lineTo(x, y);
+ }
+ ctx.stroke(); ctx.setLineDash([]);
+
+ // ── Hivemind curve ──
+ const hmGrad = ctx.createLinearGradient(PAD.left, 0, PAD.left + CW, 0);
+ hmGrad.addColorStop(0, '#a78bfa');
+ hmGrad.addColorStop(1, '#f093b0');
+ ctx.strokeStyle = hmGrad; ctx.lineWidth = 3;
+ ctx.shadowColor = 'rgba(167,139,250,0.4)'; ctx.shadowBlur = 8;
+ ctx.beginPath();
+ started = false;
+ for (let hv = 200; hv <= X_MAX; hv += 200) {
+ const cv = hmCPM(hv);
+ const x = xp(hv), y = yp(cv);
+ if (!started) { ctx.moveTo(x, y); started = true; } else ctx.lineTo(x, y);
+ }
+ ctx.stroke(); ctx.shadowBlur = 0;
+
+ // ── Intersection dot ──
+ // Find where hmCPM ≈ agCPM
+ let intersectV = X_MAX;
+ for (let iv = 500; iv < X_MAX; iv += 200) {
+ if (hmCPM(iv) >= agCPM(iv)) { intersectV = iv; break; }
+ }
+ let _ix = null, _iy = null; // hoisted so the pill can be drawn after restore
+ if (intersectV < X_MAX) {
+ _ix = xp(intersectV); _iy = yp(hmCPM(intersectV));
+ ctx.beginPath(); ctx.arc(_ix, _iy, 5, 0, Math.PI*2);
+ ctx.fillStyle = 'rgba(167,139,250,0.6)'; ctx.fill();
+ ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.stroke();
+ }
+
+ ctx.restore(); // end clip
+
+ // ── Inline line labels (pill badges drawn on the chart, visible on all screen sizes) ──
+ const lblFs = isMobile ? 9 : 10;
+ ctx.font = `bold ${lblFs}px DM Sans,sans-serif`;
+
+ // Social ads: position after the point where agency line crosses social (well past crossover)
+ {
+  const crossV = Math.min((AGENCY_FEE * 1000) / SOCIAL_CPM, X_MAX * 0.85);
+  const lv     = crossV + (X_MAX - crossV) * 0.55;
+  const lx     = Math.max(PAD.left + 4, Math.min(xp(lv), PAD.left + CW - 4));
+  const ly     = yp(SOCIAL_CPM);
+  const txt    = 'Social ads · $' + SOCIAL_CPM.toFixed(2);
+  const tw     = ctx.measureText(txt).width + 14;
+  const lh     = lblFs + 10;
+  const px     = Math.max(PAD.left + tw / 2 + 4, Math.min(lx, PAD.left + CW - tw / 2 - 4));
+  const py     = Math.max(PAD.top + lh + 4, ly - lh - 5);
+  roundRect(ctx, px - tw / 2, py, tw, lh, 4);
+  ctx.fillStyle = 'rgba(239,246,255,0.95)'; ctx.fill();
+  ctx.strokeStyle = 'rgba(59,130,246,0.3)'; ctx.lineWidth = 1;
+  roundRect(ctx, px - tw / 2, py, tw, lh, 4); ctx.stroke();
+  ctx.fillStyle = 'rgba(37,99,235,0.85)'; ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(txt, px, py + lh / 2);
+  ctx.textBaseline = 'alphabetic';
+ }
+
+ // Hivemind avg CPM pill: below intersection dot, or at a fixed fallback position if lines don't cross
+ {
+  const refV   = _ix !== null ? intersectV : X_MAX * 0.80;
+  const refX   = _ix !== null ? _ix        : xp(X_MAX * 0.80);
+  const refY   = _ix !== null ? _iy        : yp(hmCPM(X_MAX * 0.80));
+  const avgCPMVal = calcBracket(Math.min(refV, HM_CAP), tabToTier[cpmTabMix] || 'S', 'brandRate') / refV * 1000;
+  const avgTxt = 'Hivemind avg \u00b7 $' + avgCPMVal.toFixed(2);
+  ctx.font = `bold ${isMobile ? 9 : 11}px DM Sans,sans-serif`;
+  const atW = ctx.measureText(avgTxt).width + 18;
+  const atH = 22, atR = 6;
+  let atX = Math.max(PAD.left, Math.min(PAD.left + CW - atW, refX - atW / 2));
+  const atY = refY + 10;
+  ctx.shadowColor = 'rgba(167,139,250,0.3)'; ctx.shadowBlur = 8;
+  roundRect(ctx, atX, atY, atW, atH, atR);
+  ctx.fillStyle = 'rgba(245,243,255,0.97)'; ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.strokeStyle = 'rgba(167,139,250,0.5)'; ctx.lineWidth = 1.2;
+  roundRect(ctx, atX, atY, atW, atH, atR); ctx.stroke();
+  ctx.fillStyle = '#7c3aed'; ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(avgTxt, atX + atW / 2, atY + atH / 2);
+  ctx.textBaseline = 'alphabetic';
+ }
+
+ // Agency fee: at 35% of X range, label sits below the hyperbolic line
+ {
+  const lv  = X_MAX * 0.35;
+  const lx  = xp(lv);
+  const lcy = yp(Math.min(agCPM(lv), Y_MAX * 0.96));
+  const txt = 'Agency flat · $' + AGENCY_FEE;
+  const tw  = ctx.measureText(txt).width + 14;
+  const lh  = lblFs + 10;
+  const px  = Math.max(PAD.left + tw / 2 + 4, Math.min(lx, PAD.left + CW - tw / 2 - 4));
+  const py  = Math.min(lcy + 5, PAD.top + (CH - lh - 4));
+  roundRect(ctx, px - tw / 2, py, tw, lh, 4);
+  ctx.fillStyle = 'rgba(249,249,251,0.95)'; ctx.fill();
+  ctx.strokeStyle = 'rgba(107,107,138,0.3)'; ctx.lineWidth = 1;
+  roundRect(ctx, px - tw / 2, py, tw, lh, 4); ctx.stroke();
+  ctx.fillStyle = 'rgba(107,107,138,0.85)'; ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(txt, px, py + lh / 2);
+  ctx.textBaseline = 'alphabetic';
+ }
+
+
+ // ── Avg post marker ──
+ const avgX = xp(AVG_V);
+ const avgCPM = hmCPM(AVG_V);
+ const avgY = yp(avgCPM);
+ const axisY = PAD.top + CH;
+
+ // Full-height dashed line
+ ctx.strokeStyle = 'rgba(245,168,90,0.55)'; ctx.lineWidth = 1.6; ctx.setLineDash([4, 3]);
+ ctx.beginPath(); ctx.moveTo(avgX, PAD.top); ctx.lineTo(avgX, axisY); ctx.stroke();
+ ctx.setLineDash([]);
+
+ // Yellow pill on x-axis
+ const lbl = 'Typical post \u00b7 ' + fmtV(AVG_V);
+ ctx.font = `bold ${isMobile ? 9 : 11}px DM Sans,sans-serif`;
+ const lblW = ctx.measureText(lbl).width + 18;
+ const lblH = 22, lblR = 6;
+ let lblX = avgX - lblW / 2;
+ lblX = Math.max(PAD.left, Math.min(PAD.left + CW - lblW, lblX));
+ const lblY = axisY + 6;
+ ctx.shadowColor = 'rgba(245,168,90,0.25)'; ctx.shadowBlur = 8;
+ roundRect(ctx, lblX, lblY, lblW, lblH, lblR);
+ ctx.fillStyle = 'rgba(255,249,235,0.97)'; ctx.fill();
+ ctx.shadowBlur = 0;
+ ctx.strokeStyle = 'rgba(245,168,90,0.55)'; ctx.lineWidth = 1.2;
+ roundRect(ctx, lblX, lblY, lblW, lblH, lblR); ctx.stroke();
+ ctx.fillStyle = '#b45309'; ctx.textAlign = 'center';
+ ctx.textBaseline = 'middle';
+ ctx.fillText(lbl, lblX + lblW / 2, lblY + lblH / 2);
+ ctx.textBaseline = 'alphabetic';
+}
+
+
+function roundRect(ctx, x, y, w, h, r) {
+ ctx.beginPath();
+ ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
+ ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+ ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
+ ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+ ctx.closePath();
+}
+
+function renderCPM() {
+ setTimeout(() => { drawCurve(); }, 120);
+}
+
+function setCpmMix(mix, btn) {
+ curMix = mix;
+ if (btn) {
+ document.querySelectorAll('.cpm-mix-pill').forEach(b => b.classList.remove('active'));
+ btn.classList.add('active');
+ }
+ document.querySelectorAll('.mix-option').forEach(o => {
+ o.classList.toggle('active', o.dataset.mix === mix);
+ });
+}
+
+function updateCurve() {}
+
+// ── Niche multi-select: max 3 ──
+document.addEventListener('change', function(e) {
+ if (e.target.name !== 'niche') return;
+ const all = document.querySelectorAll('#creator-niches input[type=checkbox]');
+ const checked = [...all].filter(c => c.checked);
+ if (checked.length > 3) { e.target.checked = false; }
+});
+
+// ── Form submit handlers ──
+async function handleCreatorSubmit(e) {
+ e.preventDefault();
+ const form = e.target;
+ const btn = form.querySelector('.form-submit');
+ btn.textContent = 'Submitting...';
+ btn.disabled = true;
+
+ const data = {
+  firstName:   form['first-name'].value.trim(),
+  lastName:    form['last-name'].value.trim(),
+  email:       form['email'].value.trim(),
+  username:    form['username'].value.trim(),
+  platform:    form['platform'] ? form['platform'].value : '',
+  niches:      [...form.querySelectorAll('input[name="niche"]:checked')].map(c => c.value).join(', '),
+  referredBy:  form['referred-by'].value || '',
+  submittedAt: new Date().toISOString(),
+  source:      'creator-application',
+ };
+
+ try {
+  await fetch('https://hook.us2.make.com/247lwv51s7mdwahxcqr8b2fvielgzwsm', {
+   method: 'POST',
+   headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify(data),
+  });
+  btn.textContent = 'Application submitted!';
+  btn.style.background = 'linear-gradient(135deg, #34d399, #059669)';
+  form.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+  const note = form.querySelector('.form-note');
+  if (note) {
+   note.textContent = "We've received your application and will be in touch within 48 hours.";
+   note.style.color = '#059669';
+   note.style.fontWeight = '500';
+  }
+ } catch (err) {
+  btn.textContent = 'Submit My Application';
+  btn.disabled = false;
+  alert('Something went wrong. Please try again or email us directly.');
+ }
+}
+
+async function handleBrandSubmit(e) {
+ e.preventDefault();
+ const form = e.target;
+ const btn = form.querySelector('.form-submit');
+ btn.textContent = 'Submitting...';
+ btn.disabled = true;
+
+ const data = {
+  brandName:   form['brand-name'].value.trim(),
+  contactName: form['contact-name'].value.trim(),
+  email:       form['email'].value.trim(),
+  website:     form['website'].value.trim(),
+  budget:      form['budget'].value,
+  category:    form['category'].value,
+  goals:       form['goals'].value.trim(),
+  submittedAt: new Date().toISOString(),
+  source:      'brand-application',
+ };
+
+ try {
+  await fetch('https://hook.us2.make.com/w9fqn4il49yqd4oz6w6bas2yvijcfoy9', {
+   method: 'POST',
+   headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify(data),
+  });
+  btn.textContent = 'Brief submitted!';
+  btn.style.background = 'linear-gradient(135deg, #34d399, #059669)';
+  form.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+  const note = form.querySelector('.form-note');
+  if (note) {
+   note.textContent = "We've received your brief and will be in touch within 48 hours.";
+   note.style.color = '#059669';
+   note.style.fontWeight = '500';
+  }
+ } catch (err) {
+  btn.textContent = 'Submit Campaign Brief';
+  btn.disabled = false;
+  alert('Something went wrong. Please try again or email us directly.');
+ }
+}
+
+
+// ===== CAMPAIGN DESIGNER =====
+const mixProfiles = {
+ variety: { avgBase: 95, avgMin: 1250, avgMax: 300 },
+ small:   { avgBase: 47, avgMin: 625,  avgMax: 150 },
+ medium:  { avgBase: 90, avgMin: 1000, avgMax: 300 },
+ large:   { avgBase: 160,avgMin: 1750, avgMax: 750 },
+};
+let curMix = 'variety';
+
+// Derives mixProfiles + CPM chart caps from live sizes data (Airtable or hardcoded defaults).
+// Called once at init and again whenever Airtable pricing is loaded.
+function rebuildMixProfiles() {
+ // "All Small (XS–S)" = blend of both small tiers
+ mixProfiles.small = {
+  avgBase: Math.round((sizes.XS.base + sizes.S.base) / 2),
+  avgMin:  Math.round((sizes.XS.minV + sizes.S.minV) / 2),
+  avgMax:  Math.round((sizes.XS.max  + sizes.S.max ) / 2),
+ };
+ mixProfiles.medium  = { avgBase: sizes.M.base, avgMin: sizes.M.minV, avgMax: sizes.M.max };
+ mixProfiles.large   = { avgBase: sizes.L.base, avgMin: sizes.L.minV, avgMax: sizes.L.max };
+ // "Variety Mix" = even blend across all four tiers
+ mixProfiles.variety = {
+  avgBase: Math.round((sizes.XS.base + sizes.S.base + sizes.M.base + sizes.L.base) / 4),
+  avgMin:  Math.round((sizes.XS.minV + sizes.S.minV + sizes.M.minV + sizes.L.minV) / 4),
+  avgMax:  Math.round((sizes.XS.max  + sizes.S.max  + sizes.M.max  + sizes.L.max ) / 4),
+ };
+ // Keep the CPM curve chart's view-cap lines in sync with tier data
+ CPM_CONFIGS.small.hmCap  = (sizes.S.max  || 200) * 1000;
+ CPM_CONFIGS.medium.hmCap = (sizes.M.max  || 300) * 1000;
+ CPM_CONFIGS.large.hmCap  = (sizes.L.max  || 500) * 1000;
+}
+rebuildMixProfiles(); // initialise with hardcoded defaults
+
+function setMix(mix, el) {
+ curMix = mix;
+ document.querySelectorAll('.mix-option').forEach(o => o.classList.remove('active'));
+ el.classList.add('active');
+ // Sync CPM quick-filter pills
+ document.querySelectorAll('.cpm-mix-pill').forEach(b => {
+ const t = b.textContent.trim().toLowerCase();
+ const matches = mix === 'small' ? t === 'small' : mix === 'medium' ? t === 'medium' : t === 'large / xl';
+ b.classList.toggle('active', matches);
+ });
+ updateDesigner();
+}
+
+function updateDesigner() {
+ const budget = parseInt(document.getElementById('budget-slider').value);
+ const m = mixProfiles[curMix];
+ const creators = Math.max(1, Math.floor(budget / m.avgBase));
+ const minViews = creators * m.avgMin;
+ const maxViews = creators * m.avgMax * 1000;
+
+ document.getElementById('budget-display').textContent = '$' + budget.toLocaleString();
+ document.getElementById('budget-sub').textContent = `~${creators} creators estimated`;
+ document.getElementById('res-creators').textContent = creators;
+ document.getElementById('res-min-views').textContent = minViews >= 1000 ? (minViews/1000).toFixed(1)+'k' : minViews;
+ document.getElementById('res-max-views').textContent = maxViews >= 1000000 ? (maxViews/1000000).toFixed(1)+'M' : (maxViews/1000).toFixed(0)+'k';
+ document.getElementById('res-reviews').textContent = creators + ' verified';
+
+ // Est. CPM: average of blended CPM at guaranteed min views and at perf marker
+ // This reflects the mid-point of expected creator performance rather than a single scenario
+ const mixToTier = { variety: 'S', small: 'S', medium: 'M', large: 'L' };
+ const cpmTier   = mixToTier[curMix] || 'S';
+ const ts        = sizes[cpmTier];
+ const cpmAtMin  = hivemindCPM(ts.minV, cpmTier);
+ const cpmAtPerf = hivemindCPM(ts.perf, cpmTier);
+ const avgCPM    = (cpmAtMin + cpmAtPerf) / 2;
+ document.getElementById('res-cpm').textContent = '$' + avgCPM.toFixed(2);
+ document.getElementById('res-budget').textContent = '$' + budget.toLocaleString();
+
+ // Sync curve slider max to estimated max views, default to midpoint
+ const curveSlider = document.getElementById('curve-slider');
+ if (curveSlider) {
+ const sliderMax = Math.max(maxViews, getMixCap() * 3.5);
+ curveSlider.max = sliderMax;
+ curveSlider.value = Math.min(parseInt(curveSlider.value), sliderMax);
+ document.getElementById('curve-views-val').textContent = fmtV(parseInt(curveSlider.value));
+ }
+ // Refresh chart if visible
+ if (document.getElementById('cpmCanvas')) renderCPM();
+}
+// ===== AIRTABLE PRICING SYNC =====
+const AT_TOKEN = 'patAl2Y6IwYB4h3en.971183ff84947dd31e15b88f7ab560cd096fb5cffe72f535ce1c174845883dac';
+const AT_BASE  = 'app5LcXkSufxnfSTl';
+const AT_TIERS = 'tbluEe3bwn9H17T3W';
+const AT_CPM   = 'tbl3qgBSLnXJGeiAd';
+
+async function fetchPricing() {
+ // Skip remote fetch when running from file:// (browsers block cross-origin requests)
+ if (location.protocol === 'file:') {
+  console.log('Hivemind: running locally — using default pricing.');
+  return;
+ }
+ try {
+  const headers = { 'Authorization': 'Bearer ' + AT_TOKEN };
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  const [trRes, cpmRes] = await Promise.all([
+   fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TIERS, { headers, signal: controller.signal }),
+   fetch('https://api.airtable.com/v0/' + AT_BASE + '/' + AT_CPM,   { headers, signal: controller.signal }),
+  ]);
+  clearTimeout(timeout);
+  if (!trRes.ok || !cpmRes.ok) throw new Error('HTTP ' + trRes.status);
+  const trData  = await trRes.json();
+  const cpmData = await cpmRes.json();
+
+  // Update sizes from Tier Config table
+  trData.records.forEach(r => {
+   const f = r.fields;
+   const t = f['Tier'];
+   if (!t || !sizes[t]) return;
+   if (f['Creator Base Pay ($)']  != null) sizes[t].base      = f['Creator Base Pay ($)'];
+   if (f['Brand Base Fee ($)']    != null) sizes[t].brandBase = f['Brand Base Fee ($)'];
+   if (f['Min Views']             != null) sizes[t].minV      = f['Min Views'];
+   if (f['Perf Marker']           != null) sizes[t].perf      = f['Perf Marker'];
+   if (f['View Cap (k)']          != null) sizes[t].max       = f['View Cap (k)']; // stored in k-view units, matching internal scale
+   if (f['Follower Min (k)']      != null) sizes[t].fMin      = f['Follower Min (k)'];
+   if (f['Follower Max (k)']      != null) sizes[t].fMax      = f['Follower Max (k)'];
+  });
+
+  // Rebuild cpmBrackets from CPM Brackets table
+  const fresh = {};
+  cpmData.records.forEach(r => {
+   const f = r.fields;
+   const t = f['Tier'];
+   if (!t) return;
+   if (!fresh[t]) fresh[t] = [];
+   fresh[t].push({
+    from:        f['Views From']             || 0,
+    to:          f['Views To']               || Infinity,
+    brandRate:   f['Brand CPM ($ per 1k)']   || 5,
+    creatorRate: f['Creator CPM ($ per 1k)'] || 3,
+   });
+  });
+  Object.keys(fresh).forEach(t => {
+   fresh[t].sort((a, b) => a.from - b.from);
+   cpmBrackets[t] = fresh[t];
+  });
+
+  // Rebuild derived data then refresh all calculators with live Airtable values
+  rebuildMixProfiles();
+  updateCalc();
+  updateDesigner();
+  if (document.getElementById('page-brands').classList.contains('active')) renderCPM();
+  console.log('✓ Pricing loaded from Airtable');
+ } catch(err) {
+  if (err.name === 'AbortError') {
+   console.info('Airtable pricing timed out — using defaults.');
+  } else {
+   console.info('Airtable pricing unavailable — using defaults. (Deploy to a web server to enable live sync.)');
+  }
+ }
+}
+
+// ── Referral link tracking ──
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  let ref = params.get('ref') || sessionStorage.getItem('hm_ref') || '';
+  // Sanitize: allow letters, numbers, hyphens, underscores only
+  ref = ref.replace(/[^a-zA-Z0-9_\-]/g, '').slice(0, 60);
+  if (!ref) return;
+
+  sessionStorage.setItem('hm_ref', ref);
+
+  // If ?ref= is in the URL, navigate to creators page and scroll to apply
+  if (params.get('ref')) {
+    goTo('creators');
+    setTimeout(() => {
+      const el = document.getElementById('c-apply');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  // Populate hidden field and show badge
+  const field = document.getElementById('referred-by-field');
+  if (field) field.value = ref;
+
+  const badge = document.getElementById('referral-badge');
+  const nameEl = document.getElementById('referral-name');
+  if (badge && nameEl) {
+    nameEl.textContent = ref;
+    badge.classList.add('visible');
+  }
+})();
+
+fetchPricing();
+
+// Lazy-load videos: only play when visible, pause when off-screen
+(function() {
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        if (!video.src && video.querySelector('source')) {
+          video.load();
+        }
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('.video-placeholder').forEach(video => {
+    videoObserver.observe(video);
+  });
+})();
+
+</script>
+</body>
+</html>
